@@ -123,9 +123,13 @@
     /* Lớp nền đen mờ bao phủ toàn trang */
     .header__overlay {
         position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background-color: rgba(0, 0, 0, 0.6);
-        z-index: 99998 !important; /* Thấp hơn menu một chút để menu đè lên */
+        z-index: 99998 !important;
+        /* Thấp hơn menu một chút để menu đè lên */
         display: block;
         opacity: 0;
         pointer-events: none;
@@ -287,6 +291,87 @@
    2. MÀN HÌNH MOBILE NHỎ (Kích thước nhỏ hơn 739px)
    -------------------------------------------------------------------------- */
 @media (max-width: 739px) {
+    /* ==========================================================================
+   RESPONSIVE MOBILE: THU NHỎ VÒNG TRÒN VÀ GOM GỌN DÀN ICON 3D (MAX-WIDTH: 739PX)
+   ========================================================================== */
+    @media (max-width: 739px) {
+
+        /* 1. Thu nhỏ vòng tròn đa sắc cho vừa khít màn hình điện thoại */
+        .hero__avatar-circle {
+            width: 280px !important;
+            /* Hạ từ 450px xuống 280px */
+            height: 280px !important;
+            min-width: 280px !important;
+            min-height: 280px !important;
+        }
+
+        /* 2. Căn chỉnh lại độ tụt ảnh trên mobile để tóc vẫn thoáng, không chạm viền */
+        .hero__avatar-img {
+            width: 120% !important;
+            height: 120% !important;
+            /* Hạ độ tụt xuống 35px cho cân xứng với vòng tròn cỡ nhỏ */
+            transform: translateX(-50%) translateY(35px) !important;
+        }
+
+        .hero__avatar-circle:hover .hero__avatar-img {
+            transform: translateX(-50%) translateY(35px) scale(1.03) !important;
+        }
+
+        /* Viền màu thu mỏng lại cho tinh tế trên mobile */
+        .hero__avatar-circle::after {
+            inset: 5px !important;
+        }
+
+        /* 3. THU NHỎ KHUNG CHỨA VÀ DÀN ICON 3D BAY XUNG QUANH */
+        .hero__bg-icons {
+            width: 120% !important;
+            /* Thu hẹp vùng phủ của icon từ 140% xuống 120% để icon gom sát vào vòng tròn */
+            height: 120% !important;
+            top: -10% !important;
+            left: -10% !important;
+        }
+
+        /* Ép tất cả các icon 3D thu nhỏ kích cỡ lại */
+        .icon-floating {
+            width: 32px !important;
+            /* Thu từ 50px xuống còn 32px nhìn cực kỳ xinh xắn, vừa vặn */
+            height: auto !important;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) !important;
+            /* Giảm bóng đổ cho đỡ nặng mắt */
+        }
+
+        /* 4. ĐỊNH VỊ LẠI TỌA ĐỘ CÁC ICON GOM SÁT RÌA VÒNG TRÒN TRÊN MOBILE */
+        .icon-1 {
+            top: 8% !important;
+            left: 12% !important;
+        }
+
+        .icon-2 {
+            top: 5% !important;
+            right: 15% !important;
+        }
+
+        .icon-3 {
+            bottom: 12% !important;
+            left: 8% !important;
+        }
+
+        .icon-4 {
+            bottom: 8% !important;
+            right: 12% !important;
+        }
+
+        .icon-5 {
+            top: 45% !important;
+            left: -2% !important;
+        }
+
+        .icon-6 {
+            top: 40% !important;
+            right: -2% !important;
+        }
+    }
+
     .hero__job {
         font-size: 3.6rem;
     }

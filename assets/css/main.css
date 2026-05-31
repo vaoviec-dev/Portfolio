@@ -293,6 +293,14 @@
     display: flex;
     justify-content: center;
     align-items: flex-end; 
+
+    position: relative;
+    background: #111;
+    padding: 6px;    /* Độ dày viền sáng */
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden; /* Cắt dải màu gradient bên trong vòng tròn này */
+    z-index: 5;       /* Thấp hơn icon để icon đè lên trên */
 }
 
 .hero__avatar-img {
@@ -306,6 +314,7 @@
     z-index: 2; 
     transform-origin: bottom center; 
     transition: transform 0.3s ease;
+
 }
 
 .hero__avatar-circle:hover .hero__avatar-img {
@@ -364,6 +373,68 @@
     overflow: hidden;
     background-color: #1a1a1a;
     margin: 0 auto;
+
+    position: relative;
+    background: #111;
+    padding: 6px;    /* Độ dày của viền ánh sáng */
+    display: inline-block;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 40px; 
+}
+
+.hero__avatar-circle::before,
+.about__avatar-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* Dải màu uốn lượn: Cam thương hiệu phối tím neon và xanh cyan cực ngầu */
+    background: conic-gradient(
+        transparent, 
+        #FD6F00, 
+        #bd00ff, 
+        #00f3ff, 
+        transparent 60%
+    );
+    /* Kích hoạt chuyển động xoay tròn liên tục không dừng */
+    animation: rotateGlow 4s linear infinite;
+    z-index: -1;
+}
+
+.hero__avatar-circle::after,
+.about__avatar-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(20px); /* Độ nhòe giúp ánh sáng phát ra sống động */
+    opacity: 0.6;       /* Độ đậm nhạt của ánh sáng hắt */
+}
+
+.hero__avatar-img,
+.about__avatar-img {
+    position: relative;
+    z-index: 1;
+    background: #1e1e1e; /* Màu nền tối bọc sát ảnh để che dải màu bên dưới */
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit; /* Tự động ăn theo bo góc của khung ngoài */
+}
+
+/* --- KEYFRAMES: XOAY XOẮN DẢI MÀU 360 ĐỘ VÔ HẠN --- */
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .about__avatar-img {
@@ -1190,4 +1261,137 @@
         transform: translateY(-10px);
         opacity: 0;
     }
+}
+
+/* ANIMATION TOOLS */
+/* ==========================================================================
+   CẤU HÌNH FINAL: VÒNG TRÒN ĐA SẮC SIÊU TO (450PX) & TÓC THOÁNG KHÔNG CHẠM VIỀN
+   ========================================================================== */
+
+/* 1. Khung bọc tổng thể khối avatar */
+.hero__avatar-block {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+/* 2. VÒNG TRÒN ĐA SẮC PHÁT SÁNG NỀN (SIZE TO 450PX CỰC THOÁNG) */
+.hero__avatar-circle {
+    position: relative;
+    width: 450px !important;       /* Ép kích thước to hoành tráng */
+    height: 450px !important;      /* Giữ tỉ lệ 1:1 hoàn hảo */
+    min-width: 450px !important;
+    min-height: 450px !important;
+    background: #111 !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;   /* Khóa chặt và ẩn phần áo thừa khi dịch xuống */
+    z-index: 5 !important;       
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* 3. XỬ LÝ ẢNH CHÂN DUNG TRASPARENT: TĂNG SIZE VÀ DỊCH XUỐNG DƯỚI TRỤC Y */
+.hero__avatar-img {
+    position: absolute !important;
+    width: 120% !important;        /* Phóng to ảnh lên 120% để bù vào phần đáy khi dịch chuyển */
+    height: 120% !important;      
+    left: 50% !important;
+    bottom: 0 !important;
+    object-fit: contain !important; /* Giữ nguyên tỷ lệ ảnh transparent không bị bóp méo */
+    z-index: 1 !important;
+    border-radius: 50% !important;
+    
+    /* Vừa scale vừa dịch chuyển ảnh tụt xuống 60px theo trục Y giúp tóc tách khỏi viền */
+    transform: translateX(-50%) translateY(60px) !important; 
+    transform-origin: bottom center !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* Hiệu ứng hover phóng nhẹ ảnh nhưng vẫn giữ độ tụt Y an toàn */
+.hero__avatar-circle:hover .hero__avatar-img {
+    transform: translateX(-50%) translateY(60px) scale(1.04) !important; 
+}
+
+/* 4. DÀN ICON 3D THIẾT KẾ BAY NỔI LÊN TRÊN CÙNG TUYỆT ĐỐI */
+.hero__bg-icons {
+    position: absolute;
+    width: 115% !important;   /* Thu hẹp vùng bay để icon không dạt ra quá xa */
+    height: 115% !important;
+    top: -7.5% !important;    /* Căn chỉnh lại vị trí tâm cho chuẩn */
+    left: -7.5% !important;
+    pointer-events: none;
+    z-index: 99; 
+}
+
+/* Thu nhẹ size icon trên PC xuống một chút cho tinh tế (tầm 42px thay vì 50px) */
+.icon-floating {
+    position: absolute;
+    width: 42px !important; 
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+}
+
+/* --- HIỆU ỨNG XOAY DẢI MÀU GRADIENT VIỀN HÀO QUANG --- */
+.hero__avatar-circle::before {
+    content: '';
+    position: absolute;
+    /* Tăng độ rộng lên hẳn 250% để dải màu gradient không bị thiếu khi vòng tròn to */
+    width: 250% !important;
+    height: 250% !important;
+    background: conic-gradient(
+        transparent, 
+        #FD6F00, 
+        #bd00ff, 
+        #00f3ff, 
+        transparent 60%
+    );
+    animation: rotateGlow 4s linear infinite;
+    z-index: -1;
+}
+
+/* Lớp lõi tối tạo độ mỏng/dày cho đường viền ánh sáng (Inset 6px siêu nét) */
+.hero__avatar-circle::after {
+    content: '';
+    position: absolute;
+    
+    /* 🚀 KHÚC NÀY QUAN TRỌNG: 
+       Đặt inset tầm 8px đến 10px là vừa vặn tạo ra một đường viền màu dày dặn,
+       không để số quá lớn làm lõi đen nuốt chửng mất màu nữa! */
+    inset: 8px !important; 
+    
+    background: #1e1e1e !important; /* Đảm bảo trùng với nền tối của bồ */
+    border-radius: 50% !important;
+    z-index: -1;
+}
+
+/* --- TỌA ĐỘ RẢI ICON VÀ ANIMATION CHUYỂN ĐỘNG --- */
+.icon-1 { top: 12% !important; left: 14% !important; animation: floatAround 6s ease-in-out infinite; }
+.icon-2 { top: 10% !important; right: 14% !important; animation: floatRotate 8s linear infinite; }
+.icon-3 { bottom: 16% !important; left: 10% !important; animation: floatAround 7s ease-in-out infinite 1s; }
+.icon-4 { bottom: 14% !important; right: 12% !important; animation: floatPulse 5s ease-in-out infinite; }
+.icon-5 { top: 50% !important; left: 2% !important; animation: floatRotate 10s linear infinite; }
+.icon-6 { top: 45% !important; right: 2% !important; animation: floatAround 9s ease-in-out infinite 0.5s; }
+
+@keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes floatAround {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-15px) translateX(10px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+@keyframes floatRotate {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px) rotate(360deg); }
+}
+@keyframes floatPulse {
+    0% { transform: scale(1) translateY(0px); }
+    50% { transform: scale(1.1) translateY(-10px); }
+    100% { transform: scale(1) translateY(0px); }
 }

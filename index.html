@@ -104,9 +104,17 @@
 
                 <div class="col c-12 m-6 l-6">
                     <div class="hero__avatar-block">
+                        <div class="hero__bg-icons">
+                            <img src="assets/img/icon/icon_ai.png" alt="Figma" class="icon-floating icon-1">
+                            <img src="assets/img/icon/icon_figma.png" alt="Pen Tool" class="icon-floating icon-2">
+                            <img src="assets/img/icon/icon_palette.png" alt="Palette" class="icon-floating icon-3">
+                            <img src="assets/img/icon/icon_pen_vector.png" alt="Vector" class="icon-floating icon-4">
+                            <img src="assets/img/icon/icon_pencil.png" alt="Crop" class="icon-floating icon-5">
+                            <img src="assets/img/icon/icon_pts.png" alt="Sliders" class="icon-floating icon-6">
+                        </div>
+
                         <div class="hero__avatar-circle">
-                            <!-- ĐÃ SỬA: Bỏ dấu / ở đầu src ảnh -->
-                            <img src="assets/img/avtar-transparent.png" alt="Mahmood Fazile" class="hero__avatar-img">
+                            <img src="assets/img/avtar-transparent.png" alt="Ta Duy Trung" class="hero__avatar-img">
                         </div>
                     </div>
                 </div>
@@ -589,11 +597,11 @@
     menuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const targetId = link.getAttribute('href');
-            
+
             // Trường hợp 1: Nếu bấm vào nút Home (href="#" hoặc href="")
             if (targetId === '#' || targetId === '') {
                 e.preventDefault();
-                
+
                 // Thay vì gọi tên thẻ 'body', ta tự tạo một hàm tính toán vị trí đỉnh 0 tuyệt đối
                 const startPosition = window.scrollY;
                 const distance = -startPosition; // Khoảng cách dịch chuyển ngược về vị trí số 0
@@ -602,7 +610,7 @@
                 function homeAnimation(currentTime) {
                     if (startTime === null) startTime = currentTime;
                     const timeElapsed = currentTime - startTime;
-                    
+
                     // Áp dụng công thức Easing giúp trượt mượt về đỉnh 0 trong vòng 1.2 giây (1200ms)
                     const run = ease(timeElapsed, startPosition, distance, 1200);
                     window.scrollTo(0, run);
@@ -626,7 +634,7 @@
             // Trường hợp 2: Nếu bấm vào các mục khác như #about, #portfolio...
             else if (targetId.startsWith('#')) {
                 e.preventDefault();
-                smoothScrollTo(targetId, 1200); 
+                smoothScrollTo(targetId, 1200);
             }
 
             closeMobileMenu();
