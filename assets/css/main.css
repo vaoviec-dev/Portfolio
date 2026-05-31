@@ -304,26 +304,21 @@
 }
 
 .hero__avatar-img {
-    position: absolute !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-color: #121212 !important; 
-    border-radius: 50% !important;
-    
-    /* Ép phần đầu tóc tự tụt xuống dưới thông thoáng */
-    padding-top: 45px !important;   
-    padding-bottom: 5px !important;
-    
-    object-position: bottom center !important; 
-    object-fit: contain !important; 
-    z-index: 3 !important;         
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    transition: transform 0.3s ease !important;
+    position: absolute;
+    width: 100%; 
+    height: auto;
+    bottom: 0; 
+    left: 50%;
+    transform: translateX(-50%); 
+    object-fit: cover;
+    z-index: 2; 
+    transform-origin: bottom center; 
+    transition: transform 0.3s ease;
+
 }
 
 .hero__avatar-circle:hover .hero__avatar-img {
-    transform: translateX(-50%) scale(1.04) !important; 
+    transform: translateX(-50%) scale(1.04); 
 }
 
 /* CRITICAL: BỔ SUNG CHO MOBILE MENU (ẨN TRÊN PC MẶC ĐỊNH) */
@@ -1182,45 +1177,6 @@
         font-size: 1rem;
         margin-top: 0.5rem;
     }
-
-    .hero__avatar-block {
-        width: 280px !important;
-        height: 280px !important;
-    }
-
-    .hero__avatar-circle {
-        width: 280px !important;       
-        height: 280px !important;
-        min-width: 280px !important;
-        min-height: 280px !important;
-        max-width: 280px !important;
-        max-height: 280px !important;
-    }
-
-    /* Thu hẹp viền trên mobile */
-    .hero__avatar-circle::after {
-        inset: 10px !important; 
-    }
-
-    /* Ảnh lọt lòng mobile thoáng tóc */
-    .hero__avatar-img {
-        padding-top: 25px !important;   
-        padding-bottom: 5px !important;
-    }
-
-    /* Gom dàn icon sát vòng tròn nhỏ mobile */
-    .hero__bg-icons {
-        width: 330px !important;   
-        height: 330px !important;
-        top: -25px !important;
-        left: -25px !important;
-    }
-    
-    .icon-floating {
-        width: 32px !important;   
-        height: 32px !important;
-        max-width: 32px !important;
-    }
 }
 
 
@@ -1309,7 +1265,7 @@
 
 /* ANIMATION TOOLS */
 /* ==========================================================================
-   CẤU HÌNH FINAL: VÒNG TRÒN ĐA SẮC SIÊU TO (450PX) & TÓC THOÁNG KHÔNG CHẠM VIỀN
+   FIX CHỐNG BUNG SIZE TRÊN GITHUB PAGES: CHUẨN HÓA HỆ PX TOÀN DIỆN
    ========================================================================== */
 
 /* 1. Khung bọc tổng thể khối avatar */
@@ -1319,75 +1275,37 @@
     justify-content: center;
     align-items: center;
     z-index: 10;
+    /* Khóa cứng vùng bọc tránh dạt layout */
     width: 450px !important;
     height: 450px !important;
 }
 
-/* 2. VÒNG TRÒN ĐA SẮC PHÁT SÁNG NỀN (SIZE TO 450PX CỰC THOÁNG) */
+/* 2. KHUNG VÒNG TRÒN ĐA SẮC: ÉP PX KHÔNG CHO TRÀN MÀU */
 .hero__avatar-circle {
-    position: relative;
-    width: 450px !important;       /* Ép kích thước to hoành tráng */
-    height: 450px !important;      /* Giữ tỉ lệ 1:1 hoàn hảo */
+    position: absolute !important;
+    width: 450px !important;       
+    height: 450px !important;      
     min-width: 450px !important;
     min-height: 450px !important;
-    background: #111 !important;
+    max-width: 450px !important;
+    max-height: 450px !important;
     border-radius: 50% !important;
-    overflow: hidden !important;   /* Khóa chặt và ẩn phần áo thừa khi dịch xuống */
-    z-index: 5 !important;       
+    overflow: hidden !important;   /* Khóa chặt dải màu xoay bên trong */
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    z-index: 5 !important;       
+    background: none !important;   
+    padding: 0 !important; 
+    margin: 0 !important;
 }
 
-/* 3. XỬ LÝ ẢNH CHÂN DUNG TRASPARENT: TĂNG SIZE VÀ DỊCH XUỐNG DƯỚI TRỤC Y */
-.hero__avatar-img {
-    position: absolute !important;
-    width: 120% !important;        /* Phóng to ảnh lên 120% để bù vào phần đáy khi dịch chuyển */
-    height: 120% !important;      
-    left: 50% !important;
-    bottom: 0 !important;
-    object-fit: contain !important; /* Giữ nguyên tỷ lệ ảnh transparent không bị bóp méo */
-    z-index: 1 !important;
-    border-radius: 50% !important;
-    
-    /* Vừa scale vừa dịch chuyển ảnh tụt xuống 60px theo trục Y giúp tóc tách khỏi viền */
-    transform: translateX(-50%) translateY(60px) !important; 
-    transform-origin: bottom center !important;
-    transition: transform 0.3s ease !important;
-}
-
-/* Hiệu ứng hover phóng nhẹ ảnh nhưng vẫn giữ độ tụt Y an toàn */
-.hero__avatar-circle:hover .hero__avatar-img {
-    transform: translateX(-50%) translateY(60px) scale(1.04) !important; 
-}
-
-/* 4. DÀN ICON 3D THIẾT KẾ BAY NỔI LÊN TRÊN CÙNG TUYỆT ĐỐI */
-.hero__bg-icons {
-    position: absolute !important;
-    width: 520px !important;    /* Khóa cứng vùng bay bao quanh khung 450px */
-    height: 520px !important;
-    top: -35px !important;      /* Căn giữa chính tâm */
-    left: -35px !important;
-    pointer-events: none;
-    z-index: 99 !important;
-}
-
-/* Thu nhẹ size icon trên PC xuống một chút cho tinh tế (tầm 42px thay vì 50px) */
-.icon-floating {
-    position: absolute !important;
-    width: 45px !important;     /* Ép cứng size icon tầm 45px vừa vặn tinh tế */
-    height: 45px !important;
-    max-width: 45px !important;
-    object-fit: contain !important;
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3)) !important;
-}
-
-/* --- HIỆU ỨNG XOAY DẢI MÀU GRADIENT VIỀN HÀO QUANG --- */
+/* 3. DẢI MÀU GRADIENT XOAY TRÒN ĐƯỢC CÂN CHỈNH */
 .hero__avatar-circle::before {
     content: '';
     position: absolute;
-    width: 200% !important;  
-    height: 200% !important;
+    width: 220% !important;  
+    height: 220% !important;
     background: conic-gradient(
         transparent 0%, 
         #FD6F00 15%, 
@@ -1399,19 +1317,64 @@
     z-index: 1 !important; 
 }
 
-/* Lớp lõi tối tạo độ mỏng/dày cho đường viền ánh sáng (Inset 6px siêu nét) */
+/* 4. LỚP MẶT NẠ ĐEN: TẠO ĐỘ DÀY VIỀN TRÒN ĐỀU ĐẶN 18PX */
 .hero__avatar-circle::after {
     content: '' !important;
     display: block !important;
     position: absolute;
-    /* 🚀 Đường viền dày đều tăm tắp 18px quanh rìa */
-    inset: 18px !important; 
-    background: #121212 !important; /* Màu đen đặc trùng nền web */
+    inset: 18px !important; /* Độ rộng viền màu đều chằn chặn quanh rìa */
+    background: #121212 !important; /* Đổ chuẩn màu nền tối kịt web của bồ */
     border-radius: 50% !important;
     z-index: 2 !important; 
 }
 
-/* --- TỌA ĐỘ RẢI ICON VÀ ANIMATION CHUYỂN ĐỘNG --- */
+/* 5. ẢNH CHÂN DUNG TỰ ĐỘNG THU NHỎ LỌT LÒNG, THOÁNG ĐẦU TÓC */
+.hero__avatar-img {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #121212 !important; 
+    border-radius: 50% !important;
+    
+    /* Ép phần đầu tóc tự tụt xuống dưới thông thoáng không chạm mép */
+    padding-top: 45px !important;   
+    padding-bottom: 5px !important;
+    
+    object-position: bottom center !important; 
+    object-fit: contain !important; 
+    z-index: 3 !important;         
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.hero__avatar-circle:hover .hero__avatar-img {
+    transform: translateX(-50%) scale(1.04) !important; 
+}
+
+/* 6. KHUNG CHỨA DÀN ICON 3D: ÉP PX KHÓA KHÔNG CHO BUNG TO LỖI */
+.hero__bg-icons {
+    position: absolute !important;
+    width: 520px !important;    /* Khóa vùng phủ bao quanh khung 450px */
+    height: 520px !important;
+    top: -35px !important;      /* Đưa về chính tâm */
+    left: -35px !important;
+    pointer-events: none;
+    z-index: 99 !important; 
+}
+
+/* ÉP KHÓA KÍCH THƯỚC ICON CHUẨN TRÊN PC */
+.icon-floating {
+    position: absolute !important;
+    width: 42px !important;     /* Size icon tinh tế */
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3)) !important;
+}
+
+/* TỌA ĐỘ VÀ ANIMATION ICON TRÊN PC */
 .icon-1 { top: 12% !important; left: 14% !important; animation: floatAround 6s ease-in-out infinite; }
 .icon-2 { top: 10% !important; right: 14% !important; animation: floatRotate 8s linear infinite; }
 .icon-3 { bottom: 16% !important; left: 10% !important; animation: floatAround 7s ease-in-out infinite 1s; }
@@ -1419,22 +1382,55 @@
 .icon-5 { top: 50% !important; left: 2% !important; animation: floatRotate 10s linear infinite; }
 .icon-6 { top: 45% !important; right: 2% !important; animation: floatAround 9s ease-in-out infinite 0.5s; }
 
-@keyframes rotateGlow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-@keyframes floatAround {
-    0% { transform: translateY(0px) translateX(0px); }
-    50% { transform: translateY(-15px) translateX(10px); }
-    100% { transform: translateY(0px) translateX(0px); }
-}
-@keyframes floatRotate {
-    0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0px) rotate(360deg); }
-}
-@keyframes floatPulse {
-    0% { transform: scale(1) translateY(0px); }
-    50% { transform: scale(1.1) translateY(-10px); }
-    100% { transform: scale(1) translateY(0px); }
+
+/* ==========================================================================
+   TỐI ƯU MOBILE RESPONSIVE HỆ PX (MAX-WIDTH: 739PX)
+   ========================================================================== */
+@media (max-width: 739px) {
+    .hero__avatar-block {
+        width: 280px !important;
+        height: 280px !important;
+    }
+
+    .hero__avatar-circle {
+        width: 280px !important;       
+        height: 280px !important;
+        min-width: 280px !important;
+        min-height: 280px !important;
+        max-width: 280px !important;
+        max-height: 280px !important;
+    }
+
+    /* Thu hẹp viền màu mỏng lại trên mobile cho đẹp */
+    .hero__avatar-circle::after {
+        inset: 10px !important; 
+    }
+
+    /* Ảnh lọt lòng mobile thoáng tóc không chạm viền */
+    .hero__avatar-img {
+        padding-top: 25px !important;   
+        padding-bottom: 5px !important;
+    }
+
+    /* Gom dàn icon ôm sát vòng tròn nhỏ mobile */
+    .hero__bg-icons {
+        width: 340px !important;   
+        height: 340px !important;
+        top: -30px !important;
+        left: -30px !important;
+    }
+    
+    .icon-floating {
+        width: 32px !important;   
+        height: 32px !important;
+        max-width: 32px !important;
+        max-height: 32px !important;
+    }
+    
+    .icon-1 { top: 8% !important; left: 12% !important; }
+    .icon-2 { top: 5% !important; right: 15% !important; }
+    .icon-3 { bottom: 12% !important; left: 8% !important; }
+    .icon-4 { bottom: 8% !important; right: 12% !important; }
+    .icon-5 { top: 45% !important; left: -2% !important; }
+    .icon-6 { top: 40% !important; right: -2% !important; }
 }
