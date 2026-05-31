@@ -31,6 +31,7 @@ html {
     box-sizing: border-box;
     letter-spacing: 3%;
     background-color: #121212;
+    scroll-behavior: smooth;
 }
 
 /* Responsive */

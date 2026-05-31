@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        html {
+            scroll-behavior: smooth !important;
+        }
+    </style>
 
     <!-- NHÚNG THƯ VIỆN EMAILJS CHÍNH HÃNG -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -524,6 +529,7 @@
     <div id="toast-container"></div>
 </body>
 
+
 <script>
     const menuOpenBtn = document.querySelector('.js-menu-open');
     const menuCloseBtn = document.querySelector('.js-menu-close');
@@ -548,8 +554,81 @@
     if (menuCloseBtn) menuCloseBtn.addEventListener('click', closeMobileMenu);
     if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
 
+    // --- HÀM TỰ ĐỊNH NGHĨA GIÚP CUỘN MÀN HÌNH CHẬM LẠI TÙY Ý ---
+    function smoothScrollTo(targetSelector, duration) {
+        const target = document.querySelector(targetSelector);
+        if (!target) return;
+
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+        const startPosition = window.scrollY;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+
+            // Công thức toán học (Easing function) giúp chuyển động mượt mượt lúc đầu và lúc cuối
+            const run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        function ease(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+    }
+
+    // --- 2. LOGIC CLICK MENU ĐỔI MÀU CAM ACTIVE & CUỘN CHẬM (XỬ LÝ TRIỆT ĐỂ LỖI LƯNG CHỪNG) ---
     menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('href');
+            
+            // Trường hợp 1: Nếu bấm vào nút Home (href="#" hoặc href="")
+            if (targetId === '#' || targetId === '') {
+                e.preventDefault();
+                
+                // Thay vì gọi tên thẻ 'body', ta tự tạo một hàm tính toán vị trí đỉnh 0 tuyệt đối
+                const startPosition = window.scrollY;
+                const distance = -startPosition; // Khoảng cách dịch chuyển ngược về vị trí số 0
+                let startTime = null;
+
+                function homeAnimation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    
+                    // Áp dụng công thức Easing giúp trượt mượt về đỉnh 0 trong vòng 1.2 giây (1200ms)
+                    const run = ease(timeElapsed, startPosition, distance, 1200);
+                    window.scrollTo(0, run);
+
+                    if (timeElapsed < 1200) {
+                        requestAnimationFrame(homeAnimation);
+                    } else {
+                        window.scrollTo(0, 0); // Ép cứng màn hình về vị trí 0 tuyệt đối khi kết thúc
+                    }
+                }
+
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                requestAnimationFrame(homeAnimation);
+            }
+            // Trường hợp 2: Nếu bấm vào các mục khác như #about, #portfolio...
+            else if (targetId.startsWith('#')) {
+                e.preventDefault();
+                smoothScrollTo(targetId, 1200); 
+            }
+
             closeMobileMenu();
             const currentActive = document.querySelector('.header__link--active');
             if (currentActive) {
@@ -558,6 +637,15 @@
             link.classList.add('header__link--active');
         });
     });
+
+    // Áp dụng cuộn chậm cho cả nút "Contact Me" trên thanh Header
+    const headerContactBtn = document.querySelector('.header__btn-contact');
+    if (headerContactBtn) {
+        headerContactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            smoothScrollTo('#contact', 1200); // Cuộn đến phần Contact trong 1.2 giây
+        });
+    }
 
     const filterBtns = document.querySelectorAll('.portfolio__filter-btn');
     filterBtns.forEach(btn => {
