@@ -12,9 +12,11 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #121212 !important; /* Đổ lại màu nền tối đặc */
+    background-color: #121212 !important;
+    /* Đổ lại màu nền tối đặc */
     z-index: 9999 !important;
-    padding: 0 !important; /* Xóa padding ngoài */
+    padding: 0 !important;
+    /* Xóa padding ngoài */
 }
 
 /* Giới hạn khung nội dung header bằng khít 1280px với Hero phía dưới */
@@ -22,15 +24,18 @@
     max-width: 1280px !important;
     width: 100%;
     margin: 0 auto;
-    padding: 0 1.6rem; /* Tạo khoảng đệm nhẹ 2 bên rìa khi thu nhỏ màn hình */
+    padding: 0 1.6rem;
+    /* Tạo khoảng đệm nhẹ 2 bên rìa khi thu nhỏ màn hình */
 }
 
 /* Khung Flexbox phân phối 3 cụm: Logo trái - Menu giữa - Nút phải */
 .header__wrapper {
     display: flex !important;
     justify-content: space-between !important;
-    align-items: center !important; /* Căn giữa tăm tắp theo tâm dọc */
-    padding: 1.8rem 0 !important;   /* Độ cao thanh thoát cho header */
+    align-items: center !important;
+    /* Căn giữa tăm tắp theo tâm dọc */
+    padding: 1.8rem 0 !important;
+    /* Độ cao thanh thoát cho header */
     width: 100%;
 }
 
@@ -43,8 +48,10 @@
 .header__logo {
     font-size: 2.4rem;
     font-weight: 700;
-    color: var(--foundation-orange-normal, #FD6F00) !important; /* Ép lại màu cam thương hiệu */
-    text-decoration: none !important; /* Xóa bỏ gạch chân tím */
+    color: var(--foundation-orange-normal, #FD6F00) !important;
+    /* Ép lại màu cam thương hiệu */
+    text-decoration: none !important;
+    /* Xóa bỏ gạch chân tím */
     letter-spacing: 0.1rem;
 }
 
@@ -60,20 +67,24 @@
     list-style: none;
     padding-left: 0;
     margin: 0;
-    gap: 4rem; /* Khoảng cách rộng rãi giữa các chữ menu */
+    gap: 4rem;
+    /* Khoảng cách rộng rãi giữa các chữ menu */
 }
 
 .header__link {
     font-size: 1.6rem;
-    color: #BABABA; /* Màu chữ xám mặc định nhẹ nhàng */
+    color: #BABABA;
+    /* Màu chữ xám mặc định nhẹ nhàng */
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
 }
 
 .header__link.header__link--active {
-    color: #FD6F00 !important; /* Đổi hẳn sang màu cam thương hiệu của bồ */
-    font-weight: 700 !important; /* Cho chữ đậm lên một chút nhìn cho rõ */
+    color: #FD6F00 !important;
+    /* Đổi hẳn sang màu cam thương hiệu của bồ */
+    font-weight: 700 !important;
+    /* Cho chữ đậm lên một chút nhìn cho rõ */
 }
 
 /* Thêm hiệu ứng hover nhẹ cho tinh tế (nếu bồ chưa có) */
@@ -84,7 +95,8 @@
 
 .header__link:hover,
 .header__link--active {
-    color: var(--foundation-orange-normal, #FD6F00) !important; /* Hover hoặc Active đổi sang màu cam */
+    color: var(--foundation-orange-normal, #FD6F00) !important;
+    /* Hover hoặc Active đổi sang màu cam */
 }
 
 /* --- Cột 3: FIX NÚT CONTACT ME (Khôi phục lại hình khối màu cam) --- */
@@ -97,19 +109,24 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--foundation-orange-normal, #FD6F00) !important; /* Đổ lại màu nền cam rực rỡ */
-    color: #FEFEFE !important; /* Chữ trắng nổi bật */
+    background-color: var(--foundation-orange-normal, #FD6F00) !important;
+    /* Đổ lại màu nền cam rực rỡ */
+    color: #FEFEFE !important;
+    /* Chữ trắng nổi bật */
     font-size: 1.5rem;
     font-weight: 600;
     padding: 1rem 2.4rem;
-    border-radius: 0.8rem; /* Bo góc khối nhẹ nhàng */
-    text-decoration: none !important; /* Khử gạch chân */
+    border-radius: 0.8rem;
+    /* Bo góc khối nhẹ nhàng */
+    text-decoration: none !important;
+    /* Khử gạch chân */
     transition: opacity 0.2s ease;
     white-space: nowrap;
 }
 
 .header__btn-contact:hover {
-    opacity: 0.9; /* Hiệu ứng mờ nhẹ khi hover */
+    opacity: 0.9;
+    /* Hiệu ứng mờ nhẹ khi hover */
 }
 
 /* ==========================================================================
@@ -123,7 +140,7 @@
 
 .hero__wrapper {
     display: flex !important;
-    align-items: center !important; 
+    align-items: center !important;
     height: 100%;
     min-height: calc(100vh - 18rem);
 }
@@ -133,26 +150,27 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; /* Căn lề trái thẳng hàng chữ */
+    align-items: flex-start;
+    /* Căn lề trái thẳng hàng chữ */
     height: 100%;
 }
 
 .hero__sub-title {
-    font-size: 2rem; 
+    font-size: 2rem;
     font-weight: 500;
     color: var(--foundation-white-light);
     margin-bottom: 0.8rem;
 }
 
 .hero__name {
-    font-size: 2.4rem; 
+    font-size: 2.4rem;
     font-weight: 600;
     color: var(--foundation-orange-normal);
     margin: 0 0 1.2rem 0;
 }
 
 .hero__job {
-    font-size: 7.2rem; 
+    font-size: 7.2rem;
     font-weight: 700;
     color: var(--foundation-orange-normal);
     line-height: 1.1;
@@ -173,7 +191,7 @@
     width: 3.6rem;
     height: 3.6rem;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.08); 
+    background-color: rgba(255, 255, 255, 0.08);
     color: var(--foundation-white-light);
     font-size: 1.6rem;
     text-decoration: none;
@@ -227,15 +245,16 @@
 .hero__stats {
     display: flex;
     background-color: rgba(255, 255, 255, 0.03);
-    padding: 2.4rem 4rem; /* Tăng padding trái/phải lên 4rem để hộp nhìn dài và thoáng hơn */
+    padding: 2.4rem 4rem;
+    /* Tăng padding trái/phải lên 4rem để hộp nhìn dài và thoáng hơn */
     border-radius: 1.2rem;
-    
+
     /* TĂNG GAP: Đẩy khoảng cách giữa các cụm số lên hẳn 5.2rem (~52px) */
-    gap: 5.2rem; 
-    
+    gap: 5.2rem;
+
     /* QUAN TRỌNG: Tăng max-width lên hẳn 60rem để giải phóng không gian cho các phần tử giãn ra */
     width: max-content;
-    max-width: 60rem; 
+    max-width: 60rem;
 }
 
 .hero__stat-item {
@@ -248,10 +267,10 @@
 .hero__stat-item:not(:last-child)::after {
     content: "";
     position: absolute;
-    
+
     /* Bằng một nửa giá trị gap (5.2rem / 2 = 2.6rem) -> Đảm bảo vách ngăn luôn nằm chính giữa */
-    right: -2.6rem; 
-    
+    right: -2.6rem;
+
     top: 15%;
     height: 70%;
     width: 1px;
@@ -274,51 +293,55 @@
 
 .hero__avatar-block {
     display: flex;
-    justify-content: center; /* Đẩy ảnh chân dung ra chính giữa cột 6 bên phải */
+    justify-content: center;
+    /* Đẩy ảnh chân dung ra chính giữa cột 6 bên phải */
     align-items: center;
     height: 100%;
 }
 
 .hero__avatar-circle {
     position: relative;
-    width: 52rem; 
-    height: 52rem; 
+    width: 52rem;
+    height: 52rem;
     min-width: 52rem;
     min-height: 52rem;
-    flex-shrink: 0; 
-    max-width: 100%; 
-    aspect-ratio: 1 / 1; 
+    flex-shrink: 0;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.04); 
+    background-color: rgba(255, 255, 255, 0.04);
     display: flex;
     justify-content: center;
-    align-items: flex-end; 
+    align-items: flex-end;
 
     position: relative;
     background: #111;
-    padding: 6px;    /* Độ dày viền sáng */
+    padding: 6px;
+    /* Độ dày viền sáng */
     display: inline-block;
     border-radius: 50%;
-    overflow: hidden; /* Cắt dải màu gradient bên trong vòng tròn này */
-    z-index: 5;       /* Thấp hơn icon để icon đè lên trên */
+    overflow: hidden;
+    /* Cắt dải màu gradient bên trong vòng tròn này */
+    z-index: 5;
+    /* Thấp hơn icon để icon đè lên trên */
 }
 
 .hero__avatar-img {
     position: absolute;
-    width: 100%; 
+    width: 100%;
     height: auto;
-    bottom: 0; 
+    bottom: 0;
     left: 50%;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
     object-fit: cover;
-    z-index: 2; 
-    transform-origin: bottom center; 
+    z-index: 2;
+    transform-origin: bottom center;
     transition: transform 0.3s ease;
 
 }
 
 .hero__avatar-circle:hover .hero__avatar-img {
-    transform: translateX(-50%) scale(1.04); 
+    transform: translateX(-50%) scale(1.04);
 }
 
 /* CRITICAL: BỔ SUNG CHO MOBILE MENU (ẨN TRÊN PC MẶC ĐỊNH) */
@@ -336,7 +359,8 @@
    ========================================================================== */
 .about {
     padding: 8rem 0;
-    background-color: #121212; /* Màu nền tối đồng bộ toàn web */
+    background-color: #121212;
+    /* Màu nền tối đồng bộ toàn web */
 }
 
 /* --- Khối 1: Header --- */
@@ -361,7 +385,8 @@
 
 /* --- Khối 2: Body (Ảnh & Chữ) --- */
 .about__body {
-    align-items: center; /* Căn giữa ảnh và chữ theo chiều dọc */
+    align-items: center;
+    /* Căn giữa ảnh và chữ theo chiều dọc */
     margin-bottom: 8rem;
 }
 
@@ -369,18 +394,20 @@
 .about__avatar-wrapper {
     width: 100%;
     max-width: 40rem;
-    border-radius: 20rem 20rem 2rem 2rem; /* Bo tròn góc trên tạo hình vòm */
+    border-radius: 20rem 20rem 2rem 2rem;
+    /* Bo tròn góc trên tạo hình vòm */
     overflow: hidden;
     background-color: #1a1a1a;
     margin: 0 auto;
 
     position: relative;
     background: #111;
-    padding: 6px;    /* Độ dày của viền ánh sáng */
+    padding: 6px;
+    /* Độ dày của viền ánh sáng */
     display: inline-block;
     z-index: 2;
     overflow: hidden;
-    border-radius: 40px; 
+    border-radius: 40px;
 }
 
 .hero__avatar-circle::before,
@@ -392,13 +419,11 @@
     width: 200%;
     height: 200%;
     /* Dải màu uốn lượn: Cam thương hiệu phối tím neon và xanh cyan cực ngầu */
-    background: conic-gradient(
-        transparent, 
-        #FD6F00, 
-        #bd00ff, 
-        #00f3ff, 
-        transparent 60%
-    );
+    background: conic-gradient(transparent,
+            #FD6F00,
+            #bd00ff,
+            #00f3ff,
+            transparent 60%);
     /* Kích hoạt chuyển động xoay tròn liên tục không dừng */
     animation: rotateGlow 4s linear infinite;
     z-index: -1;
@@ -412,19 +437,23 @@
     background: inherit;
     border-radius: inherit;
     z-index: -1;
-    filter: blur(20px); /* Độ nhòe giúp ánh sáng phát ra sống động */
-    opacity: 0.6;       /* Độ đậm nhạt của ánh sáng hắt */
+    filter: blur(20px);
+    /* Độ nhòe giúp ánh sáng phát ra sống động */
+    opacity: 0.6;
+    /* Độ đậm nhạt của ánh sáng hắt */
 }
 
 .hero__avatar-img,
 .about__avatar-img {
     position: relative;
     z-index: 1;
-    background: #1e1e1e; /* Màu nền tối bọc sát ảnh để che dải màu bên dưới */
+    background: #1e1e1e;
+    /* Màu nền tối bọc sát ảnh để che dải màu bên dưới */
     display: block;
     width: 100%;
     height: 100%;
-    border-radius: inherit; /* Tự động ăn theo bo góc của khung ngoài */
+    border-radius: inherit;
+    /* Tự động ăn theo bo góc của khung ngoài */
 }
 
 /* --- KEYFRAMES: XOAY XOẮN DẢI MÀU 360 ĐỘ VÔ HẠN --- */
@@ -432,6 +461,7 @@
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -442,7 +472,8 @@
     height: auto;
     display: block;
     object-fit: cover;
-    filter: grayscale(20%); /* Hơi nghiêng tone xám nhẹ giống ảnh mẫu */
+    filter: grayscale(20%);
+    /* Hơi nghiêng tone xám nhẹ giống ảnh mẫu */
 }
 
 /* Cột nội dung chữ */
@@ -450,14 +481,15 @@
     padding-left: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     justify-content: flex-start;
 }
 
 .about__description {
     font-size: 1.6rem;
     line-height: 1.8;
-    color: var(--foundation-white-dark-hover); /* Màu chữ xám nhạt đọc dễ chịu */
+    color: var(--foundation-white-dark-hover);
+    /* Màu chữ xám nhạt đọc dễ chịu */
     margin-bottom: 3.2rem;
     text-align: justify;
 }
@@ -512,7 +544,7 @@
     align-items: center;
     justify-content: center;
     /* Nền xám tối ban đầu khi chưa chạy hiệu ứng */
-    background: conic-gradient(#222222 0deg, #222222 360deg); 
+    background: conic-gradient(#222222 0deg, #222222 360deg);
     transition: transform 0.3s ease;
 }
 
@@ -521,9 +553,11 @@
 }
 
 .about__skill-inner {
-    width: 11.4rem; /* Độ dày viền cam sẽ bằng (13rem - 11.4rem) / 2 = 0.8rem */
+    width: 11.4rem;
+    /* Độ dày viền cam sẽ bằng (13rem - 11.4rem) / 2 = 0.8rem */
     height: 11.4rem;
-    background-color: #121212; /* Đổ khít khao trùng với màu nền đen tối web của bồ */
+    background-color: #121212;
+    /* Đổ khít khao trùng với màu nền đen tối web của bồ */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -531,16 +565,28 @@
 }
 
 /* Tạo viền màu cam chạy theo phần trăm kỹ năng */
-.about__skill-circle.percent-100 { background: conic-gradient(#FD6F00 0% 100%, #262626 100% 100%); }
-.about__skill-circle.percent-85  { background: conic-gradient(#FD6F00 0% 85%, #262626 85% 100%); }
-.about__skill-circle.percent-70  { background: conic-gradient(#FD6F00 0% 70%, #262626 70% 100%); }
-.about__skill-circle.percent-60  { background: conic-gradient(#FD6F00 0% 60%, #262626 60% 100%); }
+.about__skill-circle.percent-100 {
+    background: conic-gradient(#FD6F00 0% 100%, #262626 100% 100%);
+}
+
+.about__skill-circle.percent-85 {
+    background: conic-gradient(#FD6F00 0% 85%, #262626 85% 100%);
+}
+
+.about__skill-circle.percent-70 {
+    background: conic-gradient(#FD6F00 0% 70%, #262626 70% 100%);
+}
+
+.about__skill-circle.percent-60 {
+    background: conic-gradient(#FD6F00 0% 60%, #262626 60% 100%);
+}
 
 /* Lõi bên trong đè lên để tạo khoảng rỗng và chứa icon */
 .about__skill-icon-box {
     width: 9.4rem;
     height: 9.4rem;
-    background-color: #121212; /* Trùng với màu nền nền web */
+    background-color: #121212;
+    /* Trùng với màu nền nền web */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -616,22 +662,25 @@
 
 /* HỘP LAYOUT NỀN SẪM BO TRÒN GÓC */
 .experiences__item {
-    background-color: #1e1411; /* Màu nâu sẫm giống ảnh Figma bồ gửi */
-    border-radius: 2rem;       /* Bo góc tròn mượt mà */
+    background-color: #1e1411;
+    /* Màu nâu sẫm giống ảnh Figma bồ gửi */
+    border-radius: 2rem;
+    /* Bo góc tròn mượt mà */
     padding: 4.8rem 3.2rem;
     height: 100%;
-    
+
     /* Cơ chế Flexbox xếp hàng dọc và căn giữa tuyệt đối nội dung */
     display: flex;
     flex-direction: column;
-    align-items: center;       
+    align-items: center;
     text-align: center;
-    
+
     transition: transform 0.2s ease;
 }
 
 .experiences__item:hover {
-    transform: translateY(-4px); /* Hiệu ứng nổi nhẹ khi di chuột */
+    transform: translateY(-4px);
+    /* Hiệu ứng nổi nhẹ khi di chuột */
 }
 
 /* Khung chứa Icon màu cam */
@@ -641,7 +690,8 @@
 
 .experiences__icon-box i {
     font-size: 4.2rem;
-    color: var(--foundation-orange-normal, #FD6F00); /* Màu cam rực nổi bật */
+    color: var(--foundation-orange-normal, #FD6F00);
+    /* Màu cam rực nổi bật */
 }
 
 /* Tiêu đề của từng hộp (Ví dụ: App Design) */
@@ -691,7 +741,8 @@
 }
 
 .portfolio__filter-btn {
-    background-color: #1E1E1E; /* Màu xám sẫm mặc định của nút */
+    background-color: #1E1E1E;
+    /* Màu xám sẫm mặc định của nút */
     color: #FEFEFE;
     font-size: 1.5rem;
     font-weight: 500;
@@ -720,9 +771,12 @@
 
 /* Trạng thái nút nhận class active khi được bấm */
 .portfolio__filter-btn.portfolio__filter-btn--active {
-    background-color: #FD6F00 !important; /* Đổi màu nền sang cam thương hiệu */
-    color: #FFFFFF !important;            /* Ép chữ thành màu trắng sáng rõ */
-    border-color: #FD6F00 !important;      /* Đổi viền sang màu cam luôn cho đồng bộ */
+    background-color: #FD6F00 !important;
+    /* Đổi màu nền sang cam thương hiệu */
+    color: #FFFFFF !important;
+    /* Ép chữ thành màu trắng sáng rõ */
+    border-color: #FD6F00 !important;
+    /* Đổi viền sang màu cam luôn cho đồng bộ */
     font-weight: 600 !important;
 }
 
@@ -735,7 +789,8 @@
 
 /* --- Khối 3: Project Cards Grid --- */
 .portfolio__item-col {
-    margin-bottom: 4rem; /* Khoảng cách hàng thoáng đãng */
+    margin-bottom: 4rem;
+    /* Khoảng cách hàng thoáng đãng */
 }
 
 .portfolio__card {
@@ -748,20 +803,22 @@
 /* Hộp chứa ảnh bo góc tròn cực lớn theo Figma */
 .portfolio__img-box {
     width: 100%;
-    border-radius: 2.4rem; /* Bo tròn góc mạnh mẽ */
+    border-radius: 2.4rem;
+    /* Bo tròn góc mạnh mẽ */
     overflow: hidden;
     background-color: #1E1E1E;
     margin-bottom: 1.6rem;
-    
+
     /* Tạo hiệu ứng tỉ lệ ảnh chuẩn không bị bóp méo */
-    aspect-ratio: 4 / 5; 
+    aspect-ratio: 4 / 5;
 }
 
 .portfolio__img {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover; /* Giữ nguyên tỉ lệ hình ảnh */
+    object-fit: cover;
+    /* Giữ nguyên tỉ lệ hình ảnh */
     transition: transform 0.4s ease;
 }
 
@@ -773,9 +830,11 @@
 /* Phần thông tin text bên dưới đáy card */
 .portfolio__info {
     display: flex;
-    justify-content: space-between; /* Đẩy tên sang trái, category sang phải */
+    justify-content: space-between;
+    /* Đẩy tên sang trái, category sang phải */
     align-items: center;
-    padding: 0 0.4rem; /* Đệm nhẹ bằng mép ảnh */
+    padding: 0 0.4rem;
+    /* Đệm nhẹ bằng mép ảnh */
 }
 
 .portfolio__project-name {
@@ -822,7 +881,8 @@
 
 /* Khung form */
 .contact__form {
-    max-width: 94rem; /* Giới hạn độ rộng form cho gom gọn ở giữa màn hình */
+    max-width: 94rem;
+    /* Giới hạn độ rộng form cho gom gọn ở giữa màn hình */
     margin: 0 auto;
     margin-top: 8rem !important;
 }
@@ -831,7 +891,8 @@
 .contact__col {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem; /* Khoảng cách đều đặn giữa các ô nhập liệu */
+    gap: 0.8rem;
+    /* Khoảng cách đều đặn giữa các ô nhập liệu */
     justify-content: flex-start;
 }
 
@@ -844,9 +905,12 @@
 /* STYLE CHUNG CHO CÁC Ô INPUT / SELECT / TEXTAREA */
 .contact__input {
     width: 100%;
-    background-color: #1a110e; /* Màu nền nâu cực sẫm đồng bộ với khối Experiences */
-    border: 1px solid #2c1d18;  /* Viền mảnh tinh tế */
-    border-radius: 0.8rem;      /* Bo góc nhẹ theo Figma */
+    background-color: #1a110e;
+    /* Màu nền nâu cực sẫm đồng bộ với khối Experiences */
+    border: 1px solid #2c1d18;
+    /* Viền mảnh tinh tế */
+    border-radius: 0.8rem;
+    /* Bo góc nhẹ theo Figma */
     padding: 1.6rem 2rem;
     font-size: 1.5rem;
     color: #FEFEFE;
@@ -857,16 +921,19 @@
 }
 
 .contact__input::placeholder {
-    color: #666666; /* Màu chữ placeholder xám trầm xuống */
+    color: #666666;
+    /* Màu chữ placeholder xám trầm xuống */
 }
 
 .contact__input:focus {
-    border-color: var(--foundation-orange-normal, #FD6F00); /* Đổi viền cam khi click vào */
+    border-color: var(--foundation-orange-normal, #FD6F00);
+    /* Đổi viền cam khi click vào */
 }
 
 /* Custom riêng cho ô Chọn Select Dropdown */
 .contact__select {
-    appearance: none; /* Ẩn mũi tên mặc định xấu xí của trình duyệt */
+    appearance: none;
+    /* Ẩn mũi tên mặc định xấu xí của trình duyệt */
     -webkit-appearance: none;
     cursor: pointer;
 }
@@ -879,26 +946,31 @@
     transform: translateY(-50%);
     font-size: 1.4rem;
     color: #BABABA;
-    pointer-events: none; /* Tránh cản trở hành vi click vào ô select */
+    pointer-events: none;
+    /* Tránh cản trở hành vi click vào ô select */
 }
 
 /* Custom riêng cho ô nhập nội dung dài Textarea */
 .contact__textarea {
-    resize: none; /* Khóa không cho người dùng kéo dãn méo form */
-    height: 100%;  /* Ép chiều cao lấp đầy khoảng trống đối xứng cột trái */
-    min-height: 14.8rem; 
+    resize: none;
+    /* Khóa không cho người dùng kéo dãn méo form */
+    height: 100%;
+    /* Ép chiều cao lấp đầy khoảng trống đối xứng cột trái */
+    min-height: 14.8rem;
 }
 
 /* KHỐI NÚT SEND */
 .contact__actions {
     display: flex;
-    justify-content: flex-end; /* Đẩy nút Send bám sát lề phải dưới form */
+    justify-content: flex-end;
+    /* Đẩy nút Send bám sát lề phải dưới form */
     margin-top: 3.2rem;
 }
 
 .contact__btn-send {
     background: transparent;
-    border: 1px solid #FEFEFE; /* Viền trắng mảnh quanh nút */
+    border: 1px solid #FEFEFE;
+    /* Viền trắng mảnh quanh nút */
     color: #FEFEFE;
     font-size: 1.6rem;
     font-weight: 500;
@@ -910,7 +982,8 @@
 
 .contact__btn-send:hover {
     background-color: #FEFEFE;
-    color: #121212; /* Đảo màu nền trắng chữ đen khi hover nhìn rất nghệ */
+    color: #121212;
+    /* Đảo màu nền trắng chữ đen khi hover nhìn rất nghệ */
 }
 
 
@@ -922,13 +995,15 @@
     padding: 6rem 0 3rem 0;
     background-color: #121212;
     width: 100%;
-    overflow: hidden; /* Khóa tràn lề an toàn cho phần chân trang */
+    overflow: hidden;
+    /* Khóa tràn lề an toàn cho phần chân trang */
 }
 
 .footer__wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Gom tất cả các khối con tụ vào tâm giữa */
+    align-items: center;
+    /* Gom tất cả các khối con tụ vào tâm giữa */
     text-align: center;
 }
 
@@ -957,7 +1032,8 @@
     list-style: none;
     padding-left: 0;
     margin: 0;
-    gap: 4rem; /* Khoảng cách chữ menu thoáng đãng */
+    gap: 4rem;
+    /* Khoảng cách chữ menu thoáng đãng */
 }
 
 .footer__link {
@@ -1019,11 +1095,13 @@
 
 .footer__contact-item i {
     font-size: 1.8rem;
-    color: var(--foundation-orange-normal, #FD6F00); /* Icon màu cam */
+    color: var(--foundation-orange-normal, #FD6F00);
+    /* Icon màu cam */
 }
 
 .footer__contact-link {
-    color: #BABABA; /* Màu chữ xám sang trọng theo Figma */
+    color: #BABABA;
+    /* Màu chữ xám sang trọng theo Figma */
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -1035,7 +1113,8 @@
 /* --- Đường gạch ngang mảnh --- */
 .footer__divider {
     width: 100%;
-    max-width: 94rem; /* Chiều dài bằng khít với form contact phía trên */
+    max-width: 94rem;
+    /* Chiều dài bằng khít với form contact phía trên */
     border: none;
     border-top: 1px solid #222222;
     margin: 0 0 2.4rem 0;
@@ -1061,8 +1140,10 @@
     right: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* Khoảng cách giữa nút Gọi và nút Zalo */
-    z-index: 999999 !important; /* Đảm bảo luôn nổi lên trên mọi section và footer */
+    gap: 2rem;
+    /* Khoảng cách giữa nút Gọi và nút Zalo */
+    z-index: 999999 !important;
+    /* Đảm bảo luôn nổi lên trên mọi section và footer */
 }
 
 /* Định dạng cấu trúc cho từng nút */
@@ -1076,7 +1157,8 @@
 }
 
 .quick-contact__item:hover {
-    transform: scale(1.08); /* Phóng to nhẹ khi di chuột vào trông rất sống động */
+    transform: scale(1.08);
+    /* Phóng to nhẹ khi di chuột vào trông rất sống động */
 }
 
 /* Vòng tròn nền xám nhạt bao bọc bên ngoài */
@@ -1088,7 +1170,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Đổ bóng mịn màng */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* Đổ bóng mịn màng */
 }
 
 /* Khối icon tròn rực rỡ bên trong */
@@ -1103,7 +1186,8 @@
 
 /* --- Style riêng cho nút PHONE (Màu cam thương hiệu của bồ) --- */
 .quick-contact__phone .quick-contact__icon {
-    background-color: #FD6F00; /* Màu cam giống thiết kế PC của bồ */
+    background-color: #FD6F00;
+    /* Màu cam giống thiết kế PC của bồ */
 }
 
 .quick-contact__phone .quick-contact__icon i {
@@ -1130,7 +1214,8 @@
 .quick-contact__label {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #4a4a4a; /* Màu chữ xám đậm tinh tế */
+    color: #4a4a4a;
+    /* Màu chữ xám đậm tinh tế */
     margin-top: 0.8rem;
     letter-spacing: 0.05rem;
     text-align: center;
@@ -1142,13 +1227,33 @@
    HIỆU ỨNG ANIMATION RUNG LẮC (KEYFRAMES)
    ========================================================================== */
 @keyframes quick-phone-shake {
-    0% { transform: rotate(0) scale(1); }
-    10% { transform: rotate(-15deg) scale(1.02); }
-    20% { transform: rotate(15deg) scale(1.02); }
-    30% { transform: rotate(-15deg) scale(1.02); }
-    40% { transform: rotate(15deg) scale(1.02); }
-    50% { transform: rotate(0) scale(1); }
-    100% { transform: rotate(0) scale(1); }
+    0% {
+        transform: rotate(0) scale(1);
+    }
+
+    10% {
+        transform: rotate(-15deg) scale(1.02);
+    }
+
+    20% {
+        transform: rotate(15deg) scale(1.02);
+    }
+
+    30% {
+        transform: rotate(-15deg) scale(1.02);
+    }
+
+    40% {
+        transform: rotate(15deg) scale(1.02);
+    }
+
+    50% {
+        transform: rotate(0) scale(1);
+    }
+
+    100% {
+        transform: rotate(0) scale(1);
+    }
 }
 
 /* Tối ưu hiển thị trên Mobile (Thu nhỏ size lại một chút cho vừa mắt) */
@@ -1158,21 +1263,21 @@
         right: 1.6rem;
         gap: 1.6rem;
     }
-    
+
     .quick-contact__circle {
         width: 5.6rem;
         height: 5.6rem;
     }
-    
+
     .quick-contact__icon {
         width: 4.4rem;
         height: 4.4rem;
     }
-    
+
     .quick-contact__phone .quick-contact__icon i {
         font-size: 1.8rem;
     }
-    
+
     .quick-contact__label {
         font-size: 1rem;
         margin-top: 0.5rem;
@@ -1193,7 +1298,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    z-index: 10000000 !important; /* Cao hơn tất cả mọi thứ */
+    z-index: 10000000 !important;
+    /* Cao hơn tất cả mọi thứ */
 }
 
 /* Định dạng cấu trúc chung của 1 hộp Toast */
@@ -1207,11 +1313,13 @@
     min-width: 30rem;
     max-width: 40rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-left: 5px solid #ccc; /* Thanh màu chỉ thị bên lề trái */
-    
+    border-left: 5px solid #ccc;
+    /* Thanh màu chỉ thị bên lề trái */
+
     /* Hiệu ứng trượt mượt mà từ ngoài màn hình vào */
-    animation: toastSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              toastFadeOut 0.5s ease 2.5s forwards; /* Tự mờ dần sau 2.5 giây */
+    animation: toastSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        toastFadeOut 0.5s ease 2.5s forwards;
+    /* Tự mờ dần sau 2.5 giây */
 }
 
 /* Biểu tượng Icon */
@@ -1230,16 +1338,20 @@
 
 /* --- TRẠNG THÁI 1: THÀNH CÔNG (SUCCESS - MÀU XANH LÁ HOẶC MÀU CAM CỦA BỒ) --- */
 .toast-msg--success {
-    border-left-color: #2ecc71; /* Viền xanh lá cây chuẩn chỉ thành công */
+    border-left-color: #2ecc71;
+    /* Viền xanh lá cây chuẩn chỉ thành công */
 }
+
 .toast-msg--success .toast-msg__icon {
     color: #2ecc71;
 }
 
 /* --- TRẠNG THÁI 2: THẤT BẠI/LỖI (ERROR - MÀU ĐỎ) --- */
 .toast-msg--error {
-    border-left-color: #e74c3c; /* Viền màu đỏ báo lỗi */
+    border-left-color: #e74c3c;
+    /* Viền màu đỏ báo lỗi */
 }
+
 .toast-msg--error .toast-msg__icon {
     color: #e74c3c;
 }
@@ -1250,6 +1362,7 @@
         transform: translateX(100% + 2rem);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -1265,22 +1378,20 @@
 
 /* ANIMATION TOOLS */
 /* ==========================================================================
-   FIX CHỐNG BUNG SIZE TRÊN GITHUB PAGES: CHUẨN HÓA HỆ PX TOÀN DIỆN
+   FIX FINAL: ĐỒNG BỘ 3 MÀN HÌNH CHỐNG MẤT TÓC TUYỆT ĐỐI (PC - TABLET - MOBILE)
    ========================================================================== */
 
-/* 1. Khung bọc tổng thể khối avatar */
+/* 1. CẤU HÌNH GỐC TRÊN PC (MÀN HÌNH LỚN >= 1024PX) */
 .hero__avatar-block {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10;
-    /* Khóa cứng vùng bọc tránh dạt layout */
     width: 450px !important;
     height: 450px !important;
 }
 
-/* 2. KHUNG VÒNG TRÒN ĐA SẮC: ÉP PX KHÔNG CHO TRÀN MÀU */
 .hero__avatar-circle {
     position: absolute !important;
     width: 450px !important;       
@@ -1290,7 +1401,7 @@
     max-width: 450px !important;
     max-height: 450px !important;
     border-radius: 50% !important;
-    overflow: hidden !important;   /* Khóa chặt dải màu xoay bên trong */
+    overflow: hidden !important;   
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -1300,7 +1411,6 @@
     margin: 0 !important;
 }
 
-/* 3. DẢI MÀU GRADIENT XOAY TRÒN ĐƯỢC CÂN CHỈNH */
 .hero__avatar-circle::before {
     content: '';
     position: absolute;
@@ -1317,74 +1427,124 @@
     z-index: 1 !important; 
 }
 
-/* 4. LỚP MẶT NẠ ĐEN: TẠO ĐỘ DÀY VIỀN TRÒN ĐỀU ĐẶN 18PX */
 .hero__avatar-circle::after {
     content: '' !important;
     display: block !important;
     position: absolute;
-    inset: 18px !important; /* Độ rộng viền màu đều chằn chặn quanh rìa */
-    background: #121212 !important; /* Đổ chuẩn màu nền tối kịt web của bồ */
+    inset: 18px !important; 
+    background: #121212 !important; 
     border-radius: 50% !important;
     z-index: 2 !important; 
 }
 
-/* 5. ẢNH CHÂN DUNG TỰ ĐỘNG THU NHỎ LỌT LÒNG, THOÁNG ĐẦU TÓC */
+/* 🚀 ẢNH CHÂN DUNG TRÊN PC: ĐÃ FIX SÂU HƠN */
 .hero__avatar-img {
     position: absolute !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-color: #121212 !important; 
-    border-radius: 50% !important;
-    
-    /* Ép phần đầu tóc tự tụt xuống dưới thông thoáng không chạm mép */
-    padding-top: 45px !important;   
-    padding-bottom: 5px !important;
-    
+    width: 125% !important;
+    height: 125% !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     object-position: bottom center !important; 
     object-fit: contain !important; 
     z-index: 3 !important;         
     left: 50% !important;
-    transform: translateX(-50%) !important;
-    transition: transform 0.3s ease !important;
+    bottom: 0 !important;
+    
+    /* 🚀 ĐÃ SỬA: Đẩy hẳn translateY xuống 68px (thay vì 48px) để cứu hoàn toàn phần tóc trên PC */
+    transform: translateX(-50%) translateY(68px) !important; 
+    transform-origin: bottom center !important;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 .hero__avatar-circle:hover .hero__avatar-img {
-    transform: translateX(-50%) scale(1.04) !important; 
+    transform: translateX(-50%) translateY(68px) scale(1.04) !important; 
 }
 
-/* 6. KHUNG CHỨA DÀN ICON 3D: ÉP PX KHÓA KHÔNG CHO BUNG TO LỖI */
+/* DÀN ICON 3D TRÊN PC */
 .hero__bg-icons {
     position: absolute !important;
-    width: 520px !important;    /* Khóa vùng phủ bao quanh khung 450px */
-    height: 520px !important;
-    top: -35px !important;      /* Đưa về chính tâm */
-    left: -35px !important;
+    width: 530px !important;    
+    height: 530px !important;
+    top: -40px !important;      
+    left: -40px !important;
     pointer-events: none;
     z-index: 99 !important; 
 }
 
-/* ÉP KHÓA KÍCH THƯỚC ICON CHUẨN TRÊN PC */
 .icon-floating {
     position: absolute !important;
-    width: 42px !important;     /* Size icon tinh tế */
-    height: 42px !important;
-    max-width: 42px !important;
-    max-height: 42px !important;
+    width: 44px !important;     
+    height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
     object-fit: contain !important;
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3)) !important;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35)) !important;
+    transition: all 0.3s ease !important;
 }
 
-/* TỌA ĐỘ VÀ ANIMATION ICON TRÊN PC */
-.icon-1 { top: 12% !important; left: 14% !important; animation: floatAround 6s ease-in-out infinite; }
-.icon-2 { top: 10% !important; right: 14% !important; animation: floatRotate 8s linear infinite; }
-.icon-3 { bottom: 16% !important; left: 10% !important; animation: floatAround 7s ease-in-out infinite 1s; }
-.icon-4 { bottom: 14% !important; right: 12% !important; animation: floatPulse 5s ease-in-out infinite; }
-.icon-5 { top: 50% !important; left: 2% !important; animation: floatRotate 10s linear infinite; }
-.icon-6 { top: 45% !important; right: 2% !important; animation: floatAround 9s ease-in-out infinite 0.5s; }
+.icon-1 { top: 12% !important; left: 14% !important; animation: floatAroundX 5s ease-in-out infinite; }
+.icon-2 { top: 10% !important; right: 14% !important; animation: floatRotateX 7s ease-in-out infinite; }
+.icon-3 { bottom: 18% !important; left: 10% !important; animation: floatAroundY 6s ease-in-out infinite 0.5s; }
+.icon-4 { bottom: 14% !important; right: 12% !important; animation: floatPulseX 4s ease-in-out infinite; }
+.icon-5 { top: 50% !important; left: 1% !important; animation: floatPulseX 5s ease-in-out infinite 1s; }
+.icon-6 { top: 45% !important; right: 1% !important; animation: floatAroundY 8s ease-in-out infinite; }
+
+.icon-floating:hover {
+    filter: drop-shadow(0 12px 20px rgba(253, 111, 0, 0.5)) scale(1.15) !important;
+}
 
 
 /* ==========================================================================
-   TỐI ƯU MOBILE RESPONSIVE HỆ PX (MAX-WIDTH: 739PX)
+   2. CẤU HÌNH CHO MÀN HÌNH TABLET (WIDTH TỪ 740PX ĐẾN 1023PX)
+   ========================================================================== */
+@media (min-width: 740px) and (max-width: 1023px) {
+    /* Thu vừa khối avatar tầm 360px cho hợp màn hình máy tính bảng */
+    .hero__avatar-block {
+        width: 360px !important;
+        height: 360px !important;
+    }
+
+    .hero__avatar-circle {
+        width: 360px !important;       
+        height: 360px !important;
+        min-width: 360px !important;
+        min-height: 360px !important;
+        max-width: 360px !important;
+        max-height: 360px !important;
+    }
+
+    .hero__avatar-circle::after {
+        inset: 14px !important; /* Viền mỏng vừa phải */
+    }
+
+    /* 🚀 ẢNH CHÂN DUNG TRÊN TABLET: KHÔNG LO MẤT TÓC */
+    .hero__avatar-img {
+        width: 125% !important;
+        height: 125% !important;
+        transform: translateX(-50%) translateY(52px) !important; /* Tỷ lệ tụt an toàn cho size 360px */
+    }
+
+    .hero__avatar-circle:hover .hero__avatar-img {
+        transform: translateX(-50%) translateY(52px) scale(1.04) !important;
+    }
+
+    /* Co gọn dàn icon bám quanh tablet */
+    .hero__bg-icons {
+        width: 420px !important;   
+        height: 420px !important;
+        top: -30px !important;
+        left: -30px !important;
+    }
+    
+    .icon-floating {
+        width: 38px !important;   
+        height: 38px !important;
+    }
+}
+
+
+/* ==========================================================================
+   3. CẤU HÌNH CHO MÀN HÌNH MOBILE (MAX-WIDTH: 739PX) - GIỮ NGUYÊN BẢN ĐÃ OK
    ========================================================================== */
 @media (max-width: 739px) {
     .hero__avatar-block {
@@ -1401,18 +1561,20 @@
         max-height: 280px !important;
     }
 
-    /* Thu hẹp viền màu mỏng lại trên mobile cho đẹp */
     .hero__avatar-circle::after {
         inset: 10px !important; 
     }
 
-    /* Ảnh lọt lòng mobile thoáng tóc không chạm viền */
     .hero__avatar-img {
-        padding-top: 25px !important;   
-        padding-bottom: 5px !important;
+        width: 125% !important;
+        height: 125% !important;
+        transform: translateX(-50%) translateY(32px) !important; 
     }
 
-    /* Gom dàn icon ôm sát vòng tròn nhỏ mobile */
+    .hero__avatar-circle:hover .hero__avatar-img {
+        transform: translateX(-50%) translateY(32px) scale(1.04) !important;
+    }
+
     .hero__bg-icons {
         width: 340px !important;   
         height: 340px !important;
@@ -1423,8 +1585,6 @@
     .icon-floating {
         width: 32px !important;   
         height: 32px !important;
-        max-width: 32px !important;
-        max-height: 32px !important;
     }
     
     .icon-1 { top: 8% !important; left: 12% !important; }
@@ -1433,4 +1593,31 @@
     .icon-4 { bottom: 8% !important; right: 12% !important; }
     .icon-5 { top: 45% !important; left: -2% !important; }
     .icon-6 { top: 40% !important; right: -2% !important; }
+}
+
+/* --- HỆ THỐNG KEYFRAMES ANIMATION XOAY VÀ BAY BỒNG BỀNH --- */
+@keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes floatAroundX {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    33% { transform: translateY(-12px) translateX(6px) rotate(3deg); }
+    66% { transform: translateY(4px) translateX(-8px) rotate(-3deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+}
+@keyframes floatAroundY {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(-16px) translateX(-5px) rotate(-5deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+}
+@keyframes floatPulseX {
+    0% { transform: scale(1) translateY(0px); }
+    50% { transform: scale(1.08) translateY(-10px); }
+    100% { transform: scale(1) translateY(0px); }
+}
+@keyframes floatRotateX {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(12deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
 }
