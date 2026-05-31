@@ -1,0 +1,1193 @@
+/* ==========================================================================
+   HEADER COMPONENT (Đồng bộ với hệ sinh thái base.css)
+   ========================================================================== */
+
+/* ==========================================================================
+   RESET VÀ ĐỒNG BỘ LẠI TOÀN BỘ CSS HEADER PC (MAIN.CSS)
+   ========================================================================== */
+
+/* Khung bọc ngoài cùng cố định trên đỉnh */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #121212 !important; /* Đổ lại màu nền tối đặc */
+    z-index: 9999 !important;
+    padding: 0 !important; /* Xóa padding ngoài */
+}
+
+/* Giới hạn khung nội dung header bằng khít 1280px với Hero phía dưới */
+.header .grid.wide {
+    max-width: 1280px !important;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.6rem; /* Tạo khoảng đệm nhẹ 2 bên rìa khi thu nhỏ màn hình */
+}
+
+/* Khung Flexbox phân phối 3 cụm: Logo trái - Menu giữa - Nút phải */
+.header__wrapper {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important; /* Căn giữa tăm tắp theo tâm dọc */
+    padding: 1.8rem 0 !important;   /* Độ cao thanh thoát cho header */
+    width: 100%;
+}
+
+/* --- Cột 1: FIX LOGO (Khử màu tím và gạch chân mặc định) --- */
+.header__logo-col {
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--foundation-orange-normal, #FD6F00) !important; /* Ép lại màu cam thương hiệu */
+    text-decoration: none !important; /* Xóa bỏ gạch chân tím */
+    letter-spacing: 0.1rem;
+}
+
+/* --- Cột 2: THANH NAV MENU GIỮA --- */
+.header__nav-col {
+    display: flex;
+    align-items: center;
+}
+
+.header__menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    gap: 4rem; /* Khoảng cách rộng rãi giữa các chữ menu */
+}
+
+.header__link {
+    font-size: 1.6rem;
+    color: #BABABA; /* Màu chữ xám mặc định nhẹ nhàng */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.header__link.header__link--active {
+    color: #FD6F00 !important; /* Đổi hẳn sang màu cam thương hiệu của bồ */
+    font-weight: 700 !important; /* Cho chữ đậm lên một chút nhìn cho rõ */
+}
+
+/* Thêm hiệu ứng hover nhẹ cho tinh tế (nếu bồ chưa có) */
+.header__link:hover {
+    color: #FD6F00;
+    transition: color 0.2s ease;
+}
+
+.header__link:hover,
+.header__link--active {
+    color: var(--foundation-orange-normal, #FD6F00) !important; /* Hover hoặc Active đổi sang màu cam */
+}
+
+/* --- Cột 3: FIX NÚT CONTACT ME (Khôi phục lại hình khối màu cam) --- */
+.header__actions-col {
+    display: flex;
+    align-items: center;
+}
+
+.header__btn-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--foundation-orange-normal, #FD6F00) !important; /* Đổ lại màu nền cam rực rỡ */
+    color: #FEFEFE !important; /* Chữ trắng nổi bật */
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem 2.4rem;
+    border-radius: 0.8rem; /* Bo góc khối nhẹ nhàng */
+    text-decoration: none !important; /* Khử gạch chân */
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.header__btn-contact:hover {
+    opacity: 0.9; /* Hiệu ứng mờ nhẹ khi hover */
+}
+
+/* ==========================================================================
+   HERO SECTION COMPONENT
+   ========================================================================== */
+
+.hero {
+    margin-top: 10rem !important;
+    padding-bottom: 8rem !important;
+}
+
+.hero__wrapper {
+    display: flex !important;
+    align-items: center !important; 
+    height: 100%;
+    min-height: calc(100vh - 18rem);
+}
+
+/* --- Khối nội dung trái --- */
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Căn lề trái thẳng hàng chữ */
+    height: 100%;
+}
+
+.hero__sub-title {
+    font-size: 2rem; 
+    font-weight: 500;
+    color: var(--foundation-white-light);
+    margin-bottom: 0.8rem;
+}
+
+.hero__name {
+    font-size: 2.4rem; 
+    font-weight: 600;
+    color: var(--foundation-orange-normal);
+    margin: 0 0 1.2rem 0;
+}
+
+.hero__job {
+    font-size: 7.2rem; 
+    font-weight: 700;
+    color: var(--foundation-orange-normal);
+    line-height: 1.1;
+    margin: 0 0 2.4rem 0;
+}
+
+/* Mạng xã hội */
+.hero__socials {
+    display: flex;
+    gap: 1.6rem;
+    margin-bottom: 3.2rem;
+}
+
+.hero__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.08); 
+    color: var(--foundation-white-light);
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.hero__social-link:hover {
+    background-color: var(--foundation-orange-normal);
+}
+
+/* Nút bấm hành động */
+.hero__cta {
+    display: flex;
+    gap: 2.4rem;
+    margin-bottom: 4.8rem;
+}
+
+.hero__btn-hire {
+    height: 4.3rem;
+    padding: 0 3.2rem;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--foundation-white-light);
+    background: var(--gradiant-color);
+    user-select: unset;
+}
+
+.hero__btn-hire:hover {
+    opacity: 0.9;
+}
+
+.hero__btn-cv {
+    height: 4.3rem;
+    padding: 0 3.2rem;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--foundation-white-light);
+    background-color: transparent;
+    border: 1px solid var(--foundation-white-dark);
+    transition: all 0.2s;
+}
+
+.hero__btn-cv:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--foundation-white-light);
+}
+
+/* Thống kê (Stats) */
+.hero__stats {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 2.4rem 4rem; /* Tăng padding trái/phải lên 4rem để hộp nhìn dài và thoáng hơn */
+    border-radius: 1.2rem;
+    
+    /* TĂNG GAP: Đẩy khoảng cách giữa các cụm số lên hẳn 5.2rem (~52px) */
+    gap: 5.2rem; 
+    
+    /* QUAN TRỌNG: Tăng max-width lên hẳn 60rem để giải phóng không gian cho các phần tử giãn ra */
+    width: max-content;
+    max-width: 60rem; 
+}
+
+.hero__stat-item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Căn chỉnh lại vị trí vách ngăn theo khoảng cách gap mới */
+.hero__stat-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    
+    /* Bằng một nửa giá trị gap (5.2rem / 2 = 2.6rem) -> Đảm bảo vách ngăn luôn nằm chính giữa */
+    right: -2.6rem; 
+    
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hero__stat-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--foundation-orange-normal);
+    margin-bottom: 0.9rem;
+}
+
+.hero__stat-label {
+    font-size: 1.4rem;
+    color: var(--foundation-white-dark);
+    margin-top: 0;
+}
+
+
+.hero__avatar-block {
+    display: flex;
+    justify-content: center; /* Đẩy ảnh chân dung ra chính giữa cột 6 bên phải */
+    align-items: center;
+    height: 100%;
+}
+
+.hero__avatar-circle {
+    position: relative;
+    width: 52rem; 
+    height: 52rem; 
+    min-width: 52rem;
+    min-height: 52rem;
+    flex-shrink: 0; 
+    max-width: 100%; 
+    aspect-ratio: 1 / 1; 
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.04); 
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+}
+
+.hero__avatar-img {
+    position: absolute;
+    width: 100%; 
+    height: auto;
+    bottom: 0; 
+    left: 50%;
+    transform: translateX(-50%); 
+    object-fit: cover;
+    z-index: 2; 
+    transform-origin: bottom center; 
+    transition: transform 0.3s ease;
+}
+
+.hero__avatar-circle:hover .hero__avatar-img {
+    transform: translateX(-50%) scale(1.04); 
+}
+
+/* CRITICAL: BỔ SUNG CHO MOBILE MENU (ẨN TRÊN PC MẶC ĐỊNH) */
+.header__toggle-btn,
+.header__close-btn,
+.header__overlay {
+    display: none;
+}
+
+
+
+
+/* ==========================================================================
+   ABOUT SECTION STYLES (MAIN.CSS)
+   ========================================================================== */
+.about {
+    padding: 8rem 0;
+    background-color: #121212; /* Màu nền tối đồng bộ toàn web */
+}
+
+/* --- Khối 1: Header --- */
+.about__header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.about__title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: var(--foundation-white-light, #FEFEFE);
+    margin-bottom: 1.6rem;
+}
+
+.about__subtitle {
+    font-size: 1.6rem;
+    color: var(--foundation-white-dark, #BABABA);
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* --- Khối 2: Body (Ảnh & Chữ) --- */
+.about__body {
+    align-items: center; /* Căn giữa ảnh và chữ theo chiều dọc */
+    margin-bottom: 8rem;
+}
+
+/* Khung bọc ảnh dạng hình vòm như Figma */
+.about__avatar-wrapper {
+    width: 100%;
+    max-width: 40rem;
+    border-radius: 20rem 20rem 2rem 2rem; /* Bo tròn góc trên tạo hình vòm */
+    overflow: hidden;
+    background-color: #1a1a1a;
+    margin: 0 auto;
+}
+
+.about__avatar-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(20%); /* Hơi nghiêng tone xám nhẹ giống ảnh mẫu */
+}
+
+/* Cột nội dung chữ */
+.about__content {
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    justify-content: flex-start;
+}
+
+.about__description {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: var(--foundation-white-dark-hover); /* Màu chữ xám nhạt đọc dễ chịu */
+    margin-bottom: 3.2rem;
+    text-align: justify;
+}
+
+/* Nút bấm Download CV màu cam */
+.about__btn-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--foundation-orange-normal, #FD6F00);
+    color: var(--foundation-white-light, #FEFEFE);
+    padding: 1.2rem 2.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border-radius: 0.8rem;
+    transition: background-color 0.2s ease;
+}
+
+.about__btn-cv:hover {
+    background-color: #e06200;
+}
+
+/* --- Khối 3: Skills (Vòng tròn kỹ năng) --- */
+/* Định nghĩa cột đặc biệt: 5 cột đều nhau trên PC */
+.l-2-4 {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+.about__skills {
+    display: flex !important;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.about__skill-item {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Thiết lập vòng tròn tiến độ bằng conic-gradient */
+.about__skill-circle {
+    position: relative;
+    width: 13rem;
+    height: 13rem;
+    border-radius: 50%;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Nền xám tối ban đầu khi chưa chạy hiệu ứng */
+    background: conic-gradient(#222222 0deg, #222222 360deg); 
+    transition: transform 0.3s ease;
+}
+
+.about__skill-item:hover .about__skill-circle {
+    transform: scale(1.05);
+}
+
+.about__skill-inner {
+    width: 11.4rem; /* Độ dày viền cam sẽ bằng (13rem - 11.4rem) / 2 = 0.8rem */
+    height: 11.4rem;
+    background-color: #121212; /* Đổ khít khao trùng với màu nền đen tối web của bồ */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tạo viền màu cam chạy theo phần trăm kỹ năng */
+.about__skill-circle.percent-100 { background: conic-gradient(#FD6F00 0% 100%, #262626 100% 100%); }
+.about__skill-circle.percent-85  { background: conic-gradient(#FD6F00 0% 85%, #262626 85% 100%); }
+.about__skill-circle.percent-70  { background: conic-gradient(#FD6F00 0% 70%, #262626 70% 100%); }
+.about__skill-circle.percent-60  { background: conic-gradient(#FD6F00 0% 60%, #262626 60% 100%); }
+
+/* Lõi bên trong đè lên để tạo khoảng rỗng và chứa icon */
+.about__skill-icon-box {
+    width: 9.4rem;
+    height: 9.4rem;
+    background-color: #121212; /* Trùng với màu nền nền web */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.6rem;
+    color: var(--text-color, #FEFEFE);
+}
+
+.about__skill-icon-box i {
+    font-size: 3.2rem;
+    color: #FD6F00;
+}
+
+.about__skill-text-icon {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #FEFEFE;
+}
+
+/* Số % và Tên kỹ năng */
+.about__skill-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--foundation-orange-normal, #FD6F00);
+    margin-bottom: 0.4rem;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.about__skill-name {
+    font-size: 1.5rem;
+    color: #BABABA;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   EXPERIENCES SECTION STYLES (MAIN.CSS)
+   ========================================================================== */
+.experiences {
+    padding: 8rem 0;
+    background-color: #121212;
+}
+
+.experiences__header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.experiences__title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: #FEFEFE;
+    margin-bottom: 1.6rem;
+}
+
+.experiences__subtitle {
+    font-size: 1.6rem;
+    color: #BABABA;
+    max-width: 60rem;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Khoảng cách an toàn cho các ô Grid */
+.experiences__item-col {
+    margin-bottom: 3rem;
+}
+
+/* HỘP LAYOUT NỀN SẪM BO TRÒN GÓC */
+.experiences__item {
+    background-color: #1e1411; /* Màu nâu sẫm giống ảnh Figma bồ gửi */
+    border-radius: 2rem;       /* Bo góc tròn mượt mà */
+    padding: 4.8rem 3.2rem;
+    height: 100%;
+    
+    /* Cơ chế Flexbox xếp hàng dọc và căn giữa tuyệt đối nội dung */
+    display: flex;
+    flex-direction: column;
+    align-items: center;       
+    text-align: center;
+    
+    transition: transform 0.2s ease;
+}
+
+.experiences__item:hover {
+    transform: translateY(-4px); /* Hiệu ứng nổi nhẹ khi di chuột */
+}
+
+/* Khung chứa Icon màu cam */
+.experiences__icon-box {
+    margin-bottom: 2.4rem;
+}
+
+.experiences__icon-box i {
+    font-size: 4.2rem;
+    color: var(--foundation-orange-normal, #FD6F00); /* Màu cam rực nổi bật */
+}
+
+/* Tiêu đề của từng hộp (Ví dụ: App Design) */
+.experiences__item-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--foundation-orange-normal, #FD6F00);
+    margin-bottom: 1.6rem;
+}
+
+/* Đoạn mô tả chữ xám nhỏ bên dưới */
+.experiences__item-desc {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #BABABA;
+    margin: 0;
+}
+
+
+/* ==========================================================================
+   PORTFOLIO SECTION STYLES (MAIN.CSS)
+   ========================================================================== */
+.portfolio {
+    padding: 8rem 0;
+    background-color: #121212;
+}
+
+.portfolio__header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.portfolio__title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: #FEFEFE;
+}
+
+/* --- Khối 2: Thanh Filter Buttons --- */
+.portfolio__filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 6rem;
+}
+
+.portfolio__filter-btn {
+    background-color: #1E1E1E; /* Màu xám sẫm mặc định của nút */
+    color: #FEFEFE;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 1rem 2.4rem;
+    border: 1px solid #2C2C2C;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.portfolio__filter-btn:hover {
+    background-color: #2A2A2A;
+    border-color: var(--foundation-orange-normal, #FD6F00);
+}
+
+/* Trạng thái nút active (Màu cam nổi bật) */
+.portfolio__filter-btn--active {
+    background-color: var(--foundation-orange-normal, #FD6F00) !important;
+    color: #FEFEFE !important;
+    border-color: var(--foundation-orange-normal, #FD6F00) !important;
+}
+
+/* ==========================================================================
+   CSS ÉP NÚT FILTER PORTFOLIO ĐỔI SÀNG MÀU CAM KHI ĐƯỢC ACTIVE
+   ========================================================================== */
+
+/* Trạng thái nút nhận class active khi được bấm */
+.portfolio__filter-btn.portfolio__filter-btn--active {
+    background-color: #FD6F00 !important; /* Đổi màu nền sang cam thương hiệu */
+    color: #FFFFFF !important;            /* Ép chữ thành màu trắng sáng rõ */
+    border-color: #FD6F00 !important;      /* Đổi viền sang màu cam luôn cho đồng bộ */
+    font-weight: 600 !important;
+}
+
+/* Thêm hiệu ứng hover nhẹ cho các nút chưa active để lướt chuột qua nhìn mượt mà */
+.portfolio__filter-btn:not(.portfolio__filter-btn--active):hover {
+    color: #FD6F00;
+    border-color: #FD6F00;
+    transition: all 0.2s ease;
+}
+
+/* --- Khối 3: Project Cards Grid --- */
+.portfolio__item-col {
+    margin-bottom: 4rem; /* Khoảng cách hàng thoáng đãng */
+}
+
+.portfolio__card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+/* Hộp chứa ảnh bo góc tròn cực lớn theo Figma */
+.portfolio__img-box {
+    width: 100%;
+    border-radius: 2.4rem; /* Bo tròn góc mạnh mẽ */
+    overflow: hidden;
+    background-color: #1E1E1E;
+    margin-bottom: 1.6rem;
+    
+    /* Tạo hiệu ứng tỉ lệ ảnh chuẩn không bị bóp méo */
+    aspect-ratio: 4 / 5; 
+}
+
+.portfolio__img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover; /* Giữ nguyên tỉ lệ hình ảnh */
+    transition: transform 0.4s ease;
+}
+
+/* Hiệu ứng zoom nhẹ ảnh khi hover card nhìn cho pro */
+.portfolio__card:hover .portfolio__img {
+    transform: scale(1.04);
+}
+
+/* Phần thông tin text bên dưới đáy card */
+.portfolio__info {
+    display: flex;
+    justify-content: space-between; /* Đẩy tên sang trái, category sang phải */
+    align-items: center;
+    padding: 0 0.4rem; /* Đệm nhẹ bằng mép ảnh */
+}
+
+.portfolio__project-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #FEFEFE;
+    margin: 0;
+}
+
+.portfolio__project-category {
+    font-size: 1.4rem;
+    color: #BABABA;
+    font-weight: 400;
+}
+
+
+
+
+/* ==========================================================================
+   CONTACT ME SECTION STYLES (MAIN.CSS)
+   ========================================================================== */
+.contact {
+    padding: 12rem 0 8rem 0;
+    background-color: #121212;
+}
+
+.contact__header {
+    text-align: center;
+    margin-bottom: 8rem !important;
+}
+
+.contact__title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: #FEFEFE;
+    margin-bottom: 1.6rem;
+}
+
+.contact__subtitle {
+    font-size: 1.6rem;
+    color: #BABABA;
+    font-weight: 400;
+}
+
+/* Khung form */
+.contact__form {
+    max-width: 94rem; /* Giới hạn độ rộng form cho gom gọn ở giữa màn hình */
+    margin: 0 auto;
+    margin-top: 8rem !important;
+}
+
+/* Khoảng cách các hàng dọc trong cột */
+.contact__col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; /* Khoảng cách đều đặn giữa các ô nhập liệu */
+    justify-content: flex-start;
+}
+
+/* Từng ô group nhập liệu */
+.contact__group {
+    position: relative;
+    width: 100%;
+}
+
+/* STYLE CHUNG CHO CÁC Ô INPUT / SELECT / TEXTAREA */
+.contact__input {
+    width: 100%;
+    background-color: #1a110e; /* Màu nền nâu cực sẫm đồng bộ với khối Experiences */
+    border: 1px solid #2c1d18;  /* Viền mảnh tinh tế */
+    border-radius: 0.8rem;      /* Bo góc nhẹ theo Figma */
+    padding: 1.6rem 2rem;
+    font-size: 1.5rem;
+    color: #FEFEFE;
+    outline: none;
+    height: 5.6rem;
+    margin-bottom: 0.8rem;
+    transition: border-color 0.2s ease;
+}
+
+.contact__input::placeholder {
+    color: #666666; /* Màu chữ placeholder xám trầm xuống */
+}
+
+.contact__input:focus {
+    border-color: var(--foundation-orange-normal, #FD6F00); /* Đổi viền cam khi click vào */
+}
+
+/* Custom riêng cho ô Chọn Select Dropdown */
+.contact__select {
+    appearance: none; /* Ẩn mũi tên mặc định xấu xí của trình duyệt */
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+/* Mũi tên custom màu cam/trắng nằm góc phải ô Select */
+.contact__select-icon {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    color: #BABABA;
+    pointer-events: none; /* Tránh cản trở hành vi click vào ô select */
+}
+
+/* Custom riêng cho ô nhập nội dung dài Textarea */
+.contact__textarea {
+    resize: none; /* Khóa không cho người dùng kéo dãn méo form */
+    height: 100%;  /* Ép chiều cao lấp đầy khoảng trống đối xứng cột trái */
+    min-height: 14.8rem; 
+}
+
+/* KHỐI NÚT SEND */
+.contact__actions {
+    display: flex;
+    justify-content: flex-end; /* Đẩy nút Send bám sát lề phải dưới form */
+    margin-top: 3.2rem;
+}
+
+.contact__btn-send {
+    background: transparent;
+    border: 1px solid #FEFEFE; /* Viền trắng mảnh quanh nút */
+    color: #FEFEFE;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 1rem 4rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.contact__btn-send:hover {
+    background-color: #FEFEFE;
+    color: #121212; /* Đảo màu nền trắng chữ đen khi hover nhìn rất nghệ */
+}
+
+
+
+/* ==========================================================================
+   FOOTER SECTION STYLES (MAIN.CSS)
+   ========================================================================== */
+.footer {
+    padding: 6rem 0 3rem 0;
+    background-color: #121212;
+    width: 100%;
+    overflow: hidden; /* Khóa tràn lề an toàn cho phần chân trang */
+}
+
+.footer__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Gom tất cả các khối con tụ vào tâm giữa */
+    text-align: center;
+}
+
+/* --- Lớp 1: Logo --- */
+.footer__logo {
+    margin-bottom: 3.2rem;
+}
+
+.footer__logo-link {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--foundation-orange-normal, #FD6F00);
+    text-decoration: none;
+    letter-spacing: 0.1rem;
+}
+
+/* --- Lớp 2: Menu --- */
+.footer__nav {
+    margin-bottom: 4rem;
+}
+
+.footer__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    gap: 4rem; /* Khoảng cách chữ menu thoáng đãng */
+}
+
+.footer__link {
+    font-size: 1.6rem;
+    color: #FEFEFE;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer__link:hover {
+    color: var(--foundation-orange-normal, #FD6F00);
+}
+
+/* --- Lớp 3: Social Icons --- */
+.footer__socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.6rem;
+    margin-bottom: 4rem;
+}
+
+.footer__social-icon {
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid #444444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FEFEFE;
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: all 0.2s ease;
+}
+
+.footer__social-icon:hover {
+    color: var(--foundation-orange-normal, #FD6F00);
+    border-color: var(--foundation-orange-normal, #FD6F00);
+    transform: translateY(-2px);
+}
+
+/* --- Lớp 4: Contacts (Email & Phone) --- */
+.footer__contacts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer__contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1.6rem;
+}
+
+.footer__contact-item i {
+    font-size: 1.8rem;
+    color: var(--foundation-orange-normal, #FD6F00); /* Icon màu cam */
+}
+
+.footer__contact-link {
+    color: #BABABA; /* Màu chữ xám sang trọng theo Figma */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer__contact-link:hover {
+    color: var(--foundation-orange-normal, #FD6F00);
+}
+
+/* --- Đường gạch ngang mảnh --- */
+.footer__divider {
+    width: 100%;
+    max-width: 94rem; /* Chiều dài bằng khít với form contact phía trên */
+    border: none;
+    border-top: 1px solid #222222;
+    margin: 0 0 2.4rem 0;
+}
+
+/* --- Lớp 5: Copyright --- */
+.footer__copyright p {
+    font-size: 1.4rem;
+    color: #666666;
+    margin: 0;
+}
+
+
+
+/* ==========================================================================
+   CSS CỤM NÚT LIÊN HỆ CỐ ĐỊNH (MAIN.CSS)
+   ========================================================================== */
+
+/* Khung bọc tổng thể khóa chặt ở góc phải bên dưới màn hình */
+.quick-contact {
+    position: fixed;
+    bottom: 3rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Khoảng cách giữa nút Gọi và nút Zalo */
+    z-index: 999999 !important; /* Đảm bảo luôn nổi lên trên mọi section và footer */
+}
+
+/* Định dạng cấu trúc cho từng nút */
+.quick-contact__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.quick-contact__item:hover {
+    transform: scale(1.08); /* Phóng to nhẹ khi di chuột vào trông rất sống động */
+}
+
+/* Vòng tròn nền xám nhạt bao bọc bên ngoài */
+.quick-contact__circle {
+    width: 6.5rem;
+    height: 6.5rem;
+    background-color: #f2f2f2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Đổ bóng mịn màng */
+}
+
+/* Khối icon tròn rực rỡ bên trong */
+.quick-contact__icon {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Style riêng cho nút PHONE (Màu cam thương hiệu của bồ) --- */
+.quick-contact__phone .quick-contact__icon {
+    background-color: #FD6F00; /* Màu cam giống thiết kế PC của bồ */
+}
+
+.quick-contact__phone .quick-contact__icon i {
+    color: #ffffff;
+    font-size: 2.2rem;
+    transform: rotate(0deg);
+}
+
+/* Tạo hiệu ứng rung lắc liên tục cho nút gọi để kích thích người dùng bấm */
+.quick-contact__phone .quick-contact__circle,
+.quick-contact__zalo .quick-contact__circle {
+    animation: quick-phone-shake 2s infinite ease-in-out;
+}
+
+/* --- Style riêng cho nút ZALO --- */
+.quick-contact__zalo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+/* Định dạng chữ nhãn bên dưới icon (GỌI NGAY / CHAT ZALO) */
+.quick-contact__label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #4a4a4a; /* Màu chữ xám đậm tinh tế */
+    margin-top: 0.8rem;
+    letter-spacing: 0.05rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   HIỆU ỨNG ANIMATION RUNG LẮC (KEYFRAMES)
+   ========================================================================== */
+@keyframes quick-phone-shake {
+    0% { transform: rotate(0) scale(1); }
+    10% { transform: rotate(-15deg) scale(1.02); }
+    20% { transform: rotate(15deg) scale(1.02); }
+    30% { transform: rotate(-15deg) scale(1.02); }
+    40% { transform: rotate(15deg) scale(1.02); }
+    50% { transform: rotate(0) scale(1); }
+    100% { transform: rotate(0) scale(1); }
+}
+
+/* Tối ưu hiển thị trên Mobile (Thu nhỏ size lại một chút cho vừa mắt) */
+@media (max-width: 739px) {
+    .quick-contact {
+        bottom: 2rem;
+        right: 1.6rem;
+        gap: 1.6rem;
+    }
+    
+    .quick-contact__circle {
+        width: 5.6rem;
+        height: 5.6rem;
+    }
+    
+    .quick-contact__icon {
+        width: 4.4rem;
+        height: 4.4rem;
+    }
+    
+    .quick-contact__phone .quick-contact__icon i {
+        font-size: 1.8rem;
+    }
+    
+    .quick-contact__label {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+}
+
+
+
+/* ==========================================================================
+   CSS CHO TOAST NOTIFICATION (MAIN.CSS)
+   ========================================================================== */
+
+/* Khung bọc tổng thể khóa chặt ở góc trên bên phải màn hình */
+#toast-container {
+    position: fixed;
+    top: 3rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 10000000 !important; /* Cao hơn tất cả mọi thứ */
+}
+
+/* Định dạng cấu trúc chung của 1 hộp Toast */
+.toast-msg {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a1a;
+    color: #FEFEFE;
+    padding: 1.6rem 2.4rem;
+    border-radius: 0.8rem;
+    min-width: 30rem;
+    max-width: 40rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-left: 5px solid #ccc; /* Thanh màu chỉ thị bên lề trái */
+    
+    /* Hiệu ứng trượt mượt mà từ ngoài màn hình vào */
+    animation: toastSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              toastFadeOut 0.5s ease 2.5s forwards; /* Tự mờ dần sau 2.5 giây */
+}
+
+/* Biểu tượng Icon */
+.toast-msg__icon {
+    font-size: 2rem;
+    margin-right: 1.6rem;
+}
+
+/* Nội dung chữ viết bên trong */
+.toast-msg__text {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.02rem;
+}
+
+/* --- TRẠNG THÁI 1: THÀNH CÔNG (SUCCESS - MÀU XANH LÁ HOẶC MÀU CAM CỦA BỒ) --- */
+.toast-msg--success {
+    border-left-color: #2ecc71; /* Viền xanh lá cây chuẩn chỉ thành công */
+}
+.toast-msg--success .toast-msg__icon {
+    color: #2ecc71;
+}
+
+/* --- TRẠNG THÁI 2: THẤT BẠI/LỖI (ERROR - MÀU ĐỎ) --- */
+.toast-msg--error {
+    border-left-color: #e74c3c; /* Viền màu đỏ báo lỗi */
+}
+.toast-msg--error .toast-msg__icon {
+    color: #e74c3c;
+}
+
+/* --- HIỆU ỨNG CHUYỂN ĐỘNG ANIMATION --- */
+@keyframes toastSlideIn {
+    from {
+        transform: translateX(100% + 2rem);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toastFadeOut {
+    to {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+}
