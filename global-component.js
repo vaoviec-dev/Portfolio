@@ -13,7 +13,7 @@ class GlobalHeader extends HTMLElement {
                 <div class="row header__wrapper">
                     <div class="header__logo-col">
                         <!-- SAU NÀY MUỐN THAY LOGO CHỈ CẦN SỬA DUY NHẤT CHỮ "LOGO" Ở ĐÂY -->
-                        <a href="${basePath}index.html" class="header__logo">LOGO</a>
+                        <a href="${basePath}index.html" class="header__logo">D.T</a>
                     </div>
                     <nav class="header__nav-col">
                         <div class="header__close-btn js-menu-close"><i class="fas fa-times"></i></div>
@@ -67,7 +67,7 @@ class GlobalFooter extends HTMLElement {
             <div class="grid wide">
                 <div class="footer__wrapper">
                     <div class="footer__logo">
-                        <a href="${basePath}index.html" class="footer__logo-link">LOGO</a>
+                        <a href="${basePath}index.html" class="footer__logo-link">D.T</a>
                     </div>
                     <nav class="footer__nav">
                         <ul class="footer__menu">
