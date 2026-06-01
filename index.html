@@ -105,12 +105,18 @@
                 <div class="col c-12 m-6 l-6">
                     <div class="hero__avatar-block">
                         <div class="hero__bg-icons">
-                            <img src="assets/img/icon/icon_ai.png" alt="AI" class="icon-floating icon-1" width="42" height="42">
-    <img src="assets/img/icon/icon_figma.png" alt="Figma" class="icon-floating icon-2" width="42" height="42">
-    <img src="assets/img/icon/icon_palette.png" alt="Palette" class="icon-floating icon-3" width="42" height="42">
-    <img src="assets/img/icon/icon_pen_vector.png" alt="Vector" class="icon-floating icon-4" width="42" height="42">
-    <img src="assets/img/icon/icon_pencil.png" alt="Pencil" class="icon-floating icon-5" width="42" height="42">
-    <img src="assets/img/icon/icon_pts.png" alt="Photoshop" class="icon-floating icon-6" width="42" height="42">
+                            <img src="assets/img/icon/icon_ai.png" alt="AI" class="icon-floating icon-1" width="42"
+                                height="42">
+                            <img src="assets/img/icon/icon_figma.png" alt="Figma" class="icon-floating icon-2"
+                                width="42" height="42">
+                            <img src="assets/img/icon/icon_palette.png" alt="Palette" class="icon-floating icon-3"
+                                width="42" height="42">
+                            <img src="assets/img/icon/icon_pen_vector.png" alt="Vector" class="icon-floating icon-4"
+                                width="42" height="42">
+                            <img src="assets/img/icon/icon_pencil.png" alt="Pencil" class="icon-floating icon-5"
+                                width="42" height="42">
+                            <img src="assets/img/icon/icon_pts.png" alt="Photoshop" class="icon-floating icon-6"
+                                width="42" height="42">
                         </div>
 
                         <div class="hero__avatar-circle">
@@ -316,88 +322,87 @@
                 <h2 class="portfolio__title">Portfolio</h2>
             </div>
 
+            <!-- THAY BỘ LỌC TẠI ĐÂY -->
             <div class="portfolio__filter">
-                <button
-                    class="portfolio__filter-btn portfolio__filter-btn--all portfolio__filter-btn--active">All</button>
+                <button class="portfolio__filter-btn portfolio__filter-btn--all portfolio__filter-btn--active"
+                    data-filter="all">All</button>
 
-                <button class="portfolio__filter-btn">Website Design</button>
-                <button class="portfolio__filter-btn">App Desktop</button>
-                <button class="portfolio__filter-btn">Landing Page Design</button>
-                <button class="portfolio__filter-btn">App Mobile Design</button>
-                <button class="portfolio__filter-btn">Braiding</button>
+                <button class="portfolio__filter-btn" data-filter="website-design">Website Design</button>
+                <button class="portfolio__filter-btn" data-filter="app-desktop">App Desktop</button>
+                <button class="portfolio__filter-btn" data-filter="landing-page">Landing Page Design</button>
+                <button class="portfolio__filter-btn" data-filter="app-mobile">App Mobile Design</button>
+                <button class="portfolio__filter-btn" data-filter="branding">Branding</button>
             </div>
 
             <div class="row portfolio__grid">
 
-                <div class="col l-4 m-6 c-12 portfolio__item-col">
+                <!-- FIX: Đã sửa data-catagory thành data-category chuẩn chỉnh -->
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="website-design">
                     <div class="portfolio__card">
                         <div class="portfolio__img-box">
-                            <!-- ĐÃ SỬA: Bỏ dấu / ở đầu src ảnh -->
                             <img src="assets/img/project_1.png" alt="Project Name" class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
                             <h3 class="portfolio__project-name">Name Project</h3>
-                            <span class="portfolio__project-category">Categories</span>
+                            <span class="portfolio__project-category">Website Design</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col l-4 m-6 c-12 portfolio__item-col">
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="app-desktop">
                     <div class="portfolio__card">
                         <div class="portfolio__img-box">
-                            <!-- ĐÃ SỬA: Bỏ dấu / ở đầu src ảnh -->
                             <img src="assets/img/project_2.png" alt="Project Name" class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
                             <h3 class="portfolio__project-name">Name Project</h3>
-                            <span class="portfolio__project-category">Categories</span>
+                            <span class="portfolio__project-category">App Desktop</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col l-4 m-6 c-12 portfolio__item-col">
+                <!-- FIX: Đồng bộ nhãn data-category khít với nút bấm data-filter="landing-page" -->
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="landing-page">
                     <div class="portfolio__card">
                         <div class="portfolio__img-box">
-                            <!-- ĐÃ SỬA: Bỏ dấu / ở đầu src ảnh -->
                             <img src="assets/img/project_3.png" alt="Project Name" class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
                             <h3 class="portfolio__project-name">Name Project</h3>
-                            <span class="portfolio__project-category">Categories</span>
+                            <span class="portfolio__project-category">Landing Page Design</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col l-4 m-6 c-12 portfolio__item-col">
+                <!-- FIX: Đồng bộ nhãn data-category khít với nút bấm data-filter="app-mobile" -->
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="app-mobile">
                     <div class="portfolio__card">
                         <div class="portfolio__img-box">
-                            <!-- ĐÃ SỬA: Bỏ dấu / ở đầu src ảnh -->
                             <img src="assets/img/project_3.png" alt="Project Name" class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
                             <h3 class="portfolio__project-name">Name Project</h3>
-                            <span class="portfolio__project-category">Categories</span>
+                            <span class="portfolio__project-category">App Mobile Design</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col l-4 m-6 c-12 portfolio__item-col">
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="branding">
                     <div class="portfolio__card">
                         <div class="portfolio__img-box">
-                            <!-- ĐÃ SỬA: Bỏ dấu / ở đầu src ảnh -->
                             <img src="assets/img/project_2.png" alt="Project Name" class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
                             <h3 class="portfolio__project-name">Name Project</h3>
-                            <span class="portfolio__project-category">Categories</span>
+                            <span class="portfolio__project-category">Branding</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col l-4 m-6 c-12 portfolio__item-col">
+                <!-- FIX: Tạm thời cho thẻ này vào nhóm branding hoặc bồ tự đổi tên data-filter tương ứng nhé -->
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="app-mobile">
                     <div class="portfolio__card">
                         <div class="portfolio__img-box">
-                            <!-- ĐÃ SỬA: Bỏ dấu / ở đầu src ảnh -->
                             <img src="assets/img/project_1.png" alt="Project Name" class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
@@ -655,24 +660,54 @@
         });
     }
 
+    // ==========================================================================
+    // LOGIC LỌC DỰ ÁN PORTFOLIO (PORTFOLIO FILTER) THEO NHÓM MƯỢT MÀ
+    // ==========================================================================
     const filterBtns = document.querySelectorAll('.portfolio__filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio__item-col');
+
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            // 1. Xử lý đổi màu Cam Active cho nút được bấm
             const currentActiveBtn = document.querySelector('.portfolio__filter-btn--active');
             if (currentActiveBtn) {
                 currentActiveBtn.classList.remove('portfolio__filter-btn--active');
             }
             btn.classList.add('portfolio__filter-btn--active');
+
+            // 2. Xử lý logic lọc ẩn / hiện các card dự án tương ứng
+            const filterValue = btn.getAttribute('data-filter');
+
+            portfolioItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+
+                if (filterValue === 'all') {
+                    // Nếu bấm nút "All": Hiển thị lại toàn bộ card
+                    item.style.display = 'block';
+                } else if (itemCategory === filterValue) {
+                    // FIX: Đã xóa chữ .style thừa thãi gây crash JS
+                    item.style.display = 'block';
+                } else {
+                    // Các trường hợp không trùng khớp: Ẩn card đi
+                    item.style.display = 'none';
+                }
+            });
         });
     });
 
+    // ==========================================================================
+    // LOGIC ĐẾM SỐ TỪ 0% VÀ XOAY VÒNG TIẾN ĐỘ ĐỒNG BỘ SIÊU MƯỢT MÀ
+    // ==========================================================================
     const skillCircles = document.querySelectorAll('.js-skill-circle');
 
-    const animateCircle = (circle) => {
+    const animateCircleAndNumber = (circle) => {
         const targetPercent = parseInt(circle.getAttribute('data-percent'), 10) || 0;
+        const parentItem = circle.closest('.about__skill-item');
+        const numberDisplay = parentItem ? parentItem.querySelector('.about__skill-number') : null;
         let currentPercent = 0;
 
         circle.style.background = `conic-gradient(#222222 0deg, #222222 360deg)`;
+        if (numberDisplay) numberDisplay.innerText = "0%";
 
         if (circle.animationTimer) clearInterval(circle.animationTimer);
 
@@ -681,6 +716,11 @@
                 clearInterval(circle.animationTimer);
             } else {
                 currentPercent++;
+
+                if (numberDisplay) {
+                    numberDisplay.innerText = `${currentPercent}%`;
+                }
+
                 const degrees = (currentPercent / 100) * 360;
                 circle.style.background = `conic-gradient(#FD6F00 0deg, #FD6F00 ${degrees}deg, #222222 ${degrees}deg, #222222 360deg)`;
             }
@@ -690,14 +730,18 @@
     const skillObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                animateCircle(entry.target);
+                animateCircleAndNumber(entry.target);
             } else {
                 const circle = entry.target;
                 if (circle.animationTimer) clearInterval(circle.animationTimer);
                 circle.style.background = `conic-gradient(#222222 0deg, #222222 360deg)`;
+
+                const parentItem = circle.closest('.about__skill-item');
+                const numberDisplay = parentItem ? parentItem.querySelector('.about__skill-number') : null;
+                if (numberDisplay) numberDisplay.innerText = "0%";
             }
         });
-    }, { root: null, threshold: 0.2 });
+    }, { root: null, threshold: 0.15 });
 
     skillCircles.forEach(circle => {
         skillObserver.observe(circle);

@@ -443,7 +443,18 @@
     /* Độ đậm nhạt của ánh sáng hắt */
 }
 
-.hero__avatar-img,
+.hero__avatar-img {
+    position: relative;
+    z-index: 1;
+    background: rgba(253, 111, 0, 0.04);
+    /* Màu nền tối bọc sát ảnh để che dải màu bên dưới */
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    /* Tự động ăn theo bo góc của khung ngoài */
+}
+
 .about__avatar-img {
     position: relative;
     z-index: 1;
@@ -546,6 +557,13 @@
     /* Nền xám tối ban đầu khi chưa chạy hiệu ứng */
     background: conic-gradient(#222222 0deg, #222222 360deg);
     transition: transform 0.3s ease;
+}
+
+.about__skill-circle.percent-100,
+.about__skill-circle.percent-85,
+.about__skill-circle.percent-70,
+.about__skill-circle.percent-60 {
+    background: conic-gradient(#222222 0deg, #222222 360deg) !important;
 }
 
 .about__skill-item:hover .about__skill-circle {
@@ -790,6 +808,7 @@
 /* --- Khối 3: Project Cards Grid --- */
 .portfolio__item-col {
     margin-bottom: 4rem;
+    transition: all 0.4s ease-in-out;
     /* Khoảng cách hàng thoáng đãng */
 }
 
