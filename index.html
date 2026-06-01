@@ -29,39 +29,8 @@
 
 
 <body>
-    <header class="header">
-        <div class="header__overlay js-menu-overlay"></div>
-
-        <div class="grid wide">
-            <div class="row header__wrapper">
-
-                <div class="header__logo-col">
-                    <a href="#" class="header__logo">LOGO</a>
-                </div>
-
-                <nav class="header__nav-col">
-                    <div class="header__close-btn js-menu-close">
-                        <i class="fas fa-times"></i>
-                    </div>
-
-                    <ul class="header__menu">
-                        <li><a href="#" class="header__link header__link--active">Home</a></li>
-                        <li><a href="#about" class="header__link">About me</a></li>
-                        <li><a href="#experiences" class="header__link">Experience</a></li>
-                        <li><a href="#portfolio" class="header__link">Portfolio</a></li>
-                    </ul>
-                </nav>
-
-                <div class="header__actions-col">
-                    <a href="#contact" class="btn header__btn-contact">Contact Me</a>
-
-                    <div class="header__toggle-btn js-menu-open">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- HEADER ĐC CẤT TRONG NOTION -->
+    <global-header></global-header>
 
     <section class="hero">
         <div class="grid wide">
@@ -334,93 +303,107 @@
                 <button class="portfolio__filter-btn portfolio__filter-btn--all portfolio__filter-btn--active"
                     data-filter="all">All</button>
 
-                <button class="portfolio__filter-btn" data-filter="website-design">Website Design</button>
-                <button class="portfolio__filter-btn" data-filter="app-desktop">App Desktop</button>
-                <button class="portfolio__filter-btn" data-filter="landing-page">Landing Page Design</button>
-                <button class="portfolio__filter-btn" data-filter="app-mobile">App Mobile Design</button>
+                <button class="portfolio__filter-btn" data-filter="print-packaging">Print & Packaging</button>
+                <button class="portfolio__filter-btn" data-filter="advertising">Marketing & Ads</button>
                 <button class="portfolio__filter-btn" data-filter="branding">Branding</button>
+                <button class="portfolio__filter-btn" data-filter="uiux-design">UI/UX Design</button>
+                <button class="portfolio__filter-btn" data-filter="video">Video Editor</button>
+                <button class="portfolio__filter-btn" data-filter="art">Draw Art</button>
             </div>
 
             <div class="row portfolio__grid">
 
                 <!-- 🚀 CARD SỐ 1: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="app-mobile">
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="print-packaging">
                     <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
-                    <a href="case-studies/project-owngo.html" class="portfolio__card"
+                    <a href="case-studies/filter-print-packaging.html" class="portfolio__card"
                         style="text-decoration: none; display: block;">
                         <div class="portfolio__img-box">
-                            <img src="assets/img/project_3.png" alt="0wnGo Project" class="portfolio__img">
+                            <img src="assets/img/produces/cover_print.png" alt="0wnGo Project" class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">0wnGo App</h3>
-                            <span class="portfolio__project-category">App Mobile Design</span>
+                            <h3 class="portfolio__project-name">Print & Packaging</h3>
+                            <span class="portfolio__project-category">Xem chi tiết!</span>
                         </div>
                     </a>
                 </div>
 
-                <!-- CARD SỐ 2: Website Design (Tạm thời giữ nguyên div, khi nào bồ làm file case study mới thì đổi thành thẻ a) -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="website-design">
-                    <div class="portfolio__card">
+                <!-- 🚀 CARD SỐ 2: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="advertising">
+                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
+                    <a href="case-studies/filter-advertising.html" class="portfolio__card"
+                        style="text-decoration: none; display: block;">
                         <div class="portfolio__img-box">
-                            <img src="assets/img/project_1.png" alt="Project Name" class="portfolio__img">
+                            <img src="assets/img/produces/cover_dsmarketing.jpg" alt="0wnGo Project"
+                                class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Comming Soon!</h3>
-                            <span class="portfolio__project-category">Website Design</span>
+                            <h3 class="portfolio__project-name">Marketing & Ads</h3>
+                            <span class="portfolio__project-category">Xem chi tiết!</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <!-- CARD SỐ 3: App Desktop -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="app-desktop">
-                    <div class="portfolio__card">
-                        <div class="portfolio__img-box">
-                            <img src="assets/img/project_2.png" alt="Project Name" class="portfolio__img">
-                        </div>
-                        <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Comming Soon!</h3>
-                            <span class="portfolio__project-category">App Desktop</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD SỐ 4: Landing Page -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="landing-page">
-                    <div class="portfolio__card">
-                        <div class="portfolio__img-box">
-                            <img src="assets/img/project_3.png" alt="Project Name" class="portfolio__img">
-                        </div>
-                        <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Comming Soon!</h3>
-                            <span class="portfolio__project-category">Landing Page Design</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD SỐ 5: Branding -->
+                <!-- 🚀 CARD SỐ 3: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
                 <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="branding">
-                    <div class="portfolio__card">
+                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
+                    <a href="case-studies/filter-branding.html" class="portfolio__card"
+                        style="text-decoration: none; display: block;">
                         <div class="portfolio__img-box">
-                            <img src="assets/img/project_2.png" alt="Project Name" class="portfolio__img">
+                            <img src="assets/img/produces/cover_branding.jpg" alt="0wnGo Project"
+                                class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Comming Soon!</h3>
-                            <span class="portfolio__project-category">Branding</span>
+                            <h3 class="portfolio__project-name">Branding</h3>
+                            <span class="portfolio__project-category">Xem chi tiết!</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <!-- CARD SỐ 6: Thẻ dự án phụ bổ sung -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="branding">
-                    <div class="portfolio__card">
+                <!-- 🚀 CARD SỐ 4: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="uiux-design">
+                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
+                    <a href="case-studies/filter-uiux-design.html" class="portfolio__card"
+                        style="text-decoration: none; display: block;">
                         <div class="portfolio__img-box">
-                            <img src="assets/img/project_1.png" alt="Project Name" class="portfolio__img">
+                            <img src="assets/img/produces/uiux_cover.jpg" alt="0wnGo Project" class="portfolio__img">
                         </div>
                         <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Comming Soon!</h3>
-                            <span class="portfolio__project-category">Categories</span>
+                            <h3 class="portfolio__project-name">UI/UX Design</h3>
+                            <span class="portfolio__project-category">Xem chi tiết!</span>
                         </div>
-                    </div>
+                    </a>
+                </div>
+
+                <!-- 🚀 CARD SỐ 5: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="video">
+                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
+                    <a href="case-studies/filter-video.html" class="portfolio__card"
+                        style="text-decoration: none; display: block;">
+                        <div class="portfolio__img-box">
+                            <img src="assets/img/produces/cover_videoeditor.jpg" alt="0wnGo Project"
+                                class="portfolio__img">
+                        </div>
+                        <div class="portfolio__info">
+                            <h3 class="portfolio__project-name">Video Editor</h3>
+                            <span class="portfolio__project-category">Xem chi tiết!</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 🚀 CARD SỐ 6: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
+                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="art">
+                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
+                    <a href="case-studies/filter-art.html" class="portfolio__card"
+                        style="text-decoration: none; display: block;">
+                        <div class="portfolio__img-box">
+                            <img src="assets/img/produces/cover_art.jpg" alt="0wnGo Project" class="portfolio__img">
+                        </div>
+                        <div class="portfolio__info">
+                            <h3 class="portfolio__project-name">Draw Art</h3>
+                            <span class="portfolio__project-category">Xem chi tiết!</span>
+                        </div>
+                    </a>
                 </div>
 
             </div>
@@ -480,52 +463,8 @@
         </div>
     </section>
 
-
-    <footer class="footer">
-        <div class="grid wide">
-            <div class="footer__wrapper">
-
-                <div class="footer__logo">
-                    <a href="#" class="footer__logo-link">LOGO</a>
-                </div>
-
-                <nav class="footer__nav">
-                    <ul class="footer__menu">
-                        <li><a href="#" class="footer__link">Home</a></li>
-                        <li><a href="#about" class="footer__link">About me</a></li>
-                        <li><a href="#experiences" class="footer__link">Experiences</a></li>
-                        <li><a href="#portfolio" class="footer__link">Portfolio</a></li>
-                    </ul>
-                </nav>
-
-                <div class="footer__socials">
-                    <a href="#" class="footer__social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="footer__social-icon"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="footer__social-icon"><i class="fab fa-dribbble"></i></a>
-                    <a href="#" class="footer__social-icon"><i class="fab fa-behance"></i></a>
-                </div>
-
-                <div class="footer__contacts">
-                    <div class="footer__contact-item">
-                        <i class="far fa-envelope"></i>
-                        <a href="mailto:designer.duytrung@gmail.com"
-                            class="footer__contact-link">designer.duytrung@gmail.com</a>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <a href="tel:0357552081" class="footer__contact-link">0357.55.2081</a>
-                    </div>
-                </div>
-
-                <hr class="footer__divider">
-
-                <div class="footer__copyright">
-                    <p>Designed by @duytrung Graphic Designer</p>
-                </div>
-
-            </div>
-        </div>
-    </footer>
+    <global-footer></global-footer>
+    <!-- FOOTER TRONG NOTION -->
 
     <!-- CỤM NÚT LIÊN HỆ CỐ ĐỊNH -->
     <div class="quick-contact">
@@ -555,29 +494,6 @@
 
 
 <script>
-    const menuOpenBtn = document.querySelector('.js-menu-open');
-    const menuCloseBtn = document.querySelector('.js-menu-close');
-    const menuOverlay = document.querySelector('.js-menu-overlay');
-    const navbarMenu = document.querySelector('.header__nav-col');
-    const menuLinks = document.querySelectorAll('.header__link');
-
-    function closeMobileMenu() {
-        if (navbarMenu && menuOverlay) {
-            navbarMenu.classList.remove('open');
-            menuOverlay.classList.remove('open');
-        }
-    }
-
-    if (menuOpenBtn && navbarMenu && menuOverlay) {
-        menuOpenBtn.addEventListener('click', () => {
-            navbarMenu.classList.add('open');
-            menuOverlay.classList.add('open');
-        });
-    }
-
-    if (menuCloseBtn) menuCloseBtn.addEventListener('click', closeMobileMenu);
-    if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
-
     // --- HÀM TỰ ĐỊNH NGHĨA GIÚP CUỘN MÀN HÌNH CHẬM LẠI TÙY Ý ---
     function smoothScrollTo(targetSelector, duration) {
         const target = document.querySelector(targetSelector);
@@ -609,67 +525,72 @@
         requestAnimationFrame(animation);
     }
 
-    // --- 2. LOGIC CLICK MENU ĐỔI MÀU CAM ACTIVE & CUỘN CHẬM (XỬ LÝ TRIỆT ĐỂ LỖI LƯNG CHỪNG) ---
-    menuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const targetId = link.getAttribute('href');
+    // --- LOGIC CLICK MENU ĐỔI MÀU CAM ACTIVE & CUỘN CHẬM ---
+    // (Ta giữ lại logic click của các thẻ link để phục vụ cuộn mượt nội bộ trang chủ)
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('.header__link');
+        if (!link) return;
 
-            // Trường hợp 1: Nếu bấm vào nút Home (href="#" hoặc href="")
-            if (targetId === '#' || targetId === '') {
-                e.preventDefault();
+        const targetId = link.getAttribute('href');
 
-                // Thay vì gọi tên thẻ 'body', ta tự tạo một hàm tính toán vị trí đỉnh 0 tuyệt đối
-                const startPosition = window.scrollY;
-                const distance = -startPosition; // Khoảng cách dịch chuyển ngược về vị trí số 0
-                let startTime = null;
+        // Trường hợp 1: Nếu bấm vào nút Home
+        if (targetId === '#' || targetId === '' || targetId === './index.html' || targetId === 'index.html') {
+            e.preventDefault();
+            const startPosition = window.scrollY;
+            const distance = -startPosition;
+            let startTime = null;
 
-                function homeAnimation(currentTime) {
-                    if (startTime === null) startTime = currentTime;
-                    const timeElapsed = currentTime - startTime;
+            function homeAnimation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, distance, 1200);
+                window.scrollTo(0, run);
 
-                    // Áp dụng công thức Easing giúp trượt mượt về đỉnh 0 trong vòng 1.2 giây (1200ms)
-                    const run = ease(timeElapsed, startPosition, distance, 1200);
-                    window.scrollTo(0, run);
-
-                    if (timeElapsed < 1200) {
-                        requestAnimationFrame(homeAnimation);
-                    } else {
-                        window.scrollTo(0, 0); // Ép cứng màn hình về vị trí 0 tuyệt đối khi kết thúc
-                    }
+                if (timeElapsed < 1200) {
+                    requestAnimationFrame(homeAnimation);
+                } else {
+                    window.scrollTo(0, 0);
                 }
-
-                function ease(t, b, c, d) {
-                    t /= d / 2;
-                    if (t < 1) return c / 2 * t * t + b;
-                    t--;
-                    return -c / 2 * (t * (t - 2) - 1) + b;
-                }
-
-                requestAnimationFrame(homeAnimation);
-            }
-            // Trường hợp 2: Nếu bấm vào các mục khác như #about, #portfolio...
-            else if (targetId.startsWith('#')) {
-                e.preventDefault();
-                smoothScrollTo(targetId, 1200);
             }
 
-            closeMobileMenu();
-            const currentActive = document.querySelector('.header__link--active');
-            if (currentActive) {
-                currentActive.classList.remove('header__link--active');
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
             }
-            link.classList.add('header__link--active');
-        });
+
+            requestAnimationFrame(homeAnimation);
+        }
+        // Trường hợp 2: Nếu bấm vào các mục hash anchor nội bộ như #about, #portfolio...
+        else if (targetId.startsWith('#')) {
+            e.preventDefault();
+            smoothScrollTo(targetId, 1200);
+        }
+
+        const currentActive = document.querySelector('.header__link--active');
+        if (currentActive) {
+            currentActive.classList.remove('header__link--active');
+        }
+        link.classList.add('header__link--active');
+
+        // Gọi hàm đóng menu được định nghĩa từ component nếu có kích hoạt trên mobile
+        const navbarMenu = document.querySelector('.header__nav-col');
+        const menuOverlay = document.querySelector('.js-menu-overlay');
+        if (navbarMenu && menuOverlay) {
+            navbarMenu.classList.remove('open');
+            menuOverlay.classList.remove('open');
+        }
     });
 
     // Áp dụng cuộn chậm cho cả nút "Contact Me" trên thanh Header
-    const headerContactBtn = document.querySelector('.header__btn-contact');
-    if (headerContactBtn) {
-        headerContactBtn.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
+        const headerContactBtn = e.target.closest('.header__btn-contact');
+        if (headerContactBtn) {
             e.preventDefault();
-            smoothScrollTo('#contact', 1200); // Cuộn đến phần Contact trong 1.2 giây
-        });
-    }
+            smoothScrollTo('#contact', 1200);
+        }
+    });
 
     // ==========================================================================
     // LOGIC LỌC DỰ ÁN PORTFOLIO (PORTFOLIO FILTER) THEO NHÓM MƯỢT MÀ
@@ -679,27 +600,19 @@
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // 1. Xử lý đổi màu Cam Active cho nút được bấm
-            const currentActiveBtn = document.querySelector('.portfolio__filter-btn--active');
-            if (currentActiveBtn) {
-                currentActiveBtn.classList.remove('portfolio__filter-btn--active');
-            }
+            document.querySelector('.portfolio__filter-btn--active').classList.remove('portfolio__filter-btn--active');
             btn.classList.add('portfolio__filter-btn--active');
 
-            // 2. Xử lý logic lọc ẩn / hiện các card dự án tương ứng
             const filterValue = btn.getAttribute('data-filter');
 
             portfolioItems.forEach(item => {
                 const itemCategory = item.getAttribute('data-category');
 
                 if (filterValue === 'all') {
-                    // Nếu bấm nút "All": Hiển thị lại toàn bộ card
                     item.style.display = 'block';
                 } else if (itemCategory === filterValue) {
-                    // FIX: Đã xóa chữ .style thừa thãi gây crash JS
                     item.style.display = 'block';
                 } else {
-                    // Các trường hợp không trùng khớp: Ẩn card đi
                     item.style.display = 'none';
                 }
             });
@@ -820,5 +733,7 @@
         });
     }
 </script>
+
+<script src="./global-component.js"></script>
 
 </html>

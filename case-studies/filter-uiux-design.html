@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UI/UX Design Projects | Tạ Duy Trung</title>
+    <link rel="icon" type="image/png" href="../assets/img/icon/favicon_bee.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/grid.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <style>
+        /* ==========================================================================
+           CSS TỐI ƯU KHUNG SLIDER & NÚT ĐIỀU HƯỚNG XUYÊN SUỐT CÁC THIẾT BỊ
+           ========================================================================== */
+        body { background-color: #121212; color: #FEFEFE; overflow-x: hidden; }
+        .category-page { padding: 12rem 0 8rem 0; }
+        .category-page__header { text-align: center; margin-bottom: 4rem; padding: 0 1.6rem; }
+        .category-page__title { font-size: 4rem; font-weight: 700; color: #FFF; margin-bottom: 1.6rem; }
+        .category-page__title span { color: #FD6F00; }
+        .category-page__desc { font-size: 1.6rem; color: #BABABA; max-width: 60rem; margin: 0 auto; line-height: 1.6; }
+        
+        .portfolio__filter { display: flex !important; justify-content: center !important; align-items: center !important; gap: 1.2rem !important; margin-bottom: 6rem !important; flex-wrap: wrap; padding: 0 1.6rem; }
+        .portfolio__filter-link { text-decoration: none; }
+        
+        .slider-container { position: relative; width: 100%; padding: 0 5.6rem; }
+        
+        .slider-ctrl { 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            width: 5.6rem; 
+            height: 5.6rem; 
+            background-color: rgba(26, 26, 26, 0.95); 
+            border: 1px solid #2C2C2C; 
+            border-radius: 50%; 
+            color: #FD6F00; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.8rem; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); 
+            z-index: 15; 
+            backdrop-filter: blur(8px);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .slider-ctrl:hover { background-color: #FD6F00; color: #FFF; border-color: #FD6F00; box-shadow: 0 8px 20px rgba(253, 111, 0, 0.4); }
+        .slider-ctrl.disabled { opacity: 0.15; cursor: not-allowed; pointer-events: none; border-color: #222; }
+        
+        .slider-ctrl--prev { left: 0px; }
+        .slider-ctrl--next { right: 0px; }
+
+        .portfolio__grid-slider { 
+            display: flex !important; 
+            flex-wrap: nowrap !important; 
+            overflow-x: auto; 
+            scroll-behavior: smooth; 
+            gap: 3rem; 
+            padding: 1rem 0 4rem 0; 
+            margin: 0; 
+            list-style: none; 
+            -webkit-overflow-scrolling: touch; 
+            cursor: pointer;
+        }
+        .portfolio__grid-slider::-webkit-scrollbar { display: none; }
+        .portfolio__grid-slider { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .slider-item { flex: 0 0 calc(33.333% - 20px); min-width: 32rem; max-width: 100%; user-select: none; -webkit-user-drag: none; }
+        
+        .portfolio__card { display: block; text-decoration: none; cursor: pointer; transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease; height: 100%; -webkit-user-drag: none; }
+        .portfolio__card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 35px rgba(253, 111, 0, 0.25); }
+        .portfolio__img { -webkit-user-drag: none; pointer-events: none; }
+        
+        /* ==========================================================================
+           CSS LIGHTBOX OVERLAY
+           ========================================================================== */
+        .lightbox-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(10, 10, 10, 0.96); 
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(12px);
+        }
+        .lightbox-modal.open { opacity: 1; pointer-events: auto; }
+        .lightbox-content { position: relative; max-width: 85vw; max-height: 80vh; display: flex; flex-direction: column; align-items: center; }
+        .lightbox-img { max-width: 100%; max-height: 72vh; object-fit: contain; border-radius: 1.2rem; box-shadow: 0 25px 60px rgba(0,0,0,0.9); border: 1px solid #252525; transform: scale(0.96); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .lightbox-modal.open .lightbox-img { transform: scale(1); }
+        .lightbox-caption { margin-top: 1.8rem; font-size: 1.6rem; color: #FEFEFE; font-weight: 600; text-align: center; letter-spacing: 0.02rem; }
+        .lightbox-counter { font-size: 1.3rem; color: #666; margin-top: 0.6rem; font-weight: 500; }
+        .lightbox-close { position: absolute; top: 3rem; right: 4rem; background: none; border: none; color: #888; font-size: 3.2rem; cursor: pointer; transition: all 0.2s ease; z-index: 2010; }
+        .lightbox-close:hover { color: #FD6F00; transform: scale(1.1) rotate(90deg); }
+
+        .lightbox-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 6rem; height: 6rem; background-color: rgba(30, 30, 30, 0.6); border: 1px solid #3a3a3a; border-radius: 50%; color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; cursor: pointer; transition: all 0.2s ease; user-select: none; z-index: 2005; }
+        .lightbox-btn:hover { background-color: #FD6F00; border-color: #FD6F00; box-shadow: 0 0 15px rgba(253, 111, 0, 0.5); }
+        .lightbox-btn--prev { left: -8rem; }
+        .lightbox-btn--next { right: -8rem; }
+        .lightbox-btn.hidden { display: none !important; }
+
+        @media (max-width: 1023px) {
+            .slider-item { flex: 0 0 calc(50% - 15px); }
+            .portfolio__grid-slider { gap: 2rem; }
+            .lightbox-btn--prev { left: -4rem; }
+            .lightbox-btn--next { right: -4rem; }
+        }
+        @media (max-width: 739px) {
+            .category-page { padding-top: 10rem; }
+            .category-page__title { font-size: 3rem; }
+            .slider-container { padding: 0 4.4rem; } 
+            .slider-ctrl { width: 4.2rem; height: 4.2rem; font-size: 1.4rem; } 
+            .slider-item { flex: 0 0 100%; min-width: 20rem; } 
+            .portfolio__grid-slider { gap: 1.6rem; padding-bottom: 2rem; }
+            .lightbox-content { max-width: 92vw; }
+            .lightbox-btn { width: 4.6rem; height: 4.6rem; font-size: 1.6rem; background-color: rgba(20,20,20,0.85); }
+            .lightbox-btn--prev { left: 1rem; top: auto; bottom: -6.4rem; transform: none; }
+            .lightbox-btn--next { right: 1rem; top: auto; bottom: -6.4rem; transform: none; }
+            .lightbox-caption { margin-top: 2.8rem; font-size: 1.4rem; }
+            .lightbox-close { top: 2rem; right: 2rem; font-size: 2.8rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- TỰ ĐỘNG GỌI HEADER TỪ COMPONENT CHUNG -->
+    <global-header></global-header>
+
+    <main class="category-page">
+        <div class="grid wide">
+            <div class="category-page__header">
+                <h1 class="category-page__title">Danh mục: <span>UI/UX Design</span></h1>
+                <p class="category-page__desc">Nghiên cứu trải nghiệm người dùng, xây dựng kiến trúc thông tin, wireframe và thiết kế chi tiết giao diện ứng dụng di động (Mobile App) cùng hệ thống giao diện trang web (Website Ecosystem).</p>
+            </div>
+
+            <div class="portfolio__filter">
+                <a href="../index.html#portfolio" class="portfolio__filter-link"><button class="portfolio__filter-btn" data-filter="all">All</button></a>
+                <a href="filter-print-packaging.html" class="portfolio__filter-link"><button class="portfolio__filter-btn" data-filter="print-packaging">Print & Packaging</button></a>
+                <a href="filter-advertising.html" class="portfolio__filter-link"><button class="portfolio__filter-btn" data-filter="advertising">Marketing & Ads</button></a>
+                <a href="filter-branding.html" class="portfolio__filter-link"><button class="portfolio__filter-btn" data-filter="branding">Branding</button></a>
+                <a href="filter-uiux-design.html" class="portfolio__filter-link"><button class="portfolio__filter-btn portfolio__filter-btn--active" data-filter="uiux-design">UI/UX Design</button></a>
+                <a href="filter-video.html" class="portfolio__filter-link"><button class="portfolio__filter-btn" data-filter="video">Video Editor</button></a>
+                <a href="filter-art.html" class="portfolio__filter-link"><button class="portfolio__filter-btn" data-filter="art">Draw Art</button></a>
+            </div>
+
+            <div class="slider-container">
+                <button class="slider-ctrl slider-ctrl--prev disabled" aria-label="Slide trái"><i class="fas fa-chevron-left"></i></button>
+
+                <div class="portfolio__grid-slider js-slider">
+                    <div class="slider-item">
+                        <div class="portfolio__card js-lightbox-trigger" data-title="0wnGo - Mobile Bill Splitting App Concept" data-images="../assets/img/produces/app_1.png,../assets/img/produces/app_2.png,../assets/img/produces/app_3.png,../assets/img/produces/app_4.png,../assets/img/produces/app_5.png,../assets/img/produces/app_6.png,../assets/img/produces/app_7.png,../assets/img/produces/app_8.png,../assets/img/produces/app_9.png,../assets/img/produces/app_10.png,../assets/img/produces/app_11.png,../assets/img/produces/app_12.png,../assets/img/produces/app_13.png,../assets/img/produces/app_14.png,../assets/img/produces/app_15.png,../assets/img/produces/app_16.png,../assets/img/produces/app_17.png,../assets/img/produces/app_18.png,../assets/img/produces/app_19.png,../assets/img/produces/app_20.png,../assets/img/produces/app_21.png,../assets/img/produces/app_22.png,../assets/img/produces/app_23.png,../assets/img/produces/app_24.png,../assets/img/produces/app_25.png">
+                            <div class="portfolio__img-box">
+                                <img src="../assets/img/produces/app_1.png" alt="0wnGo App Mockup" class="portfolio__img">
+                            </div>
+                            <div class="portfolio__info">
+                                <h3 class="portfolio__project-name">OwnGo App</h3>
+                                <span class="portfolio__project-category">Mobile App</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="slider-ctrl slider-ctrl--next" aria-label="Slide phải"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </main>
+
+    <div class="lightbox-modal js-lightbox-modal">
+        <button class="lightbox-close js-lightbox-close" aria-label="Đóng popup"><i class="fas fa-times"></i></button>
+        <div class="lightbox-content">
+            <button class="lightbox-btn lightbox-btn--prev js-lightbox-prev" aria-label="Ảnh trước"><i class="fas fa-chevron-left"></i></button>
+            <img src="" alt="Lightbox Showcase Preview" class="lightbox-img js-lightbox-img">
+            <div class="lightbox-caption js-lightbox-caption">Project Title</div>
+            <div class="lightbox-counter js-lightbox-counter">1 / 1</div>
+            <button class="lightbox-btn lightbox-btn--next js-lightbox-next" aria-label="Ảnh sau"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- TỰ ĐỘNG GỌI FOOTER TỪ COMPONENT CHUNG -->
+    <global-footer></global-footer>
+
+    <!-- HỆ THỐNG JAVASCRIPT BẢO LƯU LOGIC SLIDER & LIGHTBOX POPUP -->
+    <script>
+        const slider = document.querySelector('.js-slider');
+        const prevBtn = document.querySelector('.slider-ctrl--prev');
+        const nextBtn = document.querySelector('.slider-ctrl--next');
+        let isDown = false, startX, startY, scrollLeft, isDragging = false; 
+
+        if (slider && prevBtn && nextBtn) {
+            function updateArrowStatus() {
+                const currentScroll = Math.ceil(slider.scrollLeft);
+                const maxScrollableWidth = slider.scrollWidth - slider.clientWidth;
+                prevBtn.classList.toggle('disabled', currentScroll <= 0);
+                nextBtn.classList.toggle('disabled', currentScroll >= maxScrollableWidth - 2);
+            }
+            function getScrollAmount() {
+                const firstItem = slider.querySelector('.slider-item');
+                return firstItem ? firstItem.clientWidth + 30 : 320; 
+            }
+            nextBtn.addEventListener('click', () => {
+                slider.style.scrollBehavior = 'smooth';
+                slider.scrollLeft += getScrollAmount();
+                setTimeout(updateArrowStatus, 350);
+            });
+            prevBtn.addEventListener('click', () => {
+                slider.style.scrollBehavior = 'smooth';
+                slider.scrollLeft -= getScrollAmount();
+                setTimeout(updateArrowStatus, 350);
+            });
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true; isDragging = false; slider.style.cursor = 'grabbing'; slider.style.scrollBehavior = 'auto'; 
+                startX = e.pageX - slider.offsetLeft; startY = e.pageY - slider.offsetTop; scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => { if (!isDown) return; isDown = false; slider.style.cursor = 'pointer'; });
+            slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'pointer'; slider.style.scrollBehavior = 'smooth'; });
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const x = e.pageX - slider.offsetLeft; const y = e.pageY - slider.offsetTop;
+                const distanceX = Math.abs(x - startX); const distanceY = Math.abs(y - startY);
+                if (distanceX > 8 || distanceY > 8) {
+                    isDragging = true; e.preventDefault();
+                    const walk = (x - startX) * 1.5; slider.scrollLeft = scrollLeft - walk;
+                }
+            });
+            slider.addEventListener('scroll', updateArrowStatus);
+            window.addEventListener('resize', updateArrowStatus);
+        }
+
+        const modal = document.querySelector('.js-lightbox-modal');
+        const modalImg = document.querySelector('.js-lightbox-img');
+        const modalCaption = document.querySelector('.js-lightbox-caption');
+        const modalCounter = document.querySelector('.js-lightbox-counter');
+        const modalClose = document.querySelector('.js-lightbox-close');
+        const modalPrev = document.querySelector('.js-lightbox-prev');
+        const modalNext = document.querySelector('.js-lightbox-next');
+        const triggers = document.querySelectorAll('.js-lightbox-trigger');
+        let currentAlbum = [], currentIndex = 0, albumTitle = "";   
+
+        function updateLightboxImage() {
+            modalImg.src = currentAlbum[currentIndex].trim();
+            modalCaption.textContent = albumTitle;
+            modalCounter.textContent = `${currentIndex + 1} / ${currentAlbum.length}`;
+            const isSingleImg = currentAlbum.length <= 1;
+            modalPrev.classList.toggle('hidden', isSingleImg);
+            modalNext.classList.toggle('hidden', isSingleImg);
+        }
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('mouseup', (e) => {
+                if (isDragging) return;
+                if (e.button === 0) { 
+                    albumTitle = trigger.getAttribute('data-title');
+                    const imagesAttr = trigger.getAttribute('data-images');
+                    if (imagesAttr) {
+                        currentAlbum = imagesAttr.split(','); currentIndex = 0; updateLightboxImage();
+                        modal.classList.add('open'); document.body.style.overflow = 'hidden'; 
+                    }
+                }
+            });
+        });
+
+        function closeLightbox() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+        modalClose.addEventListener('click', closeLightbox);
+        modal.addEventListener('click', (e) => { if (e.target === modal || e.target === document.querySelector('.lightbox-content')) closeLightbox(); });
+        modalNext.addEventListener('click', () => { currentIndex = (currentIndex + 1) % currentAlbum.length; updateLightboxImage(); });
+        modalPrev.addEventListener('click', () => { currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length; updateLightboxImage(); });
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight' && currentAlbum.length > 1) modalNext.click();
+            if (e.key === 'ArrowLeft' && currentAlbum.length > 1) modalPrev.click();
+        });
+    </script>
+
+    <!-- NHÚNG FILE LIÊN KẾT LOGIC HOẠT ĐỘNG COMPONENT -->
+    <script src="../global-component.js"></script>
+</body>
+</html>
