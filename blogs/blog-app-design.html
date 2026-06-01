@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Case Study: 0wnGo App | Tạ Duy Trung</title>
+    <link rel="icon" type="image/png" href="../assets/img/icon/favicon_bee.png">
+    <!-- FIX: Bỏ dấu ../ ở trước link CDN FontAwesome để nhận lại icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- FIX: Đã giữ nguyên ../ để nhận diện chính xác hệ thống CSS từ bên ngoài -->
+    <link rel="stylesheet" href="../assets/css/grid.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <style>
+        /* ==========================================================================
+           CSS DESIGN RIÊNG CHO TRANG CASE STUDY (ĐỒNG BỘ NỀN TỐI #121212)
+           ========================================================================== */
+        body { background-color: #121212; }
+        .blog-detail { padding: 12rem 0 8rem 0; color: #FEFEFE; }
+        
+        /* Trở về trang chủ */
+        .blog-detail__back-btn { display: inline-flex; align-items: center; gap: 0.8rem; color: #FD6F00; font-size: 1.5rem; font-weight: 600; text-decoration: none; margin-bottom: 3.2rem; transition: transform 0.2s ease; }
+        .blog-detail__back-btn:hover { transform: translateX(-4px); }
+
+        /* Tiêu đề & Thông tin chung */
+        .blog-detail__title { font-size: 4rem; font-weight: 700; color: #FEFEFE; line-height: 1.3; margin-bottom: 2rem; }
+        .blog-detail__title span { color: #FD6F00; }
+        .blog-detail__meta { font-size: 1.4rem; color: #BABABA; margin-bottom: 4rem; display: flex; flex-wrap: wrap; gap: 2.4rem; border-bottom: 1px solid #222; padding-bottom: 2.4rem; }
+        .blog-detail__meta i { color: #FD6F00; margin-right: 0.6rem; }
+
+        /* Khung tóm tắt dự án nhanh */
+        .project-summary { background-color: #1a110e; border: 1px solid #2c1d18; border-radius: 1.6rem; padding: 3.2rem; margin-bottom: 4.8rem; }
+        .project-summary__title { font-size: 1.8rem; font-weight: 700; color: #FD6F00; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.05rem; }
+        .project-summary__grid { display: flex; flex-wrap: wrap; gap: 2.4rem; }
+        .project-summary__item { flex: 1; min-width: 16rem; }
+        .project-summary__label { font-size: 1.3rem; color: #666; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 0.6rem; }
+        .project-summary__value { font-size: 1.5rem; color: #FEFEFE; font-weight: 500; }
+
+        /* Khối nội dung chính */
+        .case-section { margin-bottom: 5.6rem; }
+        .case-section__h2 { font-size: 2.6rem; font-weight: 700; color: #FEFEFE; margin-bottom: 2rem; position: relative; padding-left: 1.8rem; }
+        .case-section__h2::before { content: ''; position: absolute; left: 0; top: 15%; height: 70%; width: 4px; background-color: #FD6F00; }
+        .case-section__p { font-size: 1.6rem; line-height: 1.8; color: #BABABA; margin-bottom: 2rem; text-align: justify; }
+        
+        /* Điểm nhấn UX Painpoint / Giải pháp */
+        .ux-box { background-color: #1E1E1E; border-left: 4px solid #FD6F00; padding: 2rem 2.4rem; border-radius: 0 1.2rem 1.2rem 0; margin: 2.4rem 0; }
+        .ux-box__title { font-size: 1.6rem; font-weight: 700; color: #FEFEFE; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+        .ux-box__p { font-size: 1.5rem; line-height: 1.6; color: #BABABA; margin: 0; }
+        .ux-box--solution { border-left-color: #00f3ff; background-color: #11181a; }
+
+        /* Hình ảnh & Mockup */
+        .case-img-wrapper { width: 100%; border-radius: 2rem; overflow: hidden; margin: 3.2rem 0; background-color: #1a1a1a; border: 1px solid #222; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .case-img { width: 100%; height: auto; display: block; object-fit: cover; }
+        .case-img-caption { text-align: center; font-size: 1.4rem; color: #666; margin-top: 1.2rem; font-style: italic; }
+
+        /* Tối ưu hiển thị Mobile */
+        @media (max-width: 739px) {
+            .blog-detail { padding-top: 10rem; }
+            .blog-detail__title { font-size: 2.8rem; }
+            .project-summary { padding: 2rem; }
+            .project-summary__grid { flex-direction: column; gap: 1.6rem; }
+            .case-section__h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER ĐỒNG BỘ -->
+    <header class="header">
+        <div class="header__overlay js-menu-overlay"></div>
+        <div class="grid wide">
+            <div class="row header__wrapper">
+                <div class="header__logo-col">
+                    <!-- FIX: Thêm ../ để link nhảy ra ngoài folder blogs quay về trang chủ -->
+                    <a href="../index.html" class="header__logo">LOGO</a>
+                </div>
+                <nav class="header__nav-col">
+                    <div class="header__close-btn js-menu-close"><i class="fas fa-times"></i></div>
+                    <ul class="header__menu">
+                        <!-- FIX: Thêm ../ trước index.html của toàn bộ thanh menu -->
+                        <li><a href="../index.html" class="header__link">Home</a></li>
+                        <li><a href="../index.html#about" class="header__link">About me</a></li>
+                        <li><a href="../index.html#experiences" class="header__link">Experience</a></li>
+                        <li><a href="../index.html#portfolio" class="header__link">Portfolio</a></li>
+                    </ul>
+                </nav>
+                <div class="header__actions-col">
+                    <!-- FIX: Thêm ../ trước link nút Contact -->
+                    <a href="../index.html#contact" class="btn header__btn-contact">Contact Me</a>
+                    <div class="header__toggle-btn js-menu-open"><i class="fas fa-bars"></i></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NỘI DUNG CASE STUDY CHI TIẾT -->
+    <main class="blog-detail">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-10 l-offset-1 m-12 c-12">
+                    
+                    <!-- FIX: Thêm ../ vào nút quay lại trang chủ -->
+                    <a href="../index.html#experiences" class="blog-detail__back-btn">
+                        <i class="fas fa-arrow-left"></i> Trở về trang chủ
+                    </a>
+
+                    <h1 class="blog-detail__title">Case Study: Thiết kế Giao diện Ứng dụng Chia tiền Nhóm <span>0wnGo</span></h1>
+                    
+                    <div class="blog-detail__meta">
+                        <span><i class="far fa-calendar-alt"></i> Tháng 04, 2026</span>
+                        <span><i class="far fa-user"></i> Tạ Duy Trung</span>
+                        <span><i class="fas fa-layer-group"></i> UI/UX Mobile Design</span>
+                    </div>
+
+                    <!-- BẢNG TÓM TẮT DỰ ÁN NHANH -->
+                    <div class="project-summary">
+                        <h3 class="project-summary__title">Project Metadata</h3>
+                        <div class="project-summary__grid">
+                            <div class="project-summary__item">
+                                <span class="project-summary__label">Vai trò</span>
+                                <span class="project-summary__value">Sole UI/UX Designer</span>
+                            </div>
+                            <div class="project-summary__item">
+                                <span class="project-summary__label">Thời gian</span>
+                                <span class="project-summary__value">4 Tuần (Nghiên cứu & Thiết kế)</span>
+                            </div>
+                            <div class="project-summary__item">
+                                <span class="project-summary__label">Nền tảng</span>
+                                <span class="project-summary__value">Mobile Application (iOS / Android)</span>
+                            </div>
+                            <div class="project-summary__item">
+                                <span class="project-summary__label">Công cụ</span>
+                                <span class="project-summary__value">Figma, Adobe Photoshop</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KHỐI 1: ĐẶT VẤN ĐỀ -->
+                    <div class="case-section">
+                        <h2 class="case-section__h2">1. Bối Cảnh Dự Án & Vấn Đề (The Challenge)</h2>
+                        <p class="case-section__p">
+                            Sau mỗi cuộc vui, ăn uống hay du lịch đội nhóm, việc tính toán và phân chia chi phí phát sinh luôn là một "thủ tục" gây ái ngại. Qua quan sát thực tế đời sống và khảo sát hành vi cá nhân, tôi nhận thấy đại đa số người dùng đều xuất hiện một tâm lý e dè, ngại ngùng khi phải đứng ra nhắc nhở bạn bè chuyển khoản tiền nong. 
+                        </p>
+                        
+                        <div class="ux-box">
+                            <div class="ux-box__title"><i class="fas fa-exclamation-triangle"></i> Nỗi đau cốt lõi của người dùng (User Painpoint)</div>
+                            <p class="ux-box__p">Người dùng cảm thấy lo âu, sợ làm sứt mẻ các mối quan hệ bạn bè khi phải đòi tiền hoặc chia tiền theo cách thủ công. Các app tính toán hiện hành lại quá khô khan, đặt nặng các bảng tính con số phức tạp khiến trải nghiệm trở nên nặng nề.</p>
+                        </div>
+                    </div>
+
+                    <!-- KHỐI 2: GIẢI PHÁP -->
+                    <div class="case-section">
+                        <h2 class="case-section__h2">2. Giải Pháp UX Đột Phá: Làm Chủ Cuộc Vui (The Solution)</h2>
+                        <p class="case-section__p">
+                            Ứng dụng <strong>0wnGo</strong> ra đời với mục tiêu tối cao: Biến việc chia tiền từ một trải nghiệm đầy áp lực trở thành một hành động nhẹ nhàng, vui vẻ và hoàn tất chỉ trong vài bước chạm ngắn gọn. Thông điệp truyền thông cốt lõi của sản phẩm hướng đến việc trao toàn quyền kiểm soát cuộc vui và sự minh bạch tuyệt đối vào tay người dùng.
+                        </p>
+
+                        <div class="ux-box ux-box--solution">
+                            <div class="ux-box__title"><i class="fas fa-lightbulb"></i> Hướng giải quyết Trải nghiệm người dùng</div>
+                            <p class="ux-box__p">Giảm thiểu tối đa các bước nhập liệu (Data Entry). Thiết kế luồng tính toán tự động thông minh, tích hợp thông báo nhắc nhở bằng các câu chữ/icon vui nhộn, thân thiện nhằm gạt bỏ hoàn toàn sự ngại ngùng tâm lý giữa những người bạn với nhau.</p>
+                        </div>
+                    </div>
+
+                    <!-- KHỐI 3: VISUAL DESIGN -->
+                    <div class="case-section">
+                        <h2 class="case-section__h2">3. Thiết Kế Giao Diện Trực Quan (Visual UI Design)</h2>
+                        <p class="case-section__p">
+                            Để tạo cảm giác hiện đại, trẻ trung và giảm tải áp lực thị giác cho các khối số liệu tài chính, tôi lựa chọn thiết kế hệ sinh thái giao diện tối (Dark Mode). Điểm nhấn của layout là việc kết hợp các dải màu cam thương hiệu rực rỡ để dẫn dắt mắt người dùng tập trung vào các nút hành động quan trọng (CTA).
+                        </p>
+
+                        <!-- KHUNG CHỨA ẢNH MOCKUP SẢN PHẨM -->
+                        <div class="case-img-wrapper">
+                            <!-- FIX: Thêm ../ vào đường dẫn ảnh để nhảy ra ngoài folder blogs tìm thư mục assets -->
+                            <img src="../assets/img/project_1.png" alt="0wnGo High-Fidelity Mockups" class="case-img">
+                        </div>
+                        <div class="case-img-caption">Hình 3.1: Giao diện trực quan màn hình chia tiền tự động và cổng thanh toán nhanh trên ứng dụng 0wnGo.</div>
+                    </div>
+
+                    <!-- KHỐI 4: BÀI HỌC -->
+                    <div class="case-section">
+                        <h2 class="case-section__h2">4. Bài Học Rút Ra & Kết Luận (Takeaways)</h2>
+                        <p class="case-section__p">
+                            Dự án 0wnGo đã cho tôi một bài học đắt giá về việc làm sản phẩm: Một thiết kế UI đẹp mắt thôi là chưa đủ, mà giá trị đích thực nằm ở năng lực thấu hiểu và tháo gỡ được những "vướng mắc tâm lý âm thầm" của con người trong cuộc sống hằng ngày. Là một Designer mới tốt nghiệp, sự tỉ mỉ, cầu thị và tư duy đặt con người làm trung tâm chính là kim chỉ nam giúp tôi tiếp tục hoàn thiện kỹ năng của mình trên chặng đường sắp tới.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER ĐỒNG BỘ -->
+    <footer class="footer">
+        <div class="grid wide">
+            <div class="footer__wrapper">
+                <div class="footer__logo">
+                    <!-- FIX: Thêm ../ vào link logo footer -->
+                    <a href="../index.html" class="footer__logo-link">LOGO</a>
+                </div>
+                <nav class="footer__nav">
+                    <ul class="footer__menu">
+                        <!-- FIX: Thêm ../ vào toàn bộ link footer menu -->
+                        <li><a href="../index.html" class="footer__link">Home</a></li>
+                        <li><a href="../index.html#about" class="footer__link">About me</a></li>
+                        <li><a href="../index.html#experiences" class="footer__link">Experiences</a></li>
+                        <li><a href="../index.html#portfolio" class="footer__link">Portfolio</a></li>
+                    </ul>
+                </nav>
+                <div class="footer__copyright">
+                    <p>Designed by @duytrung Graphic Designer</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script>
+    /* JavaScript đóng mở menu ngăn kéo cơ bản trên Mobile/Tablet của trang Blog */
+    const menuOpenBtn = document.querySelector('.js-menu-open');
+    const menuCloseBtn = document.querySelector('.js-menu-close');
+    const menuOverlay = document.querySelector('.js-menu-overlay');
+    const navbarMenu = document.querySelector('.header__nav-col');
+
+    function closeMobileMenu() {
+        if (navbarMenu && menuOverlay) {
+            navbarMenu.classList.remove('open');
+            menuOverlay.classList.remove('open');
+        }
+    }
+    if (menuOpenBtn && navbarMenu && menuOverlay) {
+        menuOpenBtn.addEventListener('click', () => {
+            navbarMenu.classList.add('open');
+            menuOverlay.classList.add('open');
+        });
+    }
+    if (menuCloseBtn) menuCloseBtn.addEventListener('click', closeMobileMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
+</script>
+
+</html>
