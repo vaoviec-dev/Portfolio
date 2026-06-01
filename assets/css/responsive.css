@@ -473,12 +473,12 @@
         align-items: center !important;
         gap: 1.2rem !important;
         margin-bottom: 4rem !important;
-        overflow-x: visible !important;
+        overflow-x: auto !important;
         padding: 0 1.6rem !important;
     }
 
     .portfolio__filter-btn--all {
-        display: none !important;
+        display: inline-block !important;
     }
 
     .portfolio__grid {
