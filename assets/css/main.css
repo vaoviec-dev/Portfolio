@@ -6,6 +6,10 @@
    RESET VÀ ĐỒNG BỘ LẠI TOÀN BỘ CSS HEADER PC (MAIN.CSS)
    ========================================================================== */
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Khung bọc ngoài cùng cố định trên đỉnh */
 .header {
     position: fixed;

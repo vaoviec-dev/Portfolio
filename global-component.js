@@ -1,3 +1,11 @@
+// Tự động lấy prefix đường dẫn dựa trên môi trường chạy
+const getPath = (path) => {
+    // Nếu URL chứa /Portfolio/, giữ nguyên. Nếu không, bỏ đi để chạy trên Live Server
+    const isGitHub = window.location.pathname.includes('/Portfolio/');
+    const prefix = isGitHub ? '/Portfolio' : '';
+    return prefix + path;
+};
+
 // 1. HEADER CHUNG
 class GlobalHeader extends HTMLElement {
     connectedCallback() {
@@ -6,18 +14,18 @@ class GlobalHeader extends HTMLElement {
             <div class="header__overlay js-menu-overlay"></div>
             <div class="grid wide">
                 <div class="row header__wrapper">
-                    <div class="header__logo-col"><a href="/Portfolio/" class="header__logo">D</a></div>
+                    <div class="header__logo-col"><a href="${getPath('/')}" class="header__logo">D</a></div>
                     <nav class="header__nav-col">
                         <div class="header__close-btn js-menu-close"><i class="fas fa-times"></i></div>
                         <ul class="header__menu">
-                            <li><a href="/Portfolio/" class="header__link">Home</a></li>
-                            <li><a href="/Portfolio/#about" class="header__link">About me</a></li>
-                            <li><a href="/Portfolio/#experiences" class="header__link">Experience</a></li>
-                            <li><a href="/Portfolio/#portfolio" class="header__link">Portfolio</a></li>
+                            <li><a href="${getPath('/')}" class="header__link">Home</a></li>
+                            <li><a href="${getPath('/#about')}" class="header__link">About me</a></li>
+                            <li><a href="${getPath('/#experiences')}" class="header__link">Experience</a></li>
+                            <li><a href="${getPath('/#portfolio')}" class="header__link">Portfolio</a></li>
                         </ul>
                     </nav>
                     <div class="header__actions-col">
-                        <a href="/Portfolio/#contact" class="btn header__btn-contact">Contact Me</a>
+                        <a href="${getPath('/#contact')}" class="btn header__btn-contact">Contact Me</a>
                         <div class="header__toggle-btn js-menu-open"><i class="fas fa-bars"></i></div>
                     </div>
                 </div>
@@ -48,14 +56,14 @@ class GlobalFooter extends HTMLElement {
         <footer class="footer">
             <div class="grid wide">
                 <div class="footer__content">
-                    <a href="/Portfolio/" class="footer__logo">D</a>
+                    <a href="${getPath('/')}" class="footer__logo">D</a>
                     <nav class="footer__nav">
                         <ul class="footer__menu">
-                            <li><a href="/Portfolio/">Home</a></li>
-                            <li><a href="/Portfolio/#about">About me</a></li>
-                            <li><a href="/Portfolio/#experiences">Experience</a></li>
-                            <li><a href="/Portfolio/#portfolio">Portfolio</a></li>
-                            <li><a href="/Portfolio/#contact">Contact me</a></li>
+                            <li><a href="${getPath('/')}">Home</a></li>
+                            <li><a href="${getPath('/#about')}">About me</a></li>
+                            <li><a href="${getPath('/#experiences')}">Experience</a></li>
+                            <li><a href="${getPath('/#portfolio')}">Portfolio</a></li>
+                            <li><a href="${getPath('/#contact')}">Contact me</a></li>
                         </ul>
                     </nav>
                     <div class="footer__bottom">

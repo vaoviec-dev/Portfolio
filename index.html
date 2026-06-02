@@ -740,65 +740,51 @@
         requestAnimationFrame(animation);
     }
 
-    // --- LOGIC CLICK MENU ĐỔI MÀU CAM ACTIVE & CUỘN CHẬM ---
+    // --- LOGIC CLICK MENU MỚI (CHỈ CUỘN, KHÔNG CHUYỂN TRANG) ---
     document.addEventListener('click', (e) => {
         const link = e.target.closest('.header__link');
         if (!link) return;
 
         const targetId = link.getAttribute('href');
 
+        // NÚT HOME: Cuộn mượt về đỉnh trang thay vì chuyển hướng
         if (targetId === '#' || targetId === '' || targetId === './index.html' || targetId === 'index.html') {
             e.preventDefault();
-            const startPosition = window.scrollY;
-            const distance = -startPosition;
-            let startTime = null;
 
-            function homeAnimation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = ease(timeElapsed, startPosition, distance, 1200);
-                window.scrollTo(0, run);
-
-                if (timeElapsed < 1200) {
-                    requestAnimationFrame(homeAnimation);
-                } else {
-                    window.scrollTo(0, 0);
-                }
+            // Dùng lenis để cuộn mượt về tọa độ 0 (đầu trang)
+            if (window.lenis) {
+                window.lenis.scrollTo(0, { duration: 1.5 });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-
-            function ease(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
-
-            requestAnimationFrame(homeAnimation);
         }
+        // CÁC MỤC KHÁC: Cuộn mượt đến section tương ứng
         else if (targetId.startsWith('#')) {
             e.preventDefault();
-            smoothScrollTo(targetId, 1200);
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                if (window.lenis) {
+                    window.lenis.scrollTo(targetElement, { duration: 1.5 });
+                } else {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
         }
 
-        const currentActive = document.querySelector('.header__link--active');
-        if (currentActive) {
-            currentActive.classList.remove('header__link--active');
-        }
+        // Đổi màu Active
+        document.querySelector('.header__link--active')?.classList.remove('header__link--active');
         link.classList.add('header__link--active');
 
-        const navbarMenu = document.querySelector('.header__nav-col');
-        const menuOverlay = document.querySelector('.js-menu-overlay');
-        if (navbarMenu && menuOverlay) {
-            navbarMenu.classList.remove('open');
-            menuOverlay.classList.remove('open');
-        }
+        // Đóng menu mobile
+        document.querySelector('.header__nav-col')?.classList.remove('open');
+        document.querySelector('.js-menu-overlay')?.classList.remove('open');
     });
 
     document.addEventListener('click', (e) => {
         const headerContactBtn = e.target.closest('.header__btn-contact');
         if (headerContactBtn) {
             e.preventDefault();
-            smoothScrollTo('#contact', 1200);
+            smoothScrollTo('#contact', 500);
         }
     });
 
