@@ -234,6 +234,7 @@
     background-color: transparent;
     border: 1px solid var(--foundation-white-dark);
     transition: all 0.2s;
+    text-decoration: none !important; /* Dòng này sẽ xóa gạch chân */
 }
 
 .hero__btn-cv:hover {
@@ -351,7 +352,30 @@
     display: none;
 }
 
+/* ==========================================================================
+   CLASS CHUNG ĐỒNG BỘ CHO KHỐI TIÊU ĐỀ (SECTION HEADER)
+   ========================================================================== */
+.section-header {
+    text-align: center;
+    margin-bottom: 6rem; /* Khoảng cách từ dòng chữ dưới xuống nội dung bên dưới */
+    padding: 0 1.6rem;
+}
 
+.section-header__title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: var(--foundation-white-light, #FEFEFE);
+    margin-bottom: 1.6rem; /* Khoảng cách giữa tiêu đề lớn và dòng chữ nhỏ dưới */
+}
+
+.section-header__subtitle {
+    font-size: 1.6rem;
+    color: var(--foundation-white-dark, #BABABA);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 65rem; /* Giới hạn độ rộng chữ cho đẹp */
+    margin: 0 auto;
+}
 
 
 /* ==========================================================================
@@ -517,6 +541,7 @@
     font-weight: 600;
     border-radius: 0.8rem;
     transition: background-color 0.2s ease;
+    text-decoration: none;
 }
 
 .about__btn-cv:hover {
@@ -696,6 +721,12 @@
     transition: transform 0.2s ease;
 }
 
+.experiences__item:hover .btn {
+    background-color: #FD6F00 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(253, 111, 0, 0.3);
+}
+
 .experiences__item:hover {
     transform: translateY(-4px);
     /* Hiệu ứng nổi nhẹ khi di chuột */
@@ -717,7 +748,13 @@
     font-size: 2.2rem;
     font-weight: 700;
     color: var(--foundation-orange-normal, #FD6F00);
-    margin-bottom: 1.6rem;
+    
+    /* 🚀 KHỬ LỖI DÍNH DÒNG CHỮ: Đảm bảo chữ xuống 2 dòng vẫn thoáng đẹp */
+    line-height: 1.4 !important; 
+    
+    /* 🚀 ĐỒNG BỘ KHOẢNG CÁCH: Cách icon phía trên và mốc thời gian phía dưới tăm tắp */
+    margin: 1.6rem 0 1rem 0 !important;
+    text-align: center;
 }
 
 /* Đoạn mô tả chữ xám nhỏ bên dưới */
@@ -1640,3 +1677,35 @@
     50% { transform: translateY(-14px) rotate(12deg); }
     100% { transform: translateY(0px) rotate(0deg); }
 }
+
+/* ==========================================================================
+   FOOTER SECTION STYLES
+   ========================================================================== */
+.footer { padding: 8rem 0 3rem; background-color: #121212; color: #fff; text-align: center; }
+
+.footer__logo { 
+    font-size: 3.2rem; font-weight: 700; color: #FD6F00; margin-bottom: 3rem; display: block; 
+    text-decoration: underline; text-underline-offset: 8px;
+    text-decoration: none !important;
+}
+
+.footer__menu { display: flex; justify-content: center; gap: 4rem; margin-bottom: 4rem; list-style: none; }
+.footer__menu a { color: #FEFEFE; text-decoration: none; font-size: 1.6rem; transition: 0.3s; }
+.footer__menu a:hover { color: #FD6F00; }
+
+.footer__socials { display: flex; justify-content: center; gap: 3rem; margin-bottom: 4rem; font-size: 2.2rem; }
+.footer__socials a { color: #FEFEFE; transition: 0.3s; }
+.footer__socials a:hover { color: #FD6F00; }
+
+.footer__contact { margin-bottom: 4rem; display: flex; justify-content: center; gap: 4rem; font-size: 1.6rem; color: #BABABA; }
+.footer__icon { color: #FD6F00; margin-right: 1rem; }
+
+.footer__divider {
+    border: none;
+    border-top: 1px solid #333;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto 3rem auto;
+}
+
+.footer__bottom p { color: #666; font-size: 1.4rem; margin: 0; }

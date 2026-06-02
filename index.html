@@ -7,18 +7,148 @@
     <title>Portfolio</title>
     <link rel="icon" type="image/png" href="assets/img/icon/favicon_bee.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- ĐÃ SỬA: Bỏ dấu / ở đầu các file CSS bên dưới -->
     <link rel="stylesheet" href="assets/css/grid.css">
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         html {
             scroll-behavior: smooth !important;
         }
+
+        body {
+            overflow-x: hidden;
+            /* Chống vỡ layout khi xoay khối 3D rộng ra rìa */
+        }
+
+        /* ==========================================================================
+           CSS ĐỊNH HÌNH CAROUSEL PORTFOLIO 3D (ĐỒNG BỘ GIỚNG IMAGE_AAD5DE.JPG)
+           ========================================================================== */
+        .portfolioSwiper {
+            width: 100%;
+            padding-top: 3rem;
+            padding-bottom: 7rem !important;
+            /* Khoảng trống chứa dấu chấm pagination */
+            position: relative;
+        }
+
+        /* Đẩy cụm dấu chấm xuống độc lập dưới chân card */
+        .portfolioSwiper .swiper-pagination {
+            bottom: 1.5rem !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 10 !important;
+            line-height: 1 !important;
+        }
+
+        .portfolio-slide {
+            width: 340px;
+            /* Chiều rộng card dự án trên PC */
+            height: 440px;
+            /* Chiều cao card dự án */
+            border-radius: 2rem;
+            overflow: hidden;
+            background: #1A1A1A;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            /* 🚀 CHỐNG BÔI ĐEN VÀ CHỐNG KÉO THẢ LINK TRÊN TRÌNH DUYỆT */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Khi slide nằm ở giữa được Active thì sáng viền cam */
+        .swiper-slide-active .portfolio__card {
+            border-color: #FD6F00;
+        }
+
+        .portfolio__card {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            border: 2px solid transparent;
+            border-radius: 2rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #1A1A1A;
+
+            /* 🚀 THÊM DÒNG NÀY: Khử hành vi bốc đường dẫn "ném đi" của trình duyệt hệ thống */
+            -webkit-user-drag: none;
+            user-drag: none;
+        }
+
+        .portfolio__img-box {
+            width: 100%;
+            height: 75%;
+            overflow: hidden;
+            background: #222;
+        }
+
+        .portfolio__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+
+            /* 🚀 THÊM DÒNG NÀY: Khử hành vi bốc ảnh kéo rê ra ngoài */
+            pointer-events: none;
+            -webkit-user-drag: none;
+        }
+
+        .portfolio__card:hover .portfolio__img {
+            transform: scale(1.06);
+        }
+
+        .portfolio__info {
+            padding: 2rem 2.4rem;
+            background: #1A1A1A;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Căn giữa chữ cho cân đối */
+        }
+
+        .portfolio__project-name {
+            font-size: 2rem;
+            color: #FFF;
+            font-weight: 700;
+            line-height: 1.4;
+            margin: 0 0 0.6rem 0;
+            text-align: center;
+        }
+
+        .portfolio__project-category {
+            font-size: 1.3rem;
+            color: #FD6F00;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            margin-bottom: 0 !important;
+        }
+
+        /* Custom màu các chấm pagination dưới đáy */
+        .portfolioSwiper .swiper-pagination-bullet-active {
+            background: #FD6F00 !important;
+            width: 2.4rem !important;
+            border-radius: 5px !important;
+            transition: all 0.3s ease;
+        }
+
+        .portfolioSwiper .swiper-pagination-bullet {
+            background: #666;
+            opacity: 1;
+        }
     </style>
 
-    <!-- NHÚNG THƯ VIỆN EMAILJS CHÍNH HÃNG -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function () {
@@ -29,7 +159,6 @@
 
 
 <body>
-    <!-- HEADER ĐC CẤT TRONG NOTION -->
     <global-header></global-header>
 
     <section class="hero">
@@ -40,7 +169,7 @@
                     <div class="hero__content">
                         <span class="hero__sub-title">Hi I am</span>
                         <h3 class="hero__name">Ta Duy Trung</h3>
-                        <h1 class="hero__job">UI/UX designer</h1>
+                        <h1 class="hero__job">Graphic designer</h1>
 
                         <div class="hero__socials">
                             <a href="#" class="hero__social-link"><i class="fab fa-instagram"></i></a>
@@ -51,7 +180,10 @@
 
                         <div class="hero__cta">
                             <a href="tel:0357552081" class="btn hero__btn-hire">Call Me</a>
-                            <a href="#" class="btn hero__btn-cv">Download CV</a>
+                            <a href="../assets/docs/CV_Ta_Duy_Trung.pdf" class="btn hero__btn-cv"
+                                download="CV_Ta_Duy_Trung.pdf">
+                                Download CV
+                            </a>
                         </div>
 
                         <div class="hero__stats">
@@ -101,15 +233,14 @@
     <section id="about" class="about">
         <div class="grid wide">
 
-            <div class="about__header">
-                <h2 class="about__title">About Me</h2>
-                <p class="about__subtitle">User Interface And User Experience And Also Video Editing</p>
+            <div class="section-header">
+                <h2 class="section-header__title">About Me</h2>
+                <p class="section-header__subtitle">"Hệ thống hóa tư duy, tối ưu hóa thực tế."</p>
             </div>
 
             <div class="row about__body">
                 <div class="col l-5 m-12 c-12">
                     <div class="about__avatar-wrapper">
-                        <!-- ĐÃ SỬA: Bỏ dấu / ở đầu src ảnh -->
                         <img src="assets/img/avtar-transparent.png" alt="Ta Duy Trung" class="about__avatar-img">
                     </div>
                 </div>
@@ -117,13 +248,14 @@
                 <div class="col l-7 m-12 c-12">
                     <div class="about__content">
                         <p class="about__description">
-                            "Tốt nghiệp chuyên ngành Thiết kế Đồ họa (2024), tôi dành thời gian sau đó để rèn luyện bản
-                            thân và quan sát các vấn đề thực tế trong đời sống. Dự án OwnGo là kết quả của quá trình tôi
-                            tự nghiên cứu về UI/UX với mong muốn tạo ra một giải pháp chia tiền nhóm đơn giản và minh
-                            bạch. Là một người mới, tôi luôn giữ thái độ cầu thị, tỉ mỉ và hy vọng tìm được môi trường
-                            phù hợp để học hỏi và đóng góp sức mình."
+                            "Tốt nghiệp chuyên ngành Thiết kế Đồ họa (2024), tôi luôn chú trọng việc ứng dụng thẩm mỹ
+                            thiết kế vào thực tế. Dù chưa có many kinh nghiệm thực chiến trong lĩnh vực sản xuất, tôi
+                            tin tưởng vào tư duy hệ thống và khả năng tính toán logic sẵn có để nhanh chóng nắm bắt, tối
+                            ưu hóa quy trình cấu trúc bản in. Với tinh thần cầu thị và sự tỉ mỉ, tôi mong muốn tìm kiếm
+                            một môi trường chuyên nghiệp để học hỏi, bứt phá và cống hiến giá trị lâu dài."
                         </p>
-                        <a href="#" class="btn about__btn-cv">
+                        <a href="../assets/docs/CV_Ta_Duy_Trung.pdf" class="about__btn-cv"
+                            download="CV_Ta_Duy_Trung.pdf">
                             <i class="fas fa-download"></i> Download CV
                         </a>
                     </div>
@@ -200,91 +332,108 @@
     <section id="experiences" class="experiences">
         <div class="grid wide">
 
-            <div class="experiences__header">
-                <h2 class="experiences__title">Experiences</h2>
-                <p class="experiences__subtitle">Lorem ipsum dolor sit amet consectetur. Imperdiet convallis blandit
-                    felis ligula aliquam</p>
+            <div class="section-header">
+                <h2 class="section-header__title">Experiences</h2>
+                <p class="section-header__subtitle">Lộ trình phát triển tư duy thiết kế, tích lũy kinh nghiệm thực tế
+                    qua môi trường doanh nghiệp và các dự án cá nhân.</p>
             </div>
 
             <div class="row experiences__list">
 
-                <!-- CARD SỐ 1: Đã sửa từ thẻ <div> thành thẻ <a> để click chuyển trang -->
                 <div class="col l-4 m-6 c-12 experiences__item-col">
-                    <a href="blogs/blog-app-design.html" class="experiences__item" style="text-decoration: none;">
-                        <div class="experiences__icon-box">
-                            <i class="fas fa-layer-group"></i>
+                    <a href="blogs/blog-education.html" class="experiences__item"
+                        style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%; min-height: 38rem; padding: 4rem 3rem 3rem 3rem;">
+                        <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                            <div class="experiences__icon-box">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h3 class="experiences__item-title">Graphic Design Graduate</h3>
+                            <span
+                                style="display: block; font-size: 1.3rem; color: #888; margin: 0 0 2rem 0; font-weight: 500;">Chuyên
+                                ngành Thiết kế Đồ họa | 2024</span>
+                            <p class="experiences__item-desc"
+                                style="text-align: justify; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0;">
+                                Tốt nghiệp nền tảng bài bản về ngôn ngữ hình ảnh, tập trung rèn luyện tư duy hệ thống và
+                                ứng dụng thẩm mỹ vào thực tế. Định hình kỹ năng tối ưu hóa cấu trúc layout, quản lý dữ
+                                liệu thiết kế khoa học và chuẩn hóa tệp tin.
+                            </p>
                         </div>
-                        <h3 class="experiences__item-title">App Design</h3>
-                        <p class="experiences__item-desc">
-                            Nghiên cứu giải pháp thiết kế giao diện ứng dụng chia tiền nhóm tinh gọn, giảm lo âu cho
-                            người dùng.
-                        </p>
+                        <span class="btn"
+                            style="padding: 0.8rem 2.4rem; font-size: 1.4rem; font-weight: 600; color: #FD6F00; background: transparent; border: 1px solid #FD6F00; border-radius: 0.8rem; margin-top: 2.4rem; transition: all 0.2s ease; width: fit-content;">Xem
+                            văn bằng</span>
                     </a>
                 </div>
 
-                <!-- CARD SỐ 2: Giữ nguyên (Khi nào bồ viết bài số 2 thì sửa tương tự card 1) -->
                 <div class="col l-4 m-6 c-12 experiences__item-col">
-                    <div class="experiences__item">
-                        <div class="experiences__icon-box">
-                            <i class="fas fa-layer-group"></i>
+                    <a href="blogs/blog-app-design.html" class="experiences__item"
+                        style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%; min-height: 38rem; padding: 4rem 3rem 3rem 3rem;">
+                        <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                            <div class="experiences__icon-box">
+                                <i class="fab fa-figma"></i>
+                            </div>
+                            <h3 class="experiences__item-title">UI/UX Designer</h3>
+                            <span
+                                style="display: block; font-size: 1.3rem; color: #888; margin: 0 0 2rem 0; font-weight: 500;">Personal
+                                Project | 04/2026</span>
+                            <p class="experiences__item-desc"
+                                style="text-align: justify; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0;">
+                                Nghiên cứu và thiết kế giao diện ứng dụng chia tiền nhóm OwnGo trên Figma trong 1 tháng.
+                                Tập trung tối ưu hóa các luồng thao tác tinh gọn nhằm tăng tính linh hoạt, kiểm soát và
+                                giảm bớt lo âu cho người dùng khi sử dụng.
+                            </p>
                         </div>
-                        <h3 class="experiences__item-title">App Design</h3>
-                        <p class="experiences__item-desc">
-                            Lorem ipsum dolor sit amet. Imperdiet Lorem ipsum dolor sit amet consectetur
-                        </p>
-                    </div>
+                        <span class="btn"
+                            style="padding: 0.8rem 2.4rem; font-size: 1.4rem; font-weight: 600; color: #FD6F00; background: transparent; border: 1px solid #FD6F00; border-radius: 0.8rem; margin-top: 2.4rem; transition: all 0.2s ease; width: fit-content;">Xem
+                            thêm</span>
+                    </a>
                 </div>
 
-                <!-- CARD SỐ 3: Giữ nguyên -->
                 <div class="col l-4 m-6 c-12 experiences__item-col">
-                    <div class="experiences__item">
-                        <div class="experiences__icon-box">
-                            <i class="fas fa-layer-group"></i>
+                    <a href="blogs/blog-photo-editor.html" class="experiences__item"
+                        style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%; min-height: 38rem; padding: 4rem 3rem 3rem 3rem;">
+                        <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                            <div class="experiences__icon-box">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <h3 class="experiences__item-title">Photo Editor Intern</h3>
+                            <span
+                                style="display: block; font-size: 1.3rem; color: #888; margin: 0 0 2rem 0; font-weight: 500;">Tin
+                                học Đất Lành | 09/2022 - 11/2022</span>
+                            <p class="experiences__item-desc"
+                                style="text-align: justify; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0;">
+                                Tập trung chuyên sâu vào kỹ thuật hậu kỳ, xử lý và chỉnh sửa hình ảnh sản phẩm truyền
+                                thông. Đảm bảo độ chính xác về màu sắc, ánh sáng và quy chuẩn hiển thị kỹ thuật số trước
+                                khi bàn giao ấn phẩm hoàn chỉnh.
+                            </p>
                         </div>
-                        <h3 class="experiences__item-title">App Design</h3>
-                        <p class="experiences__item-desc">
-                            Lorem ipsum dolor sit amet. Imperdiet Lorem ipsum dolor sit amet consectetur
-                        </p>
-                    </div>
+                        <span class="btn"
+                            style="padding: 0.8rem 2.4rem; font-size: 1.4rem; font-weight: 600; color: #FD6F00; background: transparent; border: 1px solid #FD6F00; border-radius: 0.8rem; margin-top: 2.4rem; transition: all 0.2s ease; width: fit-content;">Xem
+                            thêm</span>
+                    </a>
                 </div>
 
-                <!-- CARD SỐ 4: Giữ nguyên -->
                 <div class="col l-4 m-6 c-12 experiences__item-col">
-                    <div class="experiences__item">
-                        <div class="experiences__icon-box">
-                            <i class="fas fa-layer-group"></i>
+                    <a href="blogs/blog-graphic-design.html" class="experiences__item"
+                        style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%; min-height: 38rem; padding: 4rem 3rem 3rem 3rem;">
+                        <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                            <div class="experiences__icon-box">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3 class="experiences__item-title">Graphic Design Intern</h3>
+                            <span
+                                style="display: block; font-size: 1.3rem; color: #888; margin: 0 0 2rem 0; font-weight: 500;">Eoty
+                                Group | 05/2022 - 07/2022</span>
+                            <p class="experiences__item-desc"
+                                style="text-align: justify; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0;">
+                                Tham gia hỗ trợ phòng truyền thông thiết kế các ấn phẩm đồ họa, banner quảng cáo và hình
+                                ảnh thương hiệu. Phối hợp cùng đội ngũ lên ý tưởng visual và làm quen với quy trình sáng
+                                tạo chuyên nghiệp tại doanh nghiệp.
+                            </p>
                         </div>
-                        <h3 class="experiences__item-title">App Design</h3>
-                        <p class="experiences__item-desc">
-                            Lorem ipsum dolor sit amet. Imperdiet Lorem ipsum dolor sit amet consectetur
-                        </p>
-                    </div>
-                </div>
-
-                <!-- CARD SỐ 5: Giữ nguyên -->
-                <div class="col l-4 m-6 c-12 experiences__item-col">
-                    <div class="experiences__item">
-                        <div class="experiences__icon-box">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <h3 class="experiences__item-title">App Design</h3>
-                        <p class="experiences__item-desc">
-                            Lorem ipsum dolor sit amet. Imperdiet Lorem ipsum dolor sit amet consectetur
-                        </p>
-                    </div>
-                </div>
-
-                <!-- CARD SỐ 6: Giữ nguyên -->
-                <div class="col l-4 m-6 c-12 experiences__item-col">
-                    <div class="experiences__item">
-                        <div class="experiences__icon-box">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <h3 class="experiences__item-title">App Design</h3>
-                        <p class="experiences__item-desc">
-                            Lorem ipsum dolor sit amet. Imperdiet Lorem ipsum dolor sit amet consectetur
-                        </p>
-                    </div>
+                        <span class="btn"
+                            style="padding: 0.8rem 2.4rem; font-size: 1.4rem; font-weight: 600; color: #FD6F00; background: transparent; border: 1px solid #FD6F00; border-radius: 0.8rem; margin-top: 2.4rem; transition: all 0.2s ease; width: fit-content;">Xem
+                            thêm</span>
+                    </a>
                 </div>
 
             </div>
@@ -294,15 +443,13 @@
     <section id="portfolio" class="portfolio">
         <div class="grid wide">
 
-            <div class="portfolio__header">
-                <h2 class="portfolio__title">Portfolio</h2>
+            <div class="section-header">
+                <h2 class="section-header__title">Portfolio</h2>
             </div>
 
-            <!-- THAY BỘ LỌC TẠI ĐÂY -->
             <div class="portfolio__filter">
                 <button class="portfolio__filter-btn portfolio__filter-btn--all portfolio__filter-btn--active"
                     data-filter="all">All</button>
-
                 <button class="portfolio__filter-btn" data-filter="print-packaging">Print & Packaging</button>
                 <button class="portfolio__filter-btn" data-filter="advertising">Marketing & Ads</button>
                 <button class="portfolio__filter-btn" data-filter="branding">Branding</button>
@@ -311,101 +458,86 @@
                 <button class="portfolio__filter-btn" data-filter="art">Draw Art</button>
             </div>
 
-            <div class="row portfolio__grid">
+            <div class="swiper portfolioSwiper">
+                <div class="swiper-wrapper portfolio__grid">
 
-                <!-- 🚀 CARD SỐ 1: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="print-packaging">
-                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
-                    <a href="case-studies/filter-print-packaging.html" class="portfolio__card"
-                        style="text-decoration: none; display: block;">
-                        <div class="portfolio__img-box">
-                            <img src="assets/img/produces/cover_print.png" alt="0wnGo Project" class="portfolio__img">
-                        </div>
-                        <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Print & Packaging</h3>
-                            <span class="portfolio__project-category">Xem chi tiết!</span>
-                        </div>
-                    </a>
+                    <div class="swiper-slide portfolio-slide portfolio__item-col" data-category="print-packaging">
+                        <a href="case-studies/filter-print-packaging.html" class="portfolio__card">
+                            <div class="portfolio__img-box">
+                                <img src="assets/img/produces/cover_print.png" alt="Print & Packaging"
+                                    class="portfolio__img">
+                            </div>
+                            <div class="portfolio__info">
+                                <h3 class="portfolio__project-name">Print & Packaging</h3>
+                                <span class="portfolio__project-category">Xem chi tiết!</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide portfolio-slide portfolio__item-col" data-category="advertising">
+                        <a href="case-studies/filter-advertising.html" class="portfolio__card">
+                            <div class="portfolio__img-box">
+                                <img src="assets/img/produces/cover_dsmarketing.jpg" alt="Marketing & Ads"
+                                    class="portfolio__img">
+                            </div>
+                            <div class="portfolio__info">
+                                <h3 class="portfolio__project-name">Marketing & Ads</h3>
+                                <span class="portfolio__project-category">Xem chi tiết!</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide portfolio-slide portfolio__item-col" data-category="branding">
+                        <a href="case-studies/filter-branding.html" class="portfolio__card">
+                            <div class="portfolio__img-box">
+                                <img src="assets/img/produces/cover_branding.jpg" alt="Branding" class="portfolio__img">
+                            </div>
+                            <div class="portfolio__info">
+                                <h3 class="portfolio__project-name">Branding</h3>
+                                <span class="portfolio__project-category">Xem chi tiết!</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide portfolio-slide portfolio__item-col" data-category="uiux-design">
+                        <a href="case-studies/filter-uiux-design.html" class="portfolio__card">
+                            <div class="portfolio__img-box">
+                                <img src="assets/img/produces/uiux_cover.jpg" alt="UI/UX Design" class="portfolio__img">
+                            </div>
+                            <div class="portfolio__info">
+                                <h3 class="portfolio__project-name">UI/UX Design</h3>
+                                <span class="portfolio__project-category">Xem chi tiết!</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide portfolio-slide portfolio__item-col" data-category="video">
+                        <a href="case-studies/filter-video.html" class="portfolio__card">
+                            <div class="portfolio__img-box">
+                                <img src="assets/img/produces/cover_videoeditor.jpg" alt="Video Editor"
+                                    class="portfolio__img">
+                            </div>
+                            <div class="portfolio__info">
+                                <h3 class="portfolio__project-name">Video Editor</h3>
+                                <span class="portfolio__project-category">Xem chi tiết!</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide portfolio-slide portfolio__item-col" data-category="art">
+                        <a href="case-studies/filter-art.html" class="portfolio__card">
+                            <div class="portfolio__img-box">
+                                <img src="assets/img/produces/cover_art.jpg" alt="Draw Art" class="portfolio__img">
+                            </div>
+                            <div class="portfolio__info">
+                                <h3 class="portfolio__project-name">Draw Art</h3>
+                                <span class="portfolio__project-category">Xem chi tiết!</span>
+                            </div>
+                        </a>
+                    </div>
+
                 </div>
-
-                <!-- 🚀 CARD SỐ 2: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="advertising">
-                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
-                    <a href="case-studies/filter-advertising.html" class="portfolio__card"
-                        style="text-decoration: none; display: block;">
-                        <div class="portfolio__img-box">
-                            <img src="assets/img/produces/cover_dsmarketing.jpg" alt="0wnGo Project"
-                                class="portfolio__img">
-                        </div>
-                        <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Marketing & Ads</h3>
-                            <span class="portfolio__project-category">Xem chi tiết!</span>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 🚀 CARD SỐ 3: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="branding">
-                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
-                    <a href="case-studies/filter-branding.html" class="portfolio__card"
-                        style="text-decoration: none; display: block;">
-                        <div class="portfolio__img-box">
-                            <img src="assets/img/produces/cover_branding.jpg" alt="0wnGo Project"
-                                class="portfolio__img">
-                        </div>
-                        <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Branding</h3>
-                            <span class="portfolio__project-category">Xem chi tiết!</span>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 🚀 CARD SỐ 4: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="uiux-design">
-                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
-                    <a href="case-studies/filter-uiux-design.html" class="portfolio__card"
-                        style="text-decoration: none; display: block;">
-                        <div class="portfolio__img-box">
-                            <img src="assets/img/produces/uiux_cover.jpg" alt="0wnGo Project" class="portfolio__img">
-                        </div>
-                        <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">UI/UX Design</h3>
-                            <span class="portfolio__project-category">Xem chi tiết!</span>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 🚀 CARD SỐ 5: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="video">
-                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
-                    <a href="case-studies/filter-video.html" class="portfolio__card"
-                        style="text-decoration: none; display: block;">
-                        <div class="portfolio__img-box">
-                            <img src="assets/img/produces/cover_videoeditor.jpg" alt="0wnGo Project"
-                                class="portfolio__img">
-                        </div>
-                        <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Video Editor</h3>
-                            <span class="portfolio__project-category">Xem chi tiết!</span>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 🚀 CARD SỐ 6: DỰ ÁN MOBILE APP (Sửa từ thẻ div thành thẻ a để click chuyển trang) -->
-                <div class="col l-4 m-6 c-12 portfolio__item-col" data-category="art">
-                    <!-- ĐÃ ĐỔI THÀNH THẺ A: Trỏ thẳng vào thư mục case-studies chứa sản phẩm kiểu Behance -->
-                    <a href="case-studies/filter-art.html" class="portfolio__card"
-                        style="text-decoration: none; display: block;">
-                        <div class="portfolio__img-box">
-                            <img src="assets/img/produces/cover_art.jpg" alt="0wnGo Project" class="portfolio__img">
-                        </div>
-                        <div class="portfolio__info">
-                            <h3 class="portfolio__project-name">Draw Art</h3>
-                            <span class="portfolio__project-category">Xem chi tiết!</span>
-                        </div>
-                    </a>
-                </div>
-
+                <div class="swiper-pagination"></div>
             </div>
 
         </div>
@@ -414,9 +546,10 @@
     <section id="contact" class="contact">
         <div class="grid wide">
 
-            <div class="contact__header">
-                <h2 class="contact__title">Contact Me</h2>
-                <p class="contact__subtitle">Cultivating Connections: Reach Out And Connect With Me</p>
+            <div class="section-header">
+                <h2 class="section-header__title">Contact Me</h2>
+                <p class="section-header__subtitle">"Lên ý tưởng, kết nối cơ hội và cùng tạo nên những sản phẩm đột
+                    phá."</p>
             </div>
 
             <form action="" class="contact__form">
@@ -464,9 +597,7 @@
     </section>
 
     <global-footer></global-footer>
-    <!-- FOOTER TRONG NOTION -->
 
-    <!-- CỤM NÚT LIÊN HỆ CỐ ĐỊNH -->
     <div class="quick-contact">
         <a href="tel:0357552081" class="quick-contact__item quick-contact__phone">
             <div class="quick-contact__circle">
@@ -480,7 +611,6 @@
         <a href="https://zalo.me/0357552081" target="_blank" class="quick-contact__item quick-contact__zalo">
             <div class="quick-contact__circle">
                 <div class="quick-contact__icon">
-                    <!-- ĐÃ SỬA: Bỏ dấu / ở đầu src ảnh icon zalo -->
                     <img src="assets/img/icon/zalo_sms.png" alt="Zalo" class="quick-contact__zalo-img">
                 </div>
             </div>
@@ -488,12 +618,99 @@
         </a>
     </div>
 
-    <!-- KHUNG CHỨA TOAST NOTIFICATION -->
     <div id="toast-container"></div>
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
+    // ==========================================================================
+    // 🚀 Đã SỬA: LOGIC ĐIỀU KHIỂN ĐÓNG / MỞ MENU NGĂN KÉO TRÊN MOBILE & TABLET
+    // ==========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const toggleBtn = document.querySelector('.header__toggle-btn');
+            const closeBtn = document.querySelector('.header__close-btn');
+            const navbarMenu = document.querySelector('.header__nav-col');
+            const menuOverlay = document.querySelector('.header__overlay');
+
+            if (toggleBtn && navbarMenu && menuOverlay) {
+                toggleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navbarMenu.classList.add('open');
+                    menuOverlay.classList.add('open');
+                });
+            }
+
+            if (closeBtn && navbarMenu && menuOverlay) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navbarMenu.classList.remove('open');
+                    menuOverlay.classList.remove('open');
+                });
+            }
+
+            if (menuOverlay && navbarMenu) {
+                menuOverlay.addEventListener('click', () => {
+                    navbarMenu.classList.remove('open');
+                    menuOverlay.classList.remove('open');
+                });
+            }
+        }, 200); // Trễ 200ms để Component đảm bảo render xong cấu trúc DOM
+    });
+
+    // ==========================================================================
+    // KHỞI TẠO LOGIC HIỆU ỨNG SLIDER 3D COVERFLOW CHO BIỂU DIỄN PORTFOLIO
+    // ==========================================================================
+    var portfolioSwiper = new Swiper(".portfolioSwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        loop: true,
+        observer: true,
+        observeParents: true,
+
+        simulateTouch: true,
+        preventClicks: true,
+        preventClicksPropagation: true,
+        touchStartPreventDefault: false,
+
+        coverflowEffect: {
+            rotate: 12,
+            stretch: -15,
+            depth: 200,
+            modifier: 1,
+            slideShadows: false,
+        },
+
+        breakpoints: {
+            320: {
+                coverflowEffect: {
+                    rotate: 10,
+                    stretch: -30,
+                    depth: 160,
+                    modifier: 1,
+                    slideShadows: false,
+                }
+            },
+            740: {
+                coverflowEffect: {
+                    rotate: 15,
+                    stretch: -15,
+                    depth: 220,
+                    modifier: 1,
+                    slideShadows: false,
+                }
+            }
+        },
+
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        }
+    });
+
     // --- HÀM TỰ ĐỊNH NGHĨA GIÚP CUỘN MÀN HÌNH CHẬM LẠI TÙY Ý ---
     function smoothScrollTo(targetSelector, duration) {
         const target = document.querySelector(targetSelector);
@@ -507,8 +724,6 @@
         function animation(currentTime) {
             if (startTime === null) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
-
-            // Công thức toán học (Easing function) giúp chuyển động mượt mượt lúc đầu và lúc cuối
             const run = ease(timeElapsed, startPosition, distance, duration);
             window.scrollTo(0, run);
 
@@ -526,14 +741,12 @@
     }
 
     // --- LOGIC CLICK MENU ĐỔI MÀU CAM ACTIVE & CUỘN CHẬM ---
-    // (Ta giữ lại logic click của các thẻ link để phục vụ cuộn mượt nội bộ trang chủ)
     document.addEventListener('click', (e) => {
         const link = e.target.closest('.header__link');
         if (!link) return;
 
         const targetId = link.getAttribute('href');
 
-        // Trường hợp 1: Nếu bấm vào nút Home
         if (targetId === '#' || targetId === '' || targetId === './index.html' || targetId === 'index.html') {
             e.preventDefault();
             const startPosition = window.scrollY;
@@ -562,7 +775,6 @@
 
             requestAnimationFrame(homeAnimation);
         }
-        // Trường hợp 2: Nếu bấm vào các mục hash anchor nội bộ như #about, #portfolio...
         else if (targetId.startsWith('#')) {
             e.preventDefault();
             smoothScrollTo(targetId, 1200);
@@ -574,7 +786,6 @@
         }
         link.classList.add('header__link--active');
 
-        // Gọi hàm đóng menu được định nghĩa từ component nếu có kích hoạt trên mobile
         const navbarMenu = document.querySelector('.header__nav-col');
         const menuOverlay = document.querySelector('.js-menu-overlay');
         if (navbarMenu && menuOverlay) {
@@ -583,7 +794,6 @@
         }
     });
 
-    // Áp dụng cuộn chậm cho cả nút "Contact Me" trên thanh Header
     document.addEventListener('click', (e) => {
         const headerContactBtn = e.target.closest('.header__btn-contact');
         if (headerContactBtn) {
@@ -593,7 +803,7 @@
     });
 
     // ==========================================================================
-    // LOGIC LỌC DỰ ÁN PORTFOLIO (PORTFOLIO FILTER) THEO NHÓM MƯỢT MÀ
+    // LOGIC LỌC DỰ ÁN PORTFOLIO ĐỒNG BỘ MƯỢT MÀ VỚI SWIPER SLIDER
     // ==========================================================================
     const filterBtns = document.querySelectorAll('.portfolio__filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio__item-col');
@@ -609,13 +819,19 @@
                 const itemCategory = item.getAttribute('data-category');
 
                 if (filterValue === 'all') {
+                    item.classList.add('swiper-slide');
                     item.style.display = 'block';
                 } else if (itemCategory === filterValue) {
+                    item.classList.add('swiper-slide');
                     item.style.display = 'block';
                 } else {
+                    item.classList.remove('swiper-slide');
                     item.style.display = 'none';
                 }
             });
+
+            portfolioSwiper.update();
+            portfolioSwiper.slideTo(0);
         });
     });
 

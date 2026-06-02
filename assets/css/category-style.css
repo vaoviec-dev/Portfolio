@@ -1,0 +1,156 @@
+
+body {
+    border: 10px solid red !important;
+}
+/* ==========================================================================
+   CATEGORY-STYLE.CSS - CSS DÙNG CHUNG CHO TẤT CẢ CÁC TRANG DANH MỤC CON
+   ========================================================================== */
+body { background-color: #121212; color: #FEFEFE; overflow-x: hidden; }
+.category-page { padding: 12rem 0 8rem 0; }
+.category-page__header { text-align: center; margin-bottom: 4rem; padding: 0 1.6rem; }
+
+/* FIX ĐÈ CHỮ HEADER: Thêm khoảng cách dòng chuẩn và không gian thông thoáng */
+.category-page__title { font-size: 4rem; font-weight: 700; color: #FFF; margin-bottom: 2rem; line-height: 1.3; }
+.category-page__title span { color: #FD6F00; display: inline-block; }
+.category-page__desc { font-size: 1.6rem; color: #BABABA; max-width: 60rem; margin: 0 auto; line-height: 1.6; }
+
+.portfolio__filter { display: flex !important; justify-content: center !important; align-items: center !important; gap: 1.2rem !important; margin-bottom: 6rem !important; flex-wrap: wrap; padding: 0 1.6rem; }
+.portfolio__filter-link { text-decoration: none; }
+
+.slider-container { position: relative; width: 100%; padding: 0 6rem; }
+
+.slider-ctrl { 
+    position: absolute; top: 50%; transform: translateY(-50%); width: 5.6rem; height: 5.6rem; 
+    background-color: rgba(26, 26, 26, 0.95); border: 1px solid #2C2C2C; border-radius: 50%; 
+    color: #FD6F00; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; 
+    cursor: pointer; transition: all 0.2s ease; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); 
+    z-index: 15; backdrop-filter: blur(8px); user-select: none; -webkit-user-select: none;
+}
+.slider-ctrl:hover { background-color: #FD6F00; color: #FFF; border-color: #FD6F00; box-shadow: 0 8px 20px rgba(253, 111, 0, 0.4); }
+.slider-ctrl.disabled { opacity: 0.15; cursor: not-allowed; pointer-events: none; border-color: #222; }
+
+.slider-ctrl--prev { left: -1rem; }
+.slider-ctrl--next { right: -1rem; }
+
+.portfolio__grid-slider { 
+    display: flex !important; flex-wrap: nowrap !important; overflow-x: auto; scroll-behavior: smooth; 
+    gap: 4rem; padding: 4rem 2rem; margin: 0; list-style: none; -webkit-overflow-scrolling: touch; 
+    cursor: grab; perspective: 1200px; perspective-origin: center;
+}
+.portfolio__grid-slider:active { cursor: grabbing; }
+.portfolio__grid-slider::-webkit-scrollbar { display: none; }
+.portfolio__grid-slider { -ms-overflow-style: none; scrollbar-width: none; }
+
+.slider-item { 
+    flex: 0 0 calc(33.333% - 27px); min-width: 32rem; max-width: 100%; 
+    user-select: none; -webkit-user-drag: none; transform-style: preserve-3d; transition: transform 0.4s ease;
+}
+.portfolio__grid-slider .slider-item { transform: scale(0.9) rotateY(12deg); }
+.portfolio__grid-slider .slider-item:hover { transform: scale(1.03) rotateY(0deg) !important; z-index: 5; }
+
+/* FIX CỨNG FIX ĐÈ CHỮ VÀO CARD - ĐỒNG BỘ LAYOUT */
+.portfolio__card { 
+    display: flex; flex-direction: column; width: 100%; height: 450px; 
+    text-decoration: none; cursor: pointer; border-radius: 2rem; overflow: hidden; 
+    background: #1A1A1A; border: 1px solid rgba(255, 255, 255, 0.05); 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); transition: all 0.3s ease; -webkit-user-drag: none; 
+}
+.portfolio__card:hover { border-color: #FD6F00; box-shadow: 0 20px 40px rgba(253, 111, 0, 0.2); }
+.portfolio__img-box { width: 100%; height: 68%; overflow: hidden; background: #222; }
+.portfolio__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; -webkit-user-drag: none; pointer-events: none; }
+.portfolio__card:hover .portfolio__img { transform: scale(1.06); }
+
+.portfolio__info { 
+    padding: 1.6rem 2rem; background: #1A1A1A; flex-grow: 1; 
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.6rem; 
+}
+.portfolio__project-name { 
+    font-size: 1.8rem; color: #FFF; font-weight: 700; margin: 0; text-align: center; line-height: 1.4; 
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.portfolio__project-category { font-size: 1.2rem; color: #FD6F00; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05rem; text-align: center; }
+
+/* ==========================================================================
+   GIAO DIỆN LIGHTBOX MODAL POPUP 3D NÂNG CAO
+   ========================================================================== */
+.lightbox-modal {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(10, 10, 10, 0.94); 
+    z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; 
+    pointer-events: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(15px); perspective: 1500px;
+}
+.lightbox-modal.open { opacity: 1; pointer-events: auto; }
+
+.lightbox-content { 
+    position: relative; width: 75vw; max-width: 90rem; display: flex; flex-direction: column; 
+    align-items: center; transform-style: preserve-3d; transform: rotateX(60deg) translateZ(-200px) scale(0.7);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); user-select: none !important; -webkit-user-select: none !important;
+}
+.lightbox-modal.open .lightbox-content { transform: rotateX(0deg) translateZ(0) scale(1); }
+
+.lightbox-img-wrapper {
+    position: relative; width: 100%; height: 60vh; background: #161616; border-radius: 1.6rem; 
+    border: 4px solid #1A1A1A; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8); display: flex; 
+    justify-content: center; align-items: center; overflow: hidden; cursor: grab;
+}
+.lightbox-img-wrapper:active { cursor: grabbing; }
+
+/* 🚀 ĐÃ GỠ BỎ HOÀN TOÀN XOAY ẢNH: Ảnh đứng yên tĩnh lặng, hiển thị đúng chuẩn Portfolio */
+.lightbox-img { 
+    max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; -webkit-user-drag: none; 
+}
+
+.lightbox-caption { 
+    margin-top: 1.6rem; font-size: 1.8rem; color: #FFF; font-weight: 700; text-align: center;
+    height: 2.6rem; line-height: 2.6rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;
+}
+.lightbox-controls-bar { display: flex; align-items: center; justify-content: center; gap: 2.4rem; margin-top: 1.6rem; height: 4.8rem; width: 100%; }
+.lightbox-counter { font-size: 1.3rem; color: #FD6F00; font-weight: 600; background: rgba(253, 111, 0, 0.1); padding: 0.4rem 1.6rem; border-radius: 2rem; border: 1px solid rgba(253, 111, 0, 0.05); min-width: 7rem; text-align: center; }
+
+.lightbox-btn { 
+    width: 4.6rem; height: 4.6rem; background-color: #1A1A1A; border: 1px solid #333; border-radius: 50%; 
+    color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; 
+    cursor: pointer; transition: all 0.2s ease; user-select: none;
+}
+.lightbox-btn:hover { background-color: #FD6F00; border-color: #FD6F00; box-shadow: 0 0 15px rgba(253, 111, 0, 0.5); }
+.lightbox-btn.hidden { opacity: 0.2; pointer-events: none; }
+
+/* 🚀 CHỈ GIỮ XOAY NÚT CLOSE 3D: Hover đổi cam và lật khối góc 90 độ cực nảy */
+.lightbox-close { 
+    position: absolute; top: -5rem; right: 0; background: none; border: none; color: #888; font-size: 3.2rem; 
+    cursor: pointer; z-index: 2010; 
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+    transform-style: preserve-3d;
+}
+.lightbox-close:hover { 
+    color: #FD6F00; 
+    transform: scale(1.18) rotate(90deg); 
+}
+
+
+/* BLOGS XÀI Ở ĐÂY */
+/* --- FIX LỖI ĐÈ CHỮ CHO CÁC TRANG BÀI VIẾT --- */
+/* Sửa lỗi chồng chữ tại đây */
+.blog-detail__title {
+    line-height: 1.3 !important; 
+    margin-bottom: 2.4rem;
+    display: block;
+    position: relative;
+}
+
+.blog-detail__body h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.4 !important; /* Dãn dòng cho tiêu đề phụ */
+    margin: 4rem 0 1.6rem 0;
+    display: block;
+}
+
+@media (max-width: 739px) {
+    .category-page__title { font-size: 2.8rem; margin-bottom: 1.6rem; }
+    .slider-item { flex: 0 0 100%; min-width: 20rem; transform: scale(0.95) rotateY(0deg) !important; } 
+    .portfolio__card { height: 380px; }
+    .portfolio__grid-slider { gap: 1.6rem; padding-bottom: 2rem; }
+    .lightbox-content { width: 92vw; }
+    .lightbox-img-wrapper { height: 48vh; } 
+    .lightbox-close { top: -5.4rem; right: 0; }
+}

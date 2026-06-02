@@ -65,19 +65,9 @@
         max-width: 80%;
         background-color: #121212 !important;
         z-index: 999999 !important;
-        /* Đảm bảo nổi lên trên cùng */
         padding: 8rem 3.2rem 3rem 3.2rem;
-
-        /* Đẩy sang lề phải 100% để giấu đi */
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out !important;
-        box-shadow: -4px 0 15px rgba(0, 0, 0, 0.5);
-
-        /* FIX CHỖ NÀY: Thêm !important để ép trình duyệt 
-       luôn giấu bảng menu sang phải 100% khi chưa bấm nút */
         transform: translateX(100%) !important;
-
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease !important;
         box-shadow: -4px 0 15px rgba(0, 0, 0, 0.5);
     }
 
@@ -129,7 +119,6 @@
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.6);
         z-index: 99998 !important;
-        /* Thấp hơn menu một chút để menu đè lên */
         display: block;
         opacity: 0;
         pointer-events: none;
@@ -141,22 +130,16 @@
         pointer-events: auto !important;
     }
 
-    /* ==========================================================================
-       LOGIC ĐÓNG MỞ KHI TÍCH VÀO CHECKBOX (ĐÃ FIX ĐƯỜNG DẪN QUA GRID WIDE)
-       ========================================================================== */
-
-    /* Khi checkbox được tích, tìm anh em .grid.wide rồi ép .header__nav-col hiện ra */
+    /* LOGIC ĐÓNG MỞ KHI TÍCH VÀO CHECKBOX */
     .header__checkbox:checked~.grid.wide .header__nav-col {
         transform: translateX(0) !important;
     }
 
-    /* Khi checkbox được tích, kích hoạt lớp nền mờ */
     .header__checkbox:checked~.header__overlay {
         opacity: 1 !important;
         pointer-events: auto !important;
     }
 
-    /* Thay đổi kích thước chữ link khi menu mở ra */
     .header__checkbox:checked~.grid.wide .header__nav-col .header__link {
         font-size: 1.8rem;
         color: #FEFEFE;
@@ -256,7 +239,7 @@
         padding: 3.6rem 2.4rem;
     }
 
-    /* SECTION PORTFOLIO */
+    /* SECTION PORTFOLIO TABLET */
     .portfolio {
         padding: 6rem 1.6rem;
     }
@@ -291,85 +274,75 @@
    2. MÀN HÌNH MOBILE NHỎ (Kích thước nhỏ hơn 739px)
    -------------------------------------------------------------------------- */
 @media (max-width: 739px) {
-    /* ==========================================================================
-   RESPONSIVE MOBILE: THU NHỎ VÒNG TRÒN VÀ GOM GỌN DÀN ICON 3D (MAX-WIDTH: 739PX)
-   ========================================================================== */
-    @media (max-width: 739px) {
 
-        /* 1. Thu nhỏ vòng tròn đa sắc cho vừa khít màn hình điện thoại */
-        .hero__avatar-circle {
-            width: 280px !important;
-            /* Hạ từ 450px xuống 280px */
-            height: 280px !important;
-            min-width: 280px !important;
-            min-height: 280px !important;
-        }
+    /* 1. Thu nhỏ vòng tròn đa sắc cho vừa khít màn hình điện thoại */
+    .hero__avatar-circle {
+        width: 280px !important;
+        height: 280px !important;
+        min-width: 280px !important;
+        min-height: 280px !important;
+    }
 
-        /* 2. Căn chỉnh lại độ tụt ảnh trên mobile để tóc vẫn thoáng, không chạm viền */
-        .hero__avatar-img {
-            width: 120% !important;
-            height: 120% !important;
-            /* Hạ độ tụt xuống 35px cho cân xứng với vòng tròn cỡ nhỏ */
-            transform: translateX(-50%) translateY(35px) !important;
-        }
+    /* 2. Căn chỉnh lại độ tụt ảnh trên mobile để tóc vẫn thoáng, không chạm viền */
+    .hero__avatar-img {
+        width: 120% !important;
+        height: 120% !important;
+        transform: translateX(-50%) translateY(35px) !important;
+    }
 
-        .hero__avatar-circle:hover .hero__avatar-img {
-            transform: translateX(-50%) translateY(35px) scale(1.03) !important;
-        }
+    .hero__avatar-circle:hover .hero__avatar-img {
+        transform: translateX(-50%) translateY(35px) scale(1.03) !important;
+    }
 
-        /* Viền màu thu mỏng lại cho tinh tế trên mobile */
-        .hero__avatar-circle::after {
-            inset: 5px !important;
-        }
+    /* Viền màu thu mỏng lại cho tinh tế trên mobile */
+    .hero__avatar-circle::after {
+        inset: 5px !important;
+    }
 
-        /* 3. THU NHỎ KHUNG CHỨA VÀ DÀN ICON 3D BAY XUNG QUANH */
-        .hero__bg-icons {
-            width: 120% !important;
-            /* Thu hẹp vùng phủ của icon từ 140% xuống 120% để icon gom sát vào vòng tròn */
-            height: 120% !important;
-            top: -10% !important;
-            left: -10% !important;
-        }
+    /* 3. THU NHỎ KHUNG CHỨA VÀ DÀN ICON 3D BAY XUNG QUANH */
+    .hero__bg-icons {
+        width: 120% !important;
+        height: 120% !important;
+        top: -10% !important;
+        left: -10% !important;
+    }
 
-        /* Ép tất cả các icon 3D thu nhỏ kích cỡ lại */
-        .icon-floating {
-            width: 32px !important;
-            /* Thu từ 50px xuống còn 32px nhìn cực kỳ xinh xắn, vừa vặn */
-            height: auto !important;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) !important;
-            /* Giảm bóng đổ cho đỡ nặng mắt */
-        }
+    /* Ép tất cả các icon 3D thu nhỏ kích cỡ lại */
+    .icon-floating {
+        width: 32px !important;
+        height: auto !important;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) !important;
+    }
 
-        /* 4. ĐỊNH VỊ LẠI TỌA ĐỘ CÁC ICON GOM SÁT RÌA VÒNG TRÒN TRÊN MOBILE */
-        .icon-1 {
-            top: 8% !important;
-            left: 12% !important;
-        }
+    /* 4. ĐỊNH VỊ LẠI TỌA ĐỘ CÁC ICON GOM SÁT RÌA VÒNG TRÒN TRÊN MOBILE */
+    .icon-1 {
+        top: 8% !important;
+        left: 12% !important;
+    }
 
-        .icon-2 {
-            top: 5% !important;
-            right: 15% !important;
-        }
+    .icon-2 {
+        top: 5% !important;
+        right: 15% !important;
+    }
 
-        .icon-3 {
-            bottom: 12% !important;
-            left: 8% !important;
-        }
+    .icon-3 {
+        bottom: 12% !important;
+        left: 8% !important;
+    }
 
-        .icon-4 {
-            bottom: 8% !important;
-            right: 12% !important;
-        }
+    .icon-4 {
+        bottom: 8% !important;
+        right: 12% !important;
+    }
 
-        .icon-5 {
-            top: 45% !important;
-            left: -2% !important;
-        }
+    .icon-5 {
+        top: 45% !important;
+        left: -2% !important;
+    }
 
-        .icon-6 {
-            top: 40% !important;
-            right: -2% !important;
-        }
+    .icon-6 {
+        top: 40% !important;
+        right: -2% !important;
     }
 
     .hero__job {
@@ -399,14 +372,7 @@
         display: none;
     }
 
-    .hero__avatar-circle {
-        width: 26rem;
-        height: 26rem;
-        min-width: 26rem;
-        min-height: 26rem;
-    }
-
-    /* SECTION ABOUT */
+    /* SECTION ABOUT MOBILE */
     .about__title {
         font-size: 2.8rem;
     }
@@ -442,7 +408,7 @@
         text-align: center;
     }
 
-    /* SECTION EXPERIENCES */
+    /* SECTION EXPERIENCES MOBILE */
     .experiences__title {
         font-size: 2.8rem;
     }
@@ -456,7 +422,9 @@
         margin-bottom: 2rem;
     }
 
-    /* SECTION PORTFOLIO MOBILE */
+    /* ==========================================================================
+       🚀 DỌN SẠCH CODE CUŨ: FIX TRIỆT ĐỂ LỖI VỠ HỆ THỐNG SLIDER 3D TRÊN MOBILE
+       ========================================================================== */
     .portfolio {
         padding: 6rem 1.6rem;
         overflow: hidden;
@@ -472,46 +440,38 @@
         justify-content: center !important;
         align-items: center !important;
         gap: 1.2rem !important;
-        margin-bottom: 4rem !important;
-        overflow-x: auto !important;
-        padding: 0 1.6rem !important;
+        margin-bottom: 2rem !important;
     }
 
-    .portfolio__filter-btn--all {
-        display: inline-block !important;
-    }
-
+    /* 🚀 FIX LỖI: Trả lại thuộc tính flex đặc trưng cho Swiper trên Mobile */
     .portfolio__grid {
         display: flex !important;
+        /* Buộc phải là flex để Swiper xếp hàng ngang */
         flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        padding: 0 1.6rem 2rem 1.6rem;
-        margin-left: -1.6rem;
-        margin-right: -1.6rem;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
+        /* Không cho phép các slide tự ý xuống dòng */
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
-    .portfolio__grid::-webkit-scrollbar {
-        display: none;
-    }
-
-    .portfolio__item-col {
-        flex: 0 0 82% !important;
-        max-width: 82% !important;
+    /* Ép kích thước card chuẩn tỷ lệ 3D lấp ló cân đối trên màn hình dọc điện thoại */
+    .portfolio-slide {
+        width: 260px !important;
+        /* Tăng lên 260px cho vừa vặn, rõ ảnh */
+        height: 360px !important;
         margin-bottom: 0 !important;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-        scroll-snap-align: start;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+        /* Chống bị co móp kích thước card */
     }
 
     .portfolio__img-box {
-        aspect-ratio: 4 / 4.5;
-        border-radius: 1.8rem;
+        height: 70% !important;
+        border-radius: 1.8rem 1.8rem 0 0 !important;
     }
 
     .portfolio__info {
-        padding: 0 0.8rem;
+        padding: 1.4rem 1.6rem !important;
+        background: #1A1A1A !important;
     }
 
     /* === [CONTACT MOBILE] === */
