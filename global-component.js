@@ -1,15 +1,3 @@
-// Hàm tự động lấy gốc URL (hoạt động đúng cả trên Live Server và GitHub)
-const getBaseUrl = () => {
-    const path = window.location.pathname;
-    // Kiểm tra nếu đang ở trong repo 'Portfolio'
-    if (path.includes('/Portfolio/')) {
-        return '/Portfolio';
-    }
-    return ''; // Nếu đang ở thư mục gốc (Live Server)
-};
-
-const baseUrl = getBaseUrl();
-
 // 1. HEADER CHUNG
 class GlobalHeader extends HTMLElement {
     connectedCallback() {
@@ -18,18 +6,18 @@ class GlobalHeader extends HTMLElement {
             <div class="header__overlay js-menu-overlay"></div>
             <div class="grid wide">
                 <div class="row header__wrapper">
-                    <div class="header__logo-col"><a href="${baseUrl}/" class="header__logo">D</a></div>
+                    <div class="header__logo-col"><a href="/Portfolio/" class="header__logo">D</a></div>
                     <nav class="header__nav-col">
                         <div class="header__close-btn js-menu-close"><i class="fas fa-times"></i></div>
                         <ul class="header__menu">
-                            <li><a href="${baseUrl}/" class="header__link">Home</a></li>
-                            <li><a href="${baseUrl}/#about" class="header__link">About me</a></li>
-                            <li><a href="${baseUrl}/#experiences" class="header__link">Experience</a></li>
-                            <li><a href="${baseUrl}/#portfolio" class="header__link">Portfolio</a></li>
+                            <li><a href="/Portfolio/" class="header__link">Home</a></li>
+                            <li><a href="/Portfolio/#about" class="header__link">About me</a></li>
+                            <li><a href="/Portfolio/#experiences" class="header__link">Experience</a></li>
+                            <li><a href="/Portfolio/#portfolio" class="header__link">Portfolio</a></li>
                         </ul>
                     </nav>
                     <div class="header__actions-col">
-                        <a href="${baseUrl}/#contact" class="btn header__btn-contact">Contact Me</a>
+                        <a href="/Portfolio/#contact" class="btn header__btn-contact">Contact Me</a>
                         <div class="header__toggle-btn js-menu-open"><i class="fas fa-bars"></i></div>
                     </div>
                 </div>
@@ -37,7 +25,7 @@ class GlobalHeader extends HTMLElement {
         </header>`;
         this.initMobileMenu();
     }
-    // ... giữ nguyên hàm initMobileMenu của bồ ...
+
     initMobileMenu() {
         const menuOpenBtn = this.querySelector('.js-menu-open');
         const menuCloseBtn = this.querySelector('.js-menu-close');
@@ -60,14 +48,14 @@ class GlobalFooter extends HTMLElement {
         <footer class="footer">
             <div class="grid wide">
                 <div class="footer__content">
-                    <a href="${baseUrl}/" class="footer__logo">D</a>
+                    <a href="/Portfolio/" class="footer__logo">D</a>
                     <nav class="footer__nav">
                         <ul class="footer__menu">
-                            <li><a href="${baseUrl}/">Home</a></li>
-                            <li><a href="${baseUrl}/#about">About me</a></li>
-                            <li><a href="${baseUrl}/#experiences">Experience</a></li>
-                            <li><a href="${baseUrl}/#portfolio">Portfolio</a></li>
-                            <li><a href="${baseUrl}/#contact">Contact me</a></li>
+                            <li><a href="/Portfolio/">Home</a></li>
+                            <li><a href="/Portfolio/#about">About me</a></li>
+                            <li><a href="/Portfolio/#experiences">Experience</a></li>
+                            <li><a href="/Portfolio/#portfolio">Portfolio</a></li>
+                            <li><a href="/Portfolio/#contact">Contact me</a></li>
                         </ul>
                     </nav>
                     <div class="footer__bottom">
