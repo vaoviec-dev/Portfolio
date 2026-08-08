@@ -154,3 +154,25 @@ body { background-color: #121212; color: #FEFEFE; overflow-x: hidden; }
     .lightbox-img-wrapper { height: 48vh; } 
     .lightbox-close { top: -5.4rem; right: 0; }
 }
+
+
+/* Điều chỉnh container chứa video/ảnh */
+/* Loại bỏ hiển thị danh sách bên phải */
+.js-lightbox-drag-zone {
+    display: block !important;
+    width: 100% !important;
+    max-width: 900px;
+}
+
+#video-display {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Đảm bảo khung nội dung lightbox không bị bó hẹp */
+.lightbox-content {
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+}

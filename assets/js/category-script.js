@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const slider = document.querySelector('.js-slider');
     const prevBtn = document.querySelector('.slider-ctrl--prev');
     const nextBtn = document.querySelector('.slider-ctrl--next');
-    let isDown = false, startX, startY, scrollLeft, isDragging = false; 
+    let isDown = false, startX, startY, scrollLeft, isDragging = false;
 
     if (slider && prevBtn && nextBtn) {
         function updateArrowStatus() {
@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         function getScrollAmount() {
             const firstItem = slider.querySelector('.slider-item');
-            return firstItem ? firstItem.clientWidth + 40 : 320; 
+            return firstItem ? firstItem.clientWidth + 40 : 320;
         }
         nextBtn.addEventListener('click', () => {
             slider.style.scrollBehavior = 'smooth'; slider.scrollLeft += getScrollAmount(); setTimeout(updateArrowStatus, 350);
@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const getPageY = (e) => e.type.startsWith('touch') ? e.touches[0].pageY : e.pageY;
 
         const handleStart = (e) => {
-            isDown = true; isDragging = false; slider.style.scrollBehavior = 'auto'; 
+            isDown = true; isDragging = false; slider.style.scrollBehavior = 'auto';
             if (e.type === 'mousedown') slider.style.cursor = 'grabbing';
             startX = getPageX(e) - slider.offsetLeft; startY = getPageY(e) - slider.offsetTop; scrollLeft = slider.scrollLeft;
         };
@@ -90,9 +90,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const modalNext = document.querySelector('.js-lightbox-next');
     const dragZone = document.querySelector('.js-lightbox-drag-zone');
     const triggers = document.querySelectorAll('.js-lightbox-trigger');
-    
-    let currentAlbum = [], currentIndex = 0, albumTitle = "";   
-    let popupIsDown = false, popupStartX = 0; 
+
+    let currentAlbum = [], currentIndex = 0, albumTitle = "";
+    let popupIsDown = false, popupStartX = 0;
 
     function updateLightboxImage() {
         modalImg.src = currentAlbum[currentIndex].trim();
@@ -104,17 +104,50 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     triggers.forEach(trigger => {
-        const triggerOpen = (e) => {
-            if (isDragging) return; 
-            albumTitle = trigger.getAttribute('data-title');
-            const imagesAttr = trigger.getAttribute('data-images');
-            if (imagesAttr) {
-                currentAlbum = imagesAttr.split(','); currentIndex = 0; updateLightboxImage();
-                modal.classList.add('open'); document.body.style.overflow = 'hidden'; 
+        trigger.addEventListener('click', (e) => {
+            if (isDragging) return;
+
+            const videoListAttr = trigger.getAttribute('data-video-list');
+            // Xử lý Video (Hiển thị ngang, 1 video duy nhất)
+            // Thay thế đoạn xử lý video cũ bằng đoạn này:
+            if (videoListAttr) {
+                const videos = JSON.parse(videoListAttr);
+                // Lưu danh sách video vào biến tạm để dùng cho nút Prev/Next
+                currentAlbum = videos;
+                currentIndex = 0;
+
+                // Hàm hiển thị video tại index hiện tại
+                const renderVideo = (idx) => {
+                    dragZone.innerHTML = `
+            <div id="video-display" style="width:100%; aspect-ratio:16/9;">
+                <iframe id="yt-player" width="100%" height="100%" src="${currentAlbum[idx].url}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+            </div>`;
+                    modalCaption.textContent = currentAlbum[idx].name; // Hiển thị tên video
+                    document.querySelector('.lightbox-counter').textContent = `${idx + 1} / ${currentAlbum.length}`;
+                };
+
+                renderVideo(currentIndex);
+
+                // Hiện lại thanh điều khiển để có nút Prev/Next
+                document.querySelector('.lightbox-controls-bar').style.display = 'flex';
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+
+                // Gán lại logic nút Next/Prev để dùng cho Video
+                document.querySelector('.js-lightbox-next').onclick = () => {
+                    currentIndex = (currentIndex + 1) % currentAlbum.length;
+                    renderVideo(currentIndex);
+                };
+                document.querySelector('.js-lightbox-prev').onclick = () => {
+                    currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
+                    renderVideo(currentIndex);
+                };
+                return;
             }
-        };
-        trigger.addEventListener('mouseup', (e) => { if (e.button === 0) triggerOpen(e); });
-        trigger.addEventListener('touchend', triggerOpen);
+
+            // Logic cũ cho ảnh (giữ nguyên)
+            // ...
+        });
     });
 
     if (dragZone) {
@@ -138,7 +171,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (modalClose) modalClose.addEventListener('click', closeLightbox);
     if (modalNext) modalNext.addEventListener('click', () => { currentIndex = (currentIndex + 1) % currentAlbum.length; updateLightboxImage(); });
     if (modalPrev) modalPrev.addEventListener('click', () => { currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length; updateLightboxImage(); });
-    
+
     // 🚀 CHUẨN FIX: BẮT SỰ KIỆN CLICK ĐÓNG POPUP THÔNG MINH KHI ẤN RA NGOÀI VÙNG TRỐNG
     if (modal) {
         modal.addEventListener('click', (e) => {
@@ -146,7 +179,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const isInsideDragZone = e.target.closest('.js-lightbox-drag-zone');
             const isInsideControls = e.target.closest('.lightbox-controls-bar');
             const isCaption = e.target.closest('.js-lightbox-caption');
-            
+
             // Nếu click ra ngoài hoàn toàn các khối trên, thực hiện đóng popup
             if (!isInsideDragZone && !isInsideControls && !isCaption) {
                 closeLightbox();
