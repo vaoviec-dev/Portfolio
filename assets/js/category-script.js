@@ -82,7 +82,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // 3. LOGIC POPUP LIGHTBOX PHÓNG TO & ĐÈ CHUỘT VUỐT ẢNH TRONG POPUP
     const modal = document.querySelector('.js-lightbox-modal');
-    const modalImg = document.querySelector('.js-lightbox-img');
+    // Đã gỡ bỏ modalImg khai báo ở đây để tránh lỗi mất thẻ img sau khi xem video
     const modalCaption = document.querySelector('.js-lightbox-caption');
     const modalCounter = document.querySelector('.js-lightbox-counter');
     const modalClose = document.querySelector('.js-lightbox-close');
@@ -94,13 +94,20 @@ window.addEventListener('DOMContentLoaded', () => {
     let currentAlbum = [], currentIndex = 0, albumTitle = "";
     let popupIsDown = false, popupStartX = 0;
 
+    // Đã cập nhật hàm này để tương thích tốt với cả Ảnh và khi vuốt slider
     function updateLightboxImage() {
-        modalImg.src = currentAlbum[currentIndex].trim();
+        const currentImg = document.querySelector('.js-lightbox-img');
+        if (currentImg && currentAlbum[currentIndex]) {
+            currentImg.src = currentAlbum[currentIndex].trim();
+        }
         modalCaption.textContent = albumTitle;
         modalCounter.textContent = `${currentIndex + 1} / ${currentAlbum.length}`;
         const isSingleImg = currentAlbum.length <= 1;
-        modalPrev.classList.toggle('hidden', isSingleImg);
-        modalNext.classList.toggle('hidden', isSingleImg);
+        
+        if (modalPrev && modalNext) {
+            modalPrev.classList.toggle('hidden', isSingleImg);
+            modalNext.classList.toggle('hidden', isSingleImg);
+        }
     }
 
     triggers.forEach(trigger => {
@@ -108,32 +115,28 @@ window.addEventListener('DOMContentLoaded', () => {
             if (isDragging) return;
 
             const videoListAttr = trigger.getAttribute('data-video-list');
+            
             // Xử lý Video (Hiển thị ngang, 1 video duy nhất)
-            // Thay thế đoạn xử lý video cũ bằng đoạn này:
             if (videoListAttr) {
                 const videos = JSON.parse(videoListAttr);
-                // Lưu danh sách video vào biến tạm để dùng cho nút Prev/Next
                 currentAlbum = videos;
                 currentIndex = 0;
 
-                // Hàm hiển thị video tại index hiện tại
                 const renderVideo = (idx) => {
                     dragZone.innerHTML = `
             <div id="video-display" style="width:100%; aspect-ratio:16/9;">
                 <iframe id="yt-player" width="100%" height="100%" src="${currentAlbum[idx].url}?autoplay=1" frameborder="0" allowfullscreen></iframe>
             </div>`;
-                    modalCaption.textContent = currentAlbum[idx].name; // Hiển thị tên video
+                    modalCaption.textContent = currentAlbum[idx].name; 
                     document.querySelector('.lightbox-counter').textContent = `${idx + 1} / ${currentAlbum.length}`;
                 };
 
                 renderVideo(currentIndex);
 
-                // Hiện lại thanh điều khiển để có nút Prev/Next
                 document.querySelector('.lightbox-controls-bar').style.display = 'flex';
                 modal.classList.add('open');
                 document.body.style.overflow = 'hidden';
 
-                // Gán lại logic nút Next/Prev để dùng cho Video
                 document.querySelector('.js-lightbox-next').onclick = () => {
                     currentIndex = (currentIndex + 1) % currentAlbum.length;
                     renderVideo(currentIndex);
@@ -145,8 +148,38 @@ window.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Logic cũ cho ảnh (giữ nguyên)
-            // ...
+            // Xử lý Ảnh (Đã được vá lỗi)
+            const imagesAttr = trigger.getAttribute('data-images');
+            if (imagesAttr) {
+                currentAlbum = imagesAttr.split(',');
+                albumTitle = trigger.getAttribute('data-title') || "";
+                currentIndex = 0;
+
+                // Khôi phục lại thẻ img trong khung hiển thị (phòng trường hợp trước đó vừa mở video)
+                dragZone.innerHTML = '<img src="" alt="Lightbox" class="lightbox-img js-lightbox-img">';
+                const currentImg = dragZone.querySelector('.js-lightbox-img');
+
+                const renderImage = (idx) => {
+                    currentImg.src = currentAlbum[idx].trim();
+                    modalCaption.textContent = albumTitle;
+                    document.querySelector('.lightbox-counter').textContent = `${idx + 1} / ${currentAlbum.length}`;
+                };
+
+                renderImage(currentIndex);
+
+                document.querySelector('.lightbox-controls-bar').style.display = 'flex';
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden'; 
+
+                document.querySelector('.js-lightbox-next').onclick = () => {
+                    currentIndex = (currentIndex + 1) % currentAlbum.length;
+                    renderImage(currentIndex);
+                };
+                document.querySelector('.js-lightbox-prev').onclick = () => {
+                    currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
+                    renderImage(currentIndex);
+                };
+            }
         });
     });
 
@@ -157,9 +190,12 @@ window.addEventListener('DOMContentLoaded', () => {
             if (!popupIsDown) return; popupIsDown = false;
             const popupEndX = getPopupX(e); const differenceX = popupEndX - popupStartX;
             if (differenceX > 40 && currentAlbum.length > 1) {
-                currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length; updateLightboxImage();
+                currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length; 
+                // Cập nhật giao diện nếu đang ở chế độ ảnh
+                if(document.querySelector('.js-lightbox-img')) updateLightboxImage();
             } else if (differenceX < -40 && currentAlbum.length > 1) {
-                currentIndex = (currentIndex + 1) % currentAlbum.length; updateLightboxImage();
+                currentIndex = (currentIndex + 1) % currentAlbum.length; 
+                if(document.querySelector('.js-lightbox-img')) updateLightboxImage();
             }
         };
         dragZone.addEventListener('mousedown', popupDragStart);
@@ -169,30 +205,52 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     if (modalClose) modalClose.addEventListener('click', closeLightbox);
-    if (modalNext) modalNext.addEventListener('click', () => { currentIndex = (currentIndex + 1) % currentAlbum.length; updateLightboxImage(); });
-    if (modalPrev) modalPrev.addEventListener('click', () => { currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length; updateLightboxImage(); });
+    
+    // Xử lý nút điều hướng mặc định (nếu có click từ ngoài)
+    if (modalNext) {
+        modalNext.addEventListener('click', () => { 
+            if(!document.querySelector('.js-lightbox-img')) return; // Bỏ qua nếu là video
+            currentIndex = (currentIndex + 1) % currentAlbum.length; 
+            updateLightboxImage(); 
+        });
+    }
+    if (modalPrev) {
+        modalPrev.addEventListener('click', () => { 
+            if(!document.querySelector('.js-lightbox-img')) return;
+            currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length; 
+            updateLightboxImage(); 
+        });
+    }
 
     // 🚀 CHUẨN FIX: BẮT SỰ KIỆN CLICK ĐÓNG POPUP THÔNG MINH KHI ẤN RA NGOÀI VÙNG TRỐNG
     if (modal) {
         modal.addEventListener('click', (e) => {
-            // Kiểm tra xem vị trí click có thuộc vùng ảnh kéo, vùng caption chữ hay thanh nút đáy không
             const isInsideDragZone = e.target.closest('.js-lightbox-drag-zone');
             const isInsideControls = e.target.closest('.lightbox-controls-bar');
             const isCaption = e.target.closest('.js-lightbox-caption');
 
-            // Nếu click ra ngoài hoàn toàn các khối trên, thực hiện đóng popup
             if (!isInsideDragZone && !isInsideControls && !isCaption) {
                 closeLightbox();
             }
         });
     }
 
-    function closeLightbox() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+    function closeLightbox() { 
+        modal.classList.remove('open'); 
+        document.body.style.overflow = ''; 
+        // Xóa iframe video nếu có để dừng tiếng khi đóng
+        const videoPlayer = document.getElementById('yt-player');
+        if(videoPlayer) videoPlayer.remove();
+    }
 
     document.addEventListener('keydown', (e) => {
         if (!modal || !modal.classList.contains('open')) return;
         if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowRight' && currentAlbum.length > 1) modalNext.click();
-        if (e.key === 'ArrowLeft' && currentAlbum.length > 1) modalPrev.click();
+        
+        // Chỉ chạy shortcut phím mui tên cho ảnh
+        if(document.querySelector('.js-lightbox-img')){
+            if (e.key === 'ArrowRight' && currentAlbum.length > 1) modalNext.click();
+            if (e.key === 'ArrowLeft' && currentAlbum.length > 1) modalPrev.click();
+        }
     });
 });
