@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
             if (!isDown) return;
             const x = getPageX(e) - slider.offsetLeft; const y = getPageY(e) - slider.offsetTop;
             const distanceX = Math.abs(x - startX); const distanceY = Math.abs(y - startY);
-            if (distanceX > 5 && distanceX > distanceY) {
+            if (distanceX > 15 && distanceX > distanceY) { // <--- ĐÃ SỬA THÀNH 15
                 isDragging = true; if (e.cancelable) e.preventDefault();
                 const walk = (x - startX) * 1.5; slider.scrollLeft = scrollLeft - walk;
             }
@@ -103,7 +103,7 @@ window.addEventListener('DOMContentLoaded', () => {
         modalCaption.textContent = albumTitle;
         modalCounter.textContent = `${currentIndex + 1} / ${currentAlbum.length}`;
         const isSingleImg = currentAlbum.length <= 1;
-        
+
         if (modalPrev && modalNext) {
             modalPrev.classList.toggle('hidden', isSingleImg);
             modalNext.classList.toggle('hidden', isSingleImg);
@@ -115,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
             if (isDragging) return;
 
             const videoListAttr = trigger.getAttribute('data-video-list');
-            
+
             // Xử lý Video (Hiển thị ngang, 1 video duy nhất)
             if (videoListAttr) {
                 const videos = JSON.parse(videoListAttr);
@@ -127,7 +127,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <div id="video-display" style="width:100%; aspect-ratio:16/9;">
                 <iframe id="yt-player" width="100%" height="100%" src="${currentAlbum[idx].url}?autoplay=1" frameborder="0" allowfullscreen></iframe>
             </div>`;
-                    modalCaption.textContent = currentAlbum[idx].name; 
+                    modalCaption.textContent = currentAlbum[idx].name;
                     document.querySelector('.lightbox-counter').textContent = `${idx + 1} / ${currentAlbum.length}`;
                 };
 
@@ -169,7 +169,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 document.querySelector('.lightbox-controls-bar').style.display = 'flex';
                 modal.classList.add('open');
-                document.body.style.overflow = 'hidden'; 
+                document.body.style.overflow = 'hidden';
 
                 document.querySelector('.js-lightbox-next').onclick = () => {
                     currentIndex = (currentIndex + 1) % currentAlbum.length;
@@ -190,12 +190,12 @@ window.addEventListener('DOMContentLoaded', () => {
             if (!popupIsDown) return; popupIsDown = false;
             const popupEndX = getPopupX(e); const differenceX = popupEndX - popupStartX;
             if (differenceX > 40 && currentAlbum.length > 1) {
-                currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length; 
+                currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
                 // Cập nhật giao diện nếu đang ở chế độ ảnh
-                if(document.querySelector('.js-lightbox-img')) updateLightboxImage();
+                if (document.querySelector('.js-lightbox-img')) updateLightboxImage();
             } else if (differenceX < -40 && currentAlbum.length > 1) {
-                currentIndex = (currentIndex + 1) % currentAlbum.length; 
-                if(document.querySelector('.js-lightbox-img')) updateLightboxImage();
+                currentIndex = (currentIndex + 1) % currentAlbum.length;
+                if (document.querySelector('.js-lightbox-img')) updateLightboxImage();
             }
         };
         dragZone.addEventListener('mousedown', popupDragStart);
@@ -205,20 +205,20 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     if (modalClose) modalClose.addEventListener('click', closeLightbox);
-    
+
     // Xử lý nút điều hướng mặc định (nếu có click từ ngoài)
     if (modalNext) {
-        modalNext.addEventListener('click', () => { 
-            if(!document.querySelector('.js-lightbox-img')) return; // Bỏ qua nếu là video
-            currentIndex = (currentIndex + 1) % currentAlbum.length; 
-            updateLightboxImage(); 
+        modalNext.addEventListener('click', () => {
+            if (!document.querySelector('.js-lightbox-img')) return; // Bỏ qua nếu là video
+            currentIndex = (currentIndex + 1) % currentAlbum.length;
+            updateLightboxImage();
         });
     }
     if (modalPrev) {
-        modalPrev.addEventListener('click', () => { 
-            if(!document.querySelector('.js-lightbox-img')) return;
-            currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length; 
-            updateLightboxImage(); 
+        modalPrev.addEventListener('click', () => {
+            if (!document.querySelector('.js-lightbox-img')) return;
+            currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
+            updateLightboxImage();
         });
     }
 
@@ -235,20 +235,20 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function closeLightbox() { 
-        modal.classList.remove('open'); 
-        document.body.style.overflow = ''; 
+    function closeLightbox() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
         // Xóa iframe video nếu có để dừng tiếng khi đóng
         const videoPlayer = document.getElementById('yt-player');
-        if(videoPlayer) videoPlayer.remove();
+        if (videoPlayer) videoPlayer.remove();
     }
 
     document.addEventListener('keydown', (e) => {
         if (!modal || !modal.classList.contains('open')) return;
         if (e.key === 'Escape') closeLightbox();
-        
+
         // Chỉ chạy shortcut phím mui tên cho ảnh
-        if(document.querySelector('.js-lightbox-img')){
+        if (document.querySelector('.js-lightbox-img')) {
             if (e.key === 'ArrowRight' && currentAlbum.length > 1) modalNext.click();
             if (e.key === 'ArrowLeft' && currentAlbum.length > 1) modalPrev.click();
         }
