@@ -171,14 +171,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 modal.classList.add('open');
                 document.body.style.overflow = 'hidden';
 
-                document.querySelector('.js-lightbox-next').onclick = () => {
-                    currentIndex = (currentIndex + 1) % currentAlbum.length;
-                    renderImage(currentIndex);
-                };
-                document.querySelector('.js-lightbox-prev').onclick = () => {
-                    currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
-                    renderImage(currentIndex);
-                };
+                document.querySelector('.js-lightbox-next').onclick = null;
+                document.querySelector('.js-lightbox-prev').onclick = null;
             }
         });
     });
