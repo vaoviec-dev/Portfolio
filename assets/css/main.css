@@ -1714,16 +1714,57 @@ html {
 
 .footer__bottom p { color: #666; font-size: 1.4rem; margin: 0; }
 
-.header-logo-img {
-    height: 40px; 
-    width: auto;
-    object-fit: contain;
-    border-radius: 50%; /* Bo tròn logo */
+/* =========================================================
+   FINAL FIX - HEADER LOGO
+   ========================================================= */
+
+.header .header-logo-img {
+    display: block !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    object-fit: contain !important;
+    flex: 0 0 40px !important;
+    border-radius: 50%;
 }
 
-.footer-logo-img {
-    height: 50px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 50%;
+
+/* =========================================================
+   FINAL FIX - HERO AVATAR
+   ========================================================= */
+
+.hero__avatar-block {
+    position: relative !important;
+    width: 450px !important;
+    height: 450px !important;
+    flex: 0 0 450px !important;
+}
+
+.hero__avatar-circle {
+    position: absolute !important;
+    width: 450px !important;
+    height: 450px !important;
+    max-width: 450px !important;
+    max-height: 450px !important;
+    overflow: hidden !important;
+}
+
+.hero__avatar-img {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 0 !important;
+
+    width: 125% !important;
+    height: 125% !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    object-fit: contain !important;
+    object-position: bottom center !important;
+
+    transform: translateX(-50%) translateY(68px) !important;
 }
