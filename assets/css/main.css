@@ -1713,3 +1713,11 @@ html {
 }
 
 .footer__bottom p { color: #666; font-size: 1.4rem; margin: 0; }
+
+.header-logo-img,
+.footer-logo-img {
+    height: 40px; /* Bạn có thể tăng giảm số này cho vừa mắt */
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
