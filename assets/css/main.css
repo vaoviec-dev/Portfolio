@@ -1770,45 +1770,46 @@ html {
 }
 
 /* =========================================================
-   FIX FOOTER - GIẢM CHIỀU CAO FOOTER
+   FOOTER COMPACT - OVERRIDE
    ========================================================= */
 
 .footer {
-    padding: 3rem 0 1.5rem;
+    padding: 2.5rem 0 1.2rem !important;
+    min-height: auto !important;
 }
 
 .footer__content {
-    padding: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: auto !important;
 }
 
-/* Logo footer */
 .footer__logo {
-    display: block;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.2rem !important;
 }
 
 .footer-logo-img {
-    max-width: 130px;
+    width: 120px;
+    max-width: 120px;
     height: auto;
-    display: block;
 }
 
-/* Menu footer */
 .footer__nav {
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.2rem !important;
+    padding: 0 !important;
 }
 
 .footer__menu {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-/* Dòng copyright */
 .footer__bottom {
-    padding-top: 1.2rem;
-    margin-top: 1.2rem;
+    margin: 0 !important;
+    padding: 1rem 0 0 !important;
 }
 
 .footer__bottom p {
-    margin: 0;
+    margin: 0 !important;
+    line-height: 1.4;
 }
