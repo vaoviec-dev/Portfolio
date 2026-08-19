@@ -1789,9 +1789,10 @@ html {
 }
 
 .footer-logo-img {
-    width: 120px;
-    max-width: 120px;
-    height: auto;
+    width: 80px !important;
+    max-width: 80px !important;
+    height: auto !important;
+    object-fit: contain;
 }
 
 .footer__nav {
