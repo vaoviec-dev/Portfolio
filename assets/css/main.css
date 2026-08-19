@@ -1768,3 +1768,47 @@ html {
 
     transform: translateX(-50%) translateY(68px) !important;
 }
+
+/* =========================================================
+   FIX FOOTER - GIẢM CHIỀU CAO FOOTER
+   ========================================================= */
+
+.footer {
+    padding: 3rem 0 1.5rem;
+}
+
+.footer__content {
+    padding: 0;
+}
+
+/* Logo footer */
+.footer__logo {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo-img {
+    max-width: 130px;
+    height: auto;
+    display: block;
+}
+
+/* Menu footer */
+.footer__nav {
+    margin-bottom: 1.5rem;
+}
+
+.footer__menu {
+    margin: 0;
+    padding: 0;
+}
+
+/* Dòng copyright */
+.footer__bottom {
+    padding-top: 1.2rem;
+    margin-top: 1.2rem;
+}
+
+.footer__bottom p {
+    margin: 0;
+}
