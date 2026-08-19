@@ -1714,10 +1714,16 @@ html {
 
 .footer__bottom p { color: #666; font-size: 1.4rem; margin: 0; }
 
-.header-logo-img,
-.footer-logo-img {
-    height: 40px; /* Bạn có thể tăng giảm số này cho vừa mắt */
+.header-logo-img {
+    height: 40px; 
     width: auto;
     object-fit: contain;
-    display: block;
+    border-radius: 50%; /* Bo tròn logo */
+}
+
+.footer-logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 50%;
 }
