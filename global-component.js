@@ -14,7 +14,11 @@ class GlobalHeader extends HTMLElement {
             <div class="header__overlay js-menu-overlay"></div>
             <div class="grid wide">
                 <div class="row header__wrapper">
-                    <div class="header__logo-col"><a href="${getPath('/')}" class="header__logo">D</a></div>
+                    <div class="header__logo-col">
+    <a href="${getPath('/')}" class="header__logo">
+        <img src="${getPath('/assets/img/logo/logo-dt.png')}" alt="Duy Trung Logo" class="header-logo-img">
+    </a>
+</div>
                     <nav class="header__nav-col">
                         <div class="header__close-btn js-menu-close"><i class="fas fa-times"></i></div>
                         <ul class="header__menu">
@@ -56,7 +60,9 @@ class GlobalFooter extends HTMLElement {
         <footer class="footer">
             <div class="grid wide">
                 <div class="footer__content">
-                    <a href="${getPath('/')}" class="footer__logo">D</a>
+                    <a href="${getPath('/')}" class="footer__logo">
+    <img src="${getPath('/assets/img/logo/logo-dt.png')}" alt="Duy Trung Logo" class="footer-logo-img">
+</a>
                     <nav class="footer__nav">
                         <ul class="footer__menu">
                             <li><a href="${getPath('/')}">Home</a></li>
